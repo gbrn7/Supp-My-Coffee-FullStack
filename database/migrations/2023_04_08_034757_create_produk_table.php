@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('desc');
             $table->enum('status', ['draft', 'publish']);
             $table->integer('berat');
-            $table->string('product_thumbnail');
+            $table->string('produk_thumbnail');
             $table->softDeletes();
             $table->timestamps();
         });

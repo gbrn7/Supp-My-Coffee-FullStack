@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nama',
+        'role',
         'email',
         'password',
+        'alamat',
+        'no_telp',
     ];
 
     /**
@@ -28,9 +31,8 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
+    protected $hidden = [ //ketika ingin menyembyikan kolom ketika di get dapa di definisikan disini
         'password',
-        'remember_token',
     ];
 
     /**
