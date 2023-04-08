@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@100;300;400;500;600;700;900&display=swap");
+body {
+  font-family: "Poppins", sans-serif;
+  transition: all 0.5s ease-out;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  background: url("../../img/finish-payment-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.finish-payment {
+  height: 100vh;
+  gap: 115px;
+}
+.finish-payment .main .container-fluid .row .text-wrapper {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 70px;
+  text-align: center;
+  letter-spacing: -0.05em;
+  color: white;
+}
+@media (max-width: 991.98px) {
+  .finish-payment .main .container-fluid .row .text-wrapper {
+    font-size: 50px;
+  }
+}
+@media (max-width: 767.98px) {
+  .finish-payment .main .container-fluid .row .text-wrapper {
+    font-size: 30px;
+  }
+}
+.finish-payment .main .container-fluid .row .btn-wrapper a {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: black;
+}
+@media (max-width: 991.98px) {
+  .finish-payment .main .container-fluid .row .btn-wrapper a {
+    font-size: 14px;
+  }
+}
+.finish-payment .footer .footer-wrapper .link-wrap .head {
+  font-size: 18px;
+  letter-spacing: -0.07em;
+  text-transform: capitalize;
+  color: white;
+  font-weight: 500;
+}
+@media (max-width: 991.98px) {
+  .finish-payment .footer .footer-wrapper .link-wrap .head {
+    font-size: 15px;
+  }
+}
+.finish-payment .footer .footer-wrapper .link-wrap .child {
+  font-size: 16px;
+  letter-spacing: -0.07em;
+  text-transform: capitalize;
+  font-weight: 300;
+}
+@media (max-width: 991.98px) {
+  .finish-payment .footer .footer-wrapper .link-wrap .child {
+    font-size: 12px;
+  }
+}/*# sourceMappingURL=main.css.map */

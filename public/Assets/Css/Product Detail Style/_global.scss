@@ -1,0 +1,537 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: .5s all ease;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+// Colors
+$bg-color: rgb(255, 255, 255);
+$dot-color: rgba(0, 0, 0, 0.466);
+
+.navbar {
+    .container {
+        .logo {
+            border-radius: 10px;
+            max-width: 86px;
+        }
+        .toggle {
+            .ddn{
+
+                i{
+                    font-size: 22px;
+                    @include media-breakpoint-down(sm){
+                        font-size: 15px;
+                    }
+                }
+            }
+
+            .nav-item {
+                position: relative;
+                .nav-link {
+                    font-weight: map-get($fonts_weights, light);
+                    color: $black_color;
+                    font-size: 15px;
+                    @include media-breakpoint-down(sm){
+                        font-size: 13px;
+                    }
+                    letter-spacing: -0.02em;
+                    text-transform: capitalize;
+                }
+            }
+
+            .left-content{
+                .dropdown{
+                    cursor: pointer;
+                    .select{
+                        align-items: center;
+                        transition: background 0.3s;
+                        gap: 10px;
+
+                        i{
+                            font-size: 18px;
+                            @include media-breakpoint-down(sm){
+                                font-size: 13px;
+                            }
+                        }
+                        span{
+                            font-size: 16px;
+                            @include media-breakpoint-down(sm){
+                                font-size: 13px;
+                            }
+                        }
+                    }
+
+                    .caret{
+                        font-size: 20px;
+                        transition: 0.3s;
+                    }
+
+                    .caret-rotate{
+                        transform: rotate(180deg);
+                    }
+
+                    .menu{
+                        list-style: none;
+                        padding: 0.2em 0.5em;
+                        background: whitesmoke;
+                        border-radius: 0.5em;
+                        color: black;
+                        position: absolute;
+                        top: 3em;
+                        left: 0;
+                        opacity: 0;
+                        display: none;
+                        transition: 0.2s;
+                        z-index: 1;
+                        cursor: auto;
+
+                        @include media-breakpoint-down(lg){
+                            width: 450%;
+                        }
+                        .title{
+                            font-size: 15px;
+                            @include media-breakpoint-down(md){
+                                font-size: 13px;
+                            }
+                        }
+
+
+                        li{
+                            padding: 0.7em 0.5em;
+                            margin: 0.3em 0;
+                            border-radius: 0.5em;
+
+                        }
+
+                        li:hover{
+                            background-color: white;
+                        }
+                    }
+                    
+                    .menu-open{
+                        display: block;
+                        opacity: 1;
+                    }
+
+
+                }
+            }
+
+            .right-content{
+                .input-group{
+                    .search{
+                        background-color: #EDEDED;
+                        border-radius: 17px 0px 0px 17px;
+                        border: none;
+                        padding: 6px 0 6px 18px;
+                        font-size: 13px;
+                        position: relative;
+                        z-index: 3;
+                    }
+                    button{
+                        border-radius: 17px;
+                        i{
+                            background-color: #EDEDED;
+                            display: inline-block;
+                            font-size: 15px;
+                            padding: 7.26px 18px;
+                            border-radius: 17px;
+                        }
+                    }
+                    .search:focus{
+                        outline: invert;
+                    }
+                }
+                .account{
+                    p{
+                        font-size: 16px;
+                        @include media-breakpoint-down(sm){
+                            font-size: 13px;
+                        }
+                    }
+                    i{
+                        font-size: 18px;
+                        @include media-breakpoint-down(sm){
+                            font-size: 13px;
+                        }
+                    }
+                }
+                box-sizing: border-box;
+                .dropdown{
+                    cursor: pointer;
+                    .select{
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        transition: background 0.3s;
+
+                        i{
+                            font-size: 18px;
+                            @include media-breakpoint-down(sm){
+                                font-size: 13px;
+                            }
+                        }
+                        span{
+                            font-size: 16px;
+                            @include media-breakpoint-down(sm){
+                                font-size: 13px;
+                            }
+                        }
+                    }
+
+                    .caret{
+                        font-size: 20px;
+                        transition: 0.3s;
+                    }
+
+                    .caret-rotate{
+                        transform: rotate(180deg);
+                    }
+
+                    .menu{
+                        list-style: none;
+                        padding: 0.2em 0.5em;
+                        background: whitesmoke;
+                        border-radius: 0.5em;
+                        color: black;
+                        position: absolute;
+                        top: 3em;
+                        right: 0;
+                        @include media-breakpoint-down(lg){
+                            left: 0;
+                            right: auto;
+                        }
+                        opacity: 0;
+                        display: none;
+                        transition: 0.2s;
+                        z-index: 1;
+                        width: 700%;
+                        cursor: auto;
+
+                        @include media-breakpoint-down(lg){
+                            width: 450%;
+                        }
+                        .title{
+                            font-size: 15px;
+                            @include media-breakpoint-down(md){
+                                font-size: 13px;
+                            }
+                        }
+
+
+                        li{
+                            padding: 0.7em 0.5em;
+                            margin: 0.3em 0;
+                            border-radius: 0.5em;
+
+                            .delete-wrap{
+                                .bx-trash:hover{
+                                    cursor: pointer;
+                                    color: red;
+                                }
+                                .bx-trash{
+                                    font-size: 18px;
+                                    @include media-breakpoint-down(md){
+                                        font-size: 13px;
+                                    }
+                                }
+                            }
+
+
+
+                            .plus{
+                                cursor: pointer;
+                                font-size: 20px;
+                                @include media-breakpoint-down(md){
+                                    font-size: 15px;
+                                }
+                            }
+
+                            .qty-input{
+                                text-align: center;
+                            }
+
+                            .minus{
+                                cursor: pointer;
+                                font-size: 20px;
+                                @include media-breakpoint-down(md){
+                                    font-size: 15px;
+                                }
+                            }
+
+                            button{
+                                    border: 1px solid black;
+                                    background-color: white;
+                                    border-radius: 7px;
+                                    font-size: 15px;
+                                    @include media-breakpoint-down(md){
+                                        font-size: 13px;
+                                    }
+                                    color: black;
+                            }
+                            button:hover{
+                                background-color: black;
+                                color: white;
+                            }
+
+                        }
+
+                        li:hover{
+                            background-color: white;
+                        }
+
+                        .menu-wrap{
+                            max-height: 250px;
+                            overflow-y: auto;
+                        }
+                    }
+                    
+                    .menu-open{
+                        display: block;
+                        opacity: 1;
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+.detail{
+    
+    margin-top: 100px;
+    @include media-breakpoint-down(lg){
+    margin-top: 85px;
+    }
+    .img-wrapper{
+        border-radius: 10px;
+        img{
+            border-radius: 10px;
+        }
+    }
+    .head{
+        .title{
+            font-weight: 600;
+            font-size: 23px;
+            letter-spacing: -0.05em;
+            font-weight: map-get($fonts_weights, semiBold);
+            @include media-breakpoint-down(lg){
+                font-size: 15px;
+            }
+            @include media-breakpoint-down(sm){
+                font-size: 10px;
+            }
+        }
+        .trans{
+            font-size: 13px;
+            letter-spacing: -0.05em;
+            font-weight: map-get($fonts_weights, regular);
+            margin-top: 5px;
+            @include media-breakpoint-down(lg){
+                font-size: 9px;
+            }
+        }
+        .price{
+            font-size: 34px;
+            letter-spacing: -0.05em;
+            font-weight: map-get($fonts_weights, bold);
+            @include media-breakpoint-down(lg){
+                font-size: 25px;
+            }
+            @include media-breakpoint-down(sm){
+                font-size: 20px;
+            }
+        }
+    }
+    .footer{
+        margin-top: 16px;
+        .desc-wrap{
+            .title{
+                font-size: 15px;
+                letter-spacing: -0.05em;
+                font-weight: map-get($fonts_weights, medium);
+                @include media-breakpoint-down(lg){
+                    font-size: 12px;
+                }
+                @include media-breakpoint-down(sm){
+                    font-size: 10px;
+                }
+            }
+            .desc{
+                margin-top: 10px;
+                font-size: 13px;
+                letter-spacing: -0.05em;
+                font-weight: map-get($fonts_weights, light);
+                @include media-breakpoint-down(lg){
+                    font-size: 9px;
+                }
+                @include media-breakpoint-down(sm){
+                    font-size: 7px;
+                }
+            }
+        }
+        .btn-cart-wrapper{
+            .btn-cart{
+                padding: 10px 0;
+                border-radius: 10px;
+                border: 1px solid #000000;
+                width: 100%;
+                background-color: white;
+                p{
+                    font-size: 16px;
+                    @include media-breakpoint-down(lg){
+                        font-size: 10px;
+                    }
+                }
+            }
+            .btn-cart:hover{
+                background-color: #000000;
+                color: white;
+            }
+        }
+    }
+}
+
+
+.bottom{
+    background: url("../../img/bg-ctlg-footer.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    .new{
+        .new-wrapper{
+            .row-1{
+                .title{
+                    font-size: 20px;
+                    letter-spacing: -0.075em;
+                    font-weight: map-get($fonts_weights, semiBold);
+                    @include media-breakpoint-down(sm){
+                        font-size: 16px;
+                    }
+                }
+            }
+            .row-2{
+                .product{
+                    .box{
+                        background-color: white;
+                        border-radius: 16px;
+                        box-shadow: 5px 4px 17px -2px rgba(0, 0, 0, 0.25);
+                        .product-img{
+                            img{
+                                position: relative;
+                                z-index: 0;
+                                border-radius: 16px;
+                            }
+                        }
+                        .product-desc{
+                            color: black;
+                            .title{
+                                font-size: 16px;
+                                letter-spacing: -0.05em;
+                                font-weight: map-get($fonts_weights, regular);
+                                @include media-breakpoint-down(sm){
+                                    font-size: 11px;
+                                }
+                            }
+                            .footer{
+                                .price{
+                                    font-weight: map-get($fonts_weights, semiBold);
+                                    font-size: 20px;
+                                    letter-spacing: -0.05em;
+                                    @include media-breakpoint-down(sm){
+                                        font-size: 15px;
+                                    }
+                                }
+                                .trans{
+                                    font-weight: map-get($fonts_weights, light);
+                                    font-size: 12px;
+                                    letter-spacing: -0.05em;
+                                    @include media-breakpoint-down(sm){
+                                        font-size: 7px;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        .btn-cart{
+                            padding: 10px 0;
+                            border-radius: 10px;
+                            border: 1px solid #000000;
+                            width: 100%;
+                            background-color: white;
+                            p{
+                                font-size: 16px;
+                                @include media-breakpoint-down(sm){
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                        .btn-cart:hover{
+                            background-color: #000000;
+                            color: white;
+                        }
+                    }
+                }
+                .bx-chevron-right-circle{
+                    position: absolute;
+                    color: black;
+                    z-index: 10;
+                    top: 50%;
+                    font-size: 40px;
+                    @include media-breakpoint-down(md){
+                    font-size: 30px;
+                            }
+                    left: auto;
+                    right: 10px;
+                }
+                .bx-chevron-left-circle{
+                    position: absolute;
+                    color: black;
+                    z-index: 10;
+                    top: 50%;
+                    font-size: 40px;
+                    @include media-breakpoint-down(md){
+                    font-size: 30px;
+                            }
+                    right: auto;
+                    left: 10px;
+                }
+                .swiper-pagination-bullet-active{
+                    background-color: black;
+                }
+            }
+        }
+    }
+    
+    .footer{
+        .footer-wrapper{
+            .link-wrap{
+                .head{
+                    font-size: 18px;
+                    letter-spacing: -0.07em;
+                    text-transform: capitalize;
+                    font-weight: map-get($fonts_weights, medium);
+    
+                    @include media-breakpoint-down(lg){
+                        font-size: 15px;
+                    }
+                }
+                .child{
+                    font-size: 16px;
+                    letter-spacing: -0.07em;
+                    text-transform: capitalize;
+                    font-weight: map-get($fonts_weights, light);
+                    
+                    @include media-breakpoint-down(lg){
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

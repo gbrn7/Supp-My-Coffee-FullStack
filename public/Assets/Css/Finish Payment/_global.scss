@@ -1,0 +1,84 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.5s ease-out;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    background: url('../../img/finish-payment-bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+// Colors
+$bg-color: rgb(255, 255, 255);
+$dot-color: rgba(0, 0, 0, 0.466);
+
+.finish-payment{
+    height: 100vh;
+    gap: 115px;
+    .main{
+        .container-fluid{
+            .row{
+    
+                .text-wrapper{
+                    font-family: 'Poppins', sans-serif;
+                    font-weight: 700;
+                    font-size: 70px;
+                    text-align: center;
+                    letter-spacing: -0.05em;
+                    color: white;
+                    @include media-breakpoint-down(lg) {
+                        font-size: 50px;
+                    }
+                    @include media-breakpoint-down(md) {
+                        font-size: 30px;
+                    }
+                }
+                .btn-wrapper{
+                    a{
+                        font-weight: map-get($fonts_weights, semiBold);
+                        font-size: 17px;
+                        line-height: 26px;
+                        text-align: center;
+                        letter-spacing: -0.015em;
+                        color: black;
+                        @include media-breakpoint-down(lg) {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .footer{
+        .footer-wrapper{
+            .link-wrap{
+                .head{
+                    font-size: 18px;
+                    letter-spacing: -0.07em;
+                    text-transform: capitalize;
+                    color: white;
+                    font-weight: map-get($fonts_weights, medium);
+    
+                    @include media-breakpoint-down(lg){
+                        font-size: 15px;
+                    }
+                }
+                .child{
+                    font-size: 16px;
+                    letter-spacing: -0.07em;
+                    text-transform: capitalize;
+                    font-weight: map-get($fonts_weights, light);
+                    
+                    @include media-breakpoint-down(lg){
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
