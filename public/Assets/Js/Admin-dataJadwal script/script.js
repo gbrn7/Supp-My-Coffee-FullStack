@@ -48,10 +48,10 @@ onload = () => {
   let z = document.querySelector(".content");
   let headBg = document.querySelector(".header-bg");
   let load = document.querySelector(".loading-wrapper");
-  x.classList.remove("d-none");
-  y.classList.remove("d-none");
-  z.classList.remove("d-none");
   setTimeout(() => {
+    x.classList.remove("d-none");
+    y.classList.remove("d-none");
+    z.classList.remove("d-none");
     headBg.classList.remove("d-none");
     load.classList.add("close");
     // new PureCounter();

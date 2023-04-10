@@ -126,7 +126,7 @@
   <section class="content">
     
     <p class="text-black title">Data Jadwal</p>
-    <div class="Produk col-11 mt-4 ">
+    <div class="Produk col-10 mt-4 ">
       <table id="example" class="table table-striped mt-4" style="width:95%">
         <thead>
             <tr>

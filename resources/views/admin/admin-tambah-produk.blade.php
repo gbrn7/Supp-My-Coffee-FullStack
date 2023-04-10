@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Dashboard | Tambah Data Produk</title>
 
   <!-- Icon -->
   <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
@@ -41,7 +41,7 @@
   <!-- Pre Load End -->
 
   <!-- sidebar start -->
-    <nav class="sidebar">
+    <nav class="sidebar d-none">
       <header class="d-flex gap-2 align-items-center">
         <div class="image-text">
           <span class="image">
@@ -59,32 +59,32 @@
   
       <div class="menu-bar h-100 d-flex justify-content-between flex-column">
         <div class="menu d-flex flex-column h-100 justify-content-between"> 
-          <ul class="menu-links d-flex flex-column gap-2">
-            <li class="nav-link">
-              <a href="#" class="text-decoration-none text-black">
-                <i class='bx bx-home' ></i>
-                <span class="text nav-text">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-link active">
-              <a href="#" class="text-decoration-none text-black">
-                <i class='bx bx-coffee-togo' ></i>
-                <span class="text nav-text">Data Produk</span>
-              </a>
-            </li>
-            <li class="nav-link">
-              <a href="#" class="text-decoration-none text-black">
-                <i class='bx bxs-wallet' ></i>
-                <span class="text nav-text">Data Transaksi</span>
-              </a>
-            </li>
-            <li class="nav-link">
-              <a href="#" class="text-decoration-none text-black">
-                <i class='bx bx-calendar-event' ></i>
-                <span class="text nav-text">Data Jadwal</span>
-              </a>
-            </li>
-          </ul>
+        <ul class="menu-links d-flex flex-column gap-2">
+              <li class="nav-link ">
+                <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
+                  <i class='bx bx-home' ></i>
+                  <span class="text nav-text">Dashboard</span>
+                </a>
+              </li>
+              <li class="nav-link active">
+                <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
+                  <i class='bx bx-coffee-togo' ></i>
+                  <span class="text nav-text">Data Produk</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="#" class="text-decoration-none text-black">
+                  <i class='bx bxs-wallet' ></i>
+                  <span class="text nav-text">Data Transaksi</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="#" class="text-decoration-none text-black">
+                  <i class='bx bx-calendar-event' ></i>
+                  <span class="text nav-text">Data Jadwal</span>
+                </a>
+              </li>
+            </ul>
           <div class="bottom-content ">
             <ul>
               <li class="nav-link">
@@ -116,57 +116,69 @@
   <!-- Header Bg End -->
 
   <!-- Footer Start -->
-  <div class="footer-wrapper fixed-bottom text-secondary">
+  <div class="footer-wrapper fixed-bottom text-secondary d-none">
     <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
 
   <!-- Content Start-->
-  <section class="content">    
+  <section class="content d-none">    
     <p class="text-black title mb-2">Data Produk</p>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10">
+
+        <!-- alert here -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+        </div>
+        @endif
+
           <div class="card card-primary">
             <div class="card-header ">
               <h5 class="card-title m-0">Tambah Data Produk</h5>
             </div>
-            <form action="#" method="post">
+            <form  method="POST" action="{{route('admin.produk.store')}}" enctype="multipart/form-data">
+              @csrf
               <div class="card-body">
                 <div class="form-group mb-3">
                   <label for="nama" class="mb-1">Nama</label>
-                  <input class="form-control" type="text" name="nama" id="nama" placeholder="Kopi Robusta 250 gr giling halus">
+                  <input class="form-control" type="text" name="nama_produk" id="nama" placeholder="Kopi Robusta 250 gr giling halus" value="{{old('nama_produk')}}">
                 </div>
                 <div class="form-file">
                   <div class="mb-3">
                     <label for="formFile" class="form-label card-title">Foto Produk</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file"  name="produk_thumbnail" id="formFile">
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <label for="deskripsi" class="mb-1">Deskripsi</label>
-                  <textarea class="form-control" type="text" name="deskripsi" id="deskripsi" placeholder="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, blanditiis. Perspiciatis non molestias, ducimus consequuntur nostrum ratione amet nemo quae."></textarea>
+                  <textarea class="form-control" type="text" name="desc" id="deskripsi"  placeholder="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, blanditiis. Perspiciatis non molestias, ducimus consequuntur nostrum ratione amet nemo quae.">{{old('desc')}}</textarea>
                 </div>
                 <div class="form-group mb-3">
                   <label for="berat" class="mb-1">Berat (gr)</label>
-                  <input class="form-control" type="text" name="berat" id="berat" placeholder="250">
+                  <input class="form-control" type="text" name="berat" id="berat" value="{{old('berat')}}" placeholder="250">
                 </div>
                 <div class="form-group mb-3">
                   <label for="Harga" class="mb-1">Harga (Rp.)</label>
-                  <input class="form-control" type="text" name="harga" id="harga" placeholder="40000">
+                  <input class="form-control" type="text" name="harga" id="harga" placeholder="40000" value="{{old('harga')}}">
                 </div>
                 <div class="form-group mb-3">
                   <label for="Status" class="mb-1">Status</label>
-                  <select class="form-select status text-secondary" aria-label="Default select example">
-                    <option selected class="text-secondary">Open this select menu</option>
-                    <option value="1" class="text-secondary">Draft</option>
-                    <option value="2" class="text-secondary">Publish</option>
+                  <select class="form-select status text-secondary" aria-label="Default select example"  name="status">
+                    <option value="publish" class="text-secondary status-state"  {{old('status') === '1' ? "selected" : ""}}>Publish</option>
+                    <option value="draft" class="text-secondary status-state"  {{old('status') === '0' ? "selected" : ""}} >Draft</option>
                   </select>
                 </div>
 
               </div>
-              <div class="card-footer">
+              <div class="card-footer mb-2">
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>

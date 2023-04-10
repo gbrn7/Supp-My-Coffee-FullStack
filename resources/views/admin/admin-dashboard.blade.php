@@ -59,15 +59,15 @@
     
         <div class="menu-bar h-100 d-flex justify-content-between flex-column">
           <div class="menu d-flex flex-column h-100 justify-content-between"> 
-            <ul class="menu-links d-flex flex-column gap-2">
+          <ul class="menu-links d-flex flex-column gap-2">
               <li class="nav-link active">
-                <a href="#" class="text-decoration-none text-black">
+                <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
                   <i class='bx bx-home' ></i>
                   <span class="text nav-text">Dashboard</span>
                 </a>
               </li>
-              <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
+              <li class="nav-link ">
+                <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
                   <i class='bx bx-coffee-togo' ></i>
                   <span class="text nav-text">Data Produk</span>
                 </a>
@@ -84,7 +84,7 @@
                   <span class="text nav-text">Data Jadwal</span>
                 </a>
               </li>
-            </ul>
+            </ul>l>
             <div class="bottom-content ">
               <ul>
                 <li class="nav-link">

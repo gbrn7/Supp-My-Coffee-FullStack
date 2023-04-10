@@ -25,7 +25,6 @@ body {
   scroll-behavior: smooth;
   background: var(--body-color);
   transition: var(--tran-02);
-  overflow-x: hidden;
 }
 
 body.dark {

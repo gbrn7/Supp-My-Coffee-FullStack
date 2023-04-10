@@ -10,7 +10,7 @@ class produk extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'transaksi';
+    protected $table = 'produk';
 
     protected $fillable = ([
         'nama_produk',

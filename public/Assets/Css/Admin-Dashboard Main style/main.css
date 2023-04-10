@@ -20,11 +20,9 @@ body::-webkit-scrollbar {
 
 body {
   font-family: "Poppins", sans-serif;
-  transition: all 0.3s ease-out;
   box-sizing: border-box;
   scroll-behavior: smooth;
   background: var(--body-color);
-  transition: var(--tran-02);
   overflow-x: hidden;
 }
 
@@ -182,13 +180,15 @@ body.dark .content .row-4 .table-wrapper p {
 .sidebar .menu-bar .menu ul li a i {
   font-size: 20px;
   color: var(--text-color);
-  transition: var(--tran-02);
 }
 .sidebar .menu-bar .menu ul li a .text {
   color: var(--text-color);
   white-space: nowrap;
   font-size: 15px;
   letter-spacing: -0.03em;
+}
+.sidebar .menu-bar .menu ul .nav-link {
+  transition: var(--tran-04) !important;
 }
 .sidebar .menu-bar .menu ul .active {
   background: #EAEAEA;
@@ -303,6 +303,9 @@ body.dark .content .row-4 .table-wrapper p {
 }
 .sidebar.close .menu-bar .menu .bottom-content ul li a .text {
   display: none;
+}
+.sidebar.close .menu-bar .menu .bottom-content ul .nav-link {
+  transition: var(--tran-04) !important;
 }
 .sidebar.close .menu-bar .menu .bottom-content ul li:hover .text {
   display: block;

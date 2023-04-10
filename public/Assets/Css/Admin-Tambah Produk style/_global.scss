@@ -25,7 +25,7 @@ body {
     scroll-behavior: smooth;
     background: var(--body-color);
     transition: var(--tran-02);
-    overflow-x: hidden;
+    // overflow-x: hidden;
 }
 
 body.dark{
@@ -105,6 +105,13 @@ body.dark{
                 }
                 select{
                     color: white;
+                }
+                .status{
+                    color: white !important;
+                }
+
+                .status-state{
+                    color: white !important;
                 }
                 
             }
@@ -565,6 +572,8 @@ $dot-color: rgba(0, 0, 0, 0.466);
             select{
                 background-color: var(--sidebar-color);
             }
+
+
         }
     }
 }

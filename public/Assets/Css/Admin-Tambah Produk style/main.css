@@ -25,7 +25,6 @@ body {
   scroll-behavior: smooth;
   background: var(--body-color);
   transition: var(--tran-02);
-  overflow-x: hidden;
 }
 
 body.dark {
@@ -76,6 +75,12 @@ body.dark .content .card .card-body textarea {
 }
 body.dark .content .card .card-body select {
   color: white;
+}
+body.dark .content .card .card-body .status {
+  color: white !important;
+}
+body.dark .content .card .card-body .status-state {
+  color: white !important;
 }
 
 .sidebar {

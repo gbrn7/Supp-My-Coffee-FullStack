@@ -41,7 +41,7 @@
   <!-- Pre Load End -->
 
   <!-- sidebar start -->
-      <nav class="sidebar">
+      <nav class="sidebar d-none">
         <header class="d-flex gap-2 align-items-center">
           <div class="image-text">
             <span class="image">
@@ -116,14 +116,14 @@
   <!-- Header Bg End -->
 
   <!-- Footer Start -->
-  <div class="footer-wrapper fixed-bottom text-secondary">
+  <div class="footer-wrapper fixed-bottom text-secondary d-none">
     <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
 
   <!-- Content Start-->
-  <section class="content">    
+  <section class="content d-none">    
     <p class="text-black title mb-2">Data Produk</p>
     <div class="container-fluid">
       <div class="row">

@@ -126,7 +126,7 @@
   <section class="content">
     
     <p class="text-black title">Data Transaksi</p>
-    <div class="Produk mt-4 col-11">
+    <div class="Produk mt-4 col-10">
       <table id="example" class="table table-striped mt-3" style="width:100%">
         <thead>
             <tr>

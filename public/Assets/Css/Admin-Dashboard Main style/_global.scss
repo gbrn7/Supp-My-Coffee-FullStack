@@ -20,11 +20,11 @@ body::-webkit-scrollbar {
 }
 body {
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease-out;
+    // transition: all 0.3s ease-out;
     box-sizing: border-box;
     scroll-behavior: smooth;
     background: var(--body-color);
-    transition: var(--tran-02);
+    // transition: var(--tran-02);
     overflow-x: hidden;
 }
 
@@ -230,7 +230,7 @@ $dot-color: rgba(0, 0, 0, 0.466);
                         i{
                             font-size: 20px;
                             color: var(--text-color);
-                            transition: var(--tran-02);
+                            // transition: var(--tran-02);
                         }
                         .text{
                             color: var(--text-color);
@@ -240,6 +240,9 @@ $dot-color: rgba(0, 0, 0, 0.466);
                         }
                     }
             
+                }
+                .nav-link{
+                    transition: var(--tran-04) !important;
                 }
                 .active{
                     background: #EAEAEA;
@@ -369,7 +372,7 @@ $dot-color: rgba(0, 0, 0, 0.466);
                     ul{
                         margin: 0;
                         padding-left: 0;
-                                li{
+                        li{
                             a{
                                 justify-content: center;
                                 position: relative;
@@ -378,6 +381,9 @@ $dot-color: rgba(0, 0, 0, 0.466);
 
                                 }
                             }
+                        }
+                        .nav-link{
+                            transition: var(--tran-04) !important;
                         }
                         li:hover{
 

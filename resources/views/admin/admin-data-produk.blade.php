@@ -61,13 +61,13 @@
           <div class="menu d-flex flex-column h-100 justify-content-between"> 
             <ul class="menu-links d-flex flex-column gap-2">
               <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
+                <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
                   <i class='bx bx-home' ></i>
                   <span class="text nav-text">Dashboard</span>
                 </a>
               </li>
               <li class="nav-link active">
-                <a href="#" class="text-decoration-none text-black">
+                <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
                   <i class='bx bx-coffee-togo' ></i>
                   <span class="text nav-text">Data Produk</span>
                 </a>
@@ -116,19 +116,24 @@
   <!-- Header Bg End -->
 
   <!-- Footer Start -->
-  <div class="footer-wrapper fixed-bottom text-secondary">
+  <div class="footer-wrapper fixed-bottom text-secondary d-none">
     <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
-
   <!-- Content Start-->
-  <section class="content">
+  <section class="content d-none">
     <p class="text-black title">Data Produk</p>
-    <div class="btn-wrapper mt-2">
-        <div class="btn btn-success">Tambah Produk</div>
+    <div class="btn-wrapper mt-2 mb-4">
+        <div class="btn btn-success"><a href="{{route('admin.produk.create')}}" class="text-decoration-none text-white">Tambah Produk</a></div>
     </div>
-    <div class="Produk mt-2 mb-2 col-11">
+
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
+    <div class="Produk mt-2 mb-2 col-10">
     <table id="example" class="table table-striped mt-3" style="width:100%">
         <thead>
             <tr>
@@ -140,12 +145,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>22</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
+             @foreach ($products as  $product)
+                 <tr>
+                    <td>{{ $product->id}}</td>
+                    <td><img src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-produk"></td>
+                    <td>{{ $product->nama_produk}}</td>
+                    <td class="text-capitalize">{{ $product->status}}</td>
+                    <td class="">
                     <div class="btn-wrapper d-flex gap-2">
                         <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
                         <a href="#">
@@ -158,197 +164,8 @@
                         </a>
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi arabika Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>03</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>04</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>05</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>06</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>07</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>08</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>09</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td><img src="Assets/img/p-1.jpg" class="img-produk"></td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-                <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
-                    </div>
-                </td>
-            </tr>
+                 </tr>
+             @endforeach
         </tbody>
         <tfoot>
             <tr>
