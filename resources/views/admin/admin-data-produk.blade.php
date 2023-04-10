@@ -153,15 +153,15 @@
                     <td class="text-capitalize">{{ $product->status}}</td>
                     <td class="">
                     <div class="btn-wrapper d-flex gap-2">
-                        <a href="#" class="btn btn-secondary     text-white"><i class='bx bx-edit'></i></a>
-                        <a href="#">
-                            <form action="Post">
-                                <input type="hidden" name="">
-                                <button type="submit" class="btn btn-danger">
-                                    <i class='bx bx-trash text-white' ></i>
-                                </button>
-                            </form>
-                        </a>
+                        <a href="{{route('admin.produk.edit',  $product->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
+                        <form action="{{route('admin.produk.destroy', $product->id)}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <input type="hidden" name="">
+                            <button type="submit" class="btn btn-danger">
+                                <i class='bx bx-trash text-white' ></i>
+                            </button>
+                        </form>
                     </div>
                 </td>
                  </tr>

@@ -22,5 +22,8 @@ use App\Http\Controllers\Admin\ProdukController;
          Route::get('/', [ProdukController::class, 'index'])->name('admin.produk');
          Route::get('/create', [ProdukController::class, 'create'])->name('admin.produk.create');
          Route::post('/store', [ProdukController::class, 'store'])->name('admin.produk.store');
+         Route::get('/edit/{id}', [ProdukController::class, 'edit'])->name('admin.produk.edit');
+         Route::put('/update/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
+         Route::delete('/destroy/{id}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
       });
    });

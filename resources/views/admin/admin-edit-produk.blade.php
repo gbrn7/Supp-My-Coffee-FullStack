@@ -128,40 +128,53 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10">
+
+        <!-- alert here -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+        </div>
+        @endif
+
           <div class="card card-primary">
             <div class="card-header ">
               <h5 class="card-title m-0">Edit Data Produk</h5>
             </div>
-            <form action="#" method="post">
+            <form action="{{ route('admin.produk.update', $product->id) }}" method="post" enctype="multipart/form-data">
+              @csrf
+              @method('PUT')
               <div class="card-body">
                 <div class="form-group mb-3">
                   <label for="nama" class="mb-1">Nama</label>
-                  <input class="form-control" type="text" name="nama" id="nama" placeholder="Kopi Robusta 250 gr giling halus">
+                  <input class="form-control" type="text" name="nama_produk" id="nama" value="{{ $product->nama_produk }}" placeholder="Kopi Robusta 250 gr giling halus">
                 </div>
                 <div class="form-file">
                   <div class="mb-3">
                     <label for="formFile" class="form-label card-title">Foto Produk</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" name="produk_thumbnail"  type="file" id="formFile">
                   </div>
                 </div>
                 <div class="form-group mb-3">
                   <label for="deskripsi" class="mb-1">Deskripsi</label>
-                  <textarea class="form-control" type="text" name="deskripsi" id="deskripsi" placeholder="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, blanditiis. Perspiciatis non molestias, ducimus consequuntur nostrum ratione amet nemo quae."></textarea>
+                  <textarea class="form-control" type="text" name="desc" id="deskripsi"  placeholder="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio, blanditiis. Perspiciatis non molestias, ducimus consequuntur nostrum ratione amet nemo quae.">{{$product->desc}}</textarea>
                 </div>
                 <div class="form-group mb-3">
                   <label for="berat" class="mb-1">Berat (gr)</label>
-                  <input class="form-control" type="text" name="berat" id="berat" placeholder="250">
+                  <input class="form-control" type="text" name="berat" id="berat" value="{{ $product->berat }}" placeholder="250">
                 </div>
                 <div class="form-group mb-3">
                   <label for="Harga" class="mb-1">Harga (Rp.)</label>
-                  <input class="form-control" type="text" name="harga" id="harga" placeholder="40000">
+                  <input class="form-control" type="text" name="harga" id="harga" value="{{ $product->harga }}" placeholder="40000">
                 </div>
                 <div class="form-group mb-3">
                   <label for="Status" class="mb-1">Status</label>
-                  <select class="form-select status text-secondary" aria-label="Default select example">
-                    <option selected class="text-secondary">Open this select menu</option>
-                    <option value="1" class="text-secondary">Draft</option>
-                    <option value="2" class="text-secondary">Publish</option>
+                  <select class="form-select status text-secondary" name="status" aria-label="Default select example">
+                    <option value="publish" class="text-secondary" {{$product->status == "publish" ? "selected" : ""}}>Publish</option>
+                    <option value="draft" class="text-secondary" {{$product->status == "draft" ? "selected" : ""}}>Draft</option>
                   </select>
                 </div>
 

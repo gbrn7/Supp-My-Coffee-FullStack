@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Produk;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -44,11 +45,49 @@ class ProdukController extends Controller
         
     }
 
-    public function update(){
-        return view('admin.admin-edit-produk');
+    public function edit($id){
+        $product = Produk::find($id);
+
+        // dd($product);
+        return view('admin.admin-edit-produk', ['product' => $product]);
     }
 
-    public function destroy(){
-        return view('admin.admin-data-produk'); 
+    public function update(Request $request, $id){
+        $data = $request->except("_token");
+        // dd($data);
+        $request->validate([
+            'nama_produk' => 'required|string',
+            'produk_thumbnail' => 'image|mimes:png,jpg,jpeg',
+            'desc' => 'required|string',
+            'berat' => 'required|numeric',
+            'harga' => 'required|numeric',
+            'status' => 'required|string',
+        ]);
+
+        $product = Produk::find($id);
+
+        if($request->produk_thumbnail){
+            //save new image
+            $thumbnail = $request->produk_thumbnail;
+            $thumbnailName = Str::random(10).$thumbnail->getClientOriginalName();
+
+            $thumbnail->storeAs('public/thumbnail', $thumbnailName); //store image
+
+            $data['produk_thumbnail'] = $thumbnailName; //overide thumbnail file name
+            
+            //delete old image
+            Storage::delete('public/thumbnail/'.$product->thumbnail);
+        }
+
+        $product->update($data);
+
+        // dd($data);
+        return redirect()->route('admin.produk')->with('success', 'Product Updated');
+
+    }
+
+    public function destroy($id){
+        Produk::find($id)->delete();
+        return redirect()->route('admin.produk')->with('success', 'Product Deleted');
     }
 }

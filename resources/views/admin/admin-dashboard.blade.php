@@ -260,7 +260,7 @@
         <div class="row  row-4 mt-2 pb-4 gap-3">
           <div class="col-10 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
             <p class="m-0 pb-1 border-bottom border-dark">Top Schedule</p>
-            <table id="" class="table table-striped mt-4 mb-5" style="width:100%">
+            <table id="" class="table table-striped  mb-5" style="width:100%">
               <thead>
                   <tr>
                       <th >ID Transaksi</th>
