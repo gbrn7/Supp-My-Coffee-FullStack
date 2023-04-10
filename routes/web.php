@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ use App\Http\Controllers\Admin\ProdukController;
    Route::group(['prefix' => 'admin'], function (){
       Route::view('/', 'admin.admin-dashboard')->name('admin.dashboard');
       
+      // Produk Route
       Route::group(['prefix' => 'produk'], function(){
          Route::get('/', [ProdukController::class, 'index'])->name('admin.produk');
          Route::get('/create', [ProdukController::class, 'create'])->name('admin.produk.create');
@@ -26,4 +28,7 @@ use App\Http\Controllers\Admin\ProdukController;
          Route::put('/update/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
          Route::delete('/destroy/{id}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
       });
+
+      // Transaksi Route
+      Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
    });

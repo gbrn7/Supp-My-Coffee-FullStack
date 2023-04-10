@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('user');
             $table->string('alamat');
             $table->float('amount');
-            $table->float('transaction_code');
+            $table->string('transaction_code');
             $table->string('status_pembayaran');
             $table->timestamps();
         });

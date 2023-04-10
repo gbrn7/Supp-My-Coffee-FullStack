@@ -14,7 +14,8 @@ class userSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('user')->insert([
+        DB::table('user')->insert(
+            [
             'nama' => 'Admin',
             'role' => 'admin',
             'email' => 'admin123@gmail.com',
@@ -23,6 +24,17 @@ class userSeeder extends Seeder
             'no_telp' => '085236987456',
             'created_at' => now(),
             'updated_at' => now()
-        ]);
+        ],
+         [
+            'nama' => 'Firza',
+            'role' => 'member',
+            'email' => 'member123@gmail.com',
+            'password' => Hash::make('mantapjiwa'),
+            'alamat' => 'Jl.Merpati No.07',
+            'no_telp' => '014523697456',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]
+    );
     }
 }

@@ -40,75 +40,75 @@
   </div>
   <!-- Pre Load End -->
 
-    <!-- sidebar Start -->
-      <nav class="sidebar">
-        <header class="d-flex gap-2 align-items-center">
-          <div class="image-text">
-            <span class="image">
-              <img src="{{ asset('Assets/img/Logo.png') }}" alt="" srcset="">
-            </span>
-          </div>
-    
-          <div class="text header-text">
-            <p class="name m-0">Omah Bakoel Kopi</p>
-            <p class="name-system m-0">Supp My Coffee</p>
-          </div>
-    
-          <i class='bx bx-chevron-right toggle'></i>
-        </header>
-    
-        <div class="menu-bar h-100 d-flex justify-content-between flex-column">
-          <div class="menu d-flex flex-column h-100 justify-content-between"> 
-            <ul class="menu-links d-flex flex-column gap-2">
-              <li class="nav-link">
-                <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
-                  <i class='bx bx-home' ></i>
-                  <span class="text nav-text">Dashboard</span>
-                </a>
-              </li>
-              <li class="nav-link active">
-                <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
-                  <i class='bx bx-coffee-togo' ></i>
-                  <span class="text nav-text">Data Produk</span>
-                </a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
-                  <i class='bx bxs-wallet' ></i>
-                  <span class="text nav-text">Data Transaksi</span>
-                </a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
-                  <i class='bx bx-calendar-event' ></i>
-                  <span class="text nav-text">Data Jadwal</span>
-                </a>
-              </li>
-            </ul>
-            <div class="bottom-content ">
-              <ul>
-                <li class="nav-link">
-                  <a href="#" class="text-decoration-none text-black">
-                    <i class='bx bx-log-out'></i>
-                    <span class="text nav-text">Logout</span>
-                  </a>
-                </li>
-                <li class="mode">
-                  <div class="moon-sun">
-                    <i class='bx bx-moon icon moon'></i>
-                    <i class='bx bx-sun icon sun'></i>
-                  </div>
-                  <span class="mode-text text">Dark Mode</span>
-    
-                  <div class="toggle-switch">
-                    <span class="switch dark"></span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+  <!-- sidebar Start -->
+  <nav class="sidebar">
+    <header class="d-flex gap-2 align-items-center">
+      <div class="image-text">
+        <span class="image">
+          <img src="{{ asset('Assets/img/Logo.png') }}" alt="" srcset="">
+        </span>
+      </div>
+
+      <div class="text header-text">
+        <p class="name m-0">Omah Bakoel Kopi</p>
+        <p class="name-system m-0">Supp My Coffee</p>
+      </div>
+
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar h-100 d-flex justify-content-between flex-column">
+      <div class="menu d-flex flex-column h-100 justify-content-between"> 
+        <ul class="menu-links d-flex flex-column gap-2">
+          <li class="nav-link">
+            <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
+              <i class='bx bx-home' ></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-link active">
+            <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
+              <i class='bx bx-coffee-togo' ></i>
+              <span class="text nav-text">Data Produk</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="{{route('admin.transaksi')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-wallet' ></i>
+              <span class="text nav-text">Data Transaksi</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="#" class="text-decoration-none text-black">
+              <i class='bx bx-calendar-event' ></i>
+              <span class="text nav-text">Data Jadwal</span>
+            </a>
+          </li>
+        </ul>
+        <div class="bottom-content ">
+          <ul>
+            <li class="nav-link">
+              <a href="#" class="text-decoration-none text-black">
+                <i class='bx bx-log-out'></i>
+                <span class="text nav-text">Logout</span>
+              </a>
+            </li>
+            <li class="mode">
+              <div class="moon-sun">
+                <i class='bx bx-moon icon moon'></i>
+                <i class='bx bx-sun icon sun'></i>
+              </div>
+              <span class="mode-text text">Dark Mode</span>
+
+              <div class="toggle-switch">
+                <span class="switch dark"></span>
+              </div>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
   <!-- sidebar End -->
 
   <!-- Header Bg Start -->
