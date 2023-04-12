@@ -24,9 +24,9 @@ modeSwitch.addEventListener("click", () => {
   }
 });
 
-$(document).ready(function () {
-  $('#example').DataTable();
-});
+// $(document).ready(function () {
+//   $('#example').DataTable();
+// });
 
 aturPengiriman.forEach((x) => {
   x.addEventListener("click", () => {
@@ -61,3 +61,20 @@ onload = () => {
     body.removeChild(load);
   }, 3500);
 };
+
+$(document).ready(function () {
+
+  $("#example").dataTable({
+    "sPaginationType": "full_numbers",
+    "bJQueryUI": true,
+    "bAutoWidth": false, // Disable the auto width calculation 
+    "aoColumns": [
+      { "width": "7%" },
+      { "width": "5%" },
+      { "width": "20%" },
+      { "width": "10%" }, 			    
+      { "width": "10%" },			     			    			     			    
+      { "width": "15%" }
+    ]
+  });
+});

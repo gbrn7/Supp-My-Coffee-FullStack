@@ -462,12 +462,19 @@ body.dark .content .table {
 }
 .content .table {
   font-family: "Poppins", sans-serif;
+  table-layout: fixed;
+  word-wrap: break-word;
 }
 .content .table tbody tr td {
   font-size: 15px;
 }
 .content .table tbody tr td img {
-  max-width: 70px;
+  max-width: 100px;
+}
+@media (max-width: 575.98px) {
+  .content .table tbody tr td img {
+    width: 30px;
+  }
 }
 .content .pagination {
   --bs-pagination-focus-box-shadow:0 0 0 0.25rem rgb(0 0 0 / 25%);

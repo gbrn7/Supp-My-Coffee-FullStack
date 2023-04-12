@@ -40,75 +40,75 @@
   </div>
   <!-- Pre Load End -->
 
-  <!-- sidebar start -->
-      <nav class="sidebar">
-        <header class="d-flex gap-2 align-items-center">
-          <div class="image-text">
-            <span class="image">
-              <img src="{{ asset('Assets/img/Logo.png') }}" alt="" srcset="">
-            </span>
-          </div>
-    
-          <div class="text header-text">
-            <p class="name m-0">Omah Bakoel Kopi</p>
-            <p class="name-system m-0">Supp My Coffee</p>
-          </div>
-    
-          <i class='bx bx-chevron-right toggle'></i>
-        </header>
-    
-        <div class="menu-bar h-100 d-flex justify-content-between flex-column">
-          <div class="menu d-flex flex-column h-100 justify-content-between"> 
-            <ul class="menu-links d-flex flex-column gap-2">
-              <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
-                  <i class='bx bx-home' ></i>
-                  <span class="text nav-text">Dashboard</span>
-                </a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
-                  <i class='bx bx-coffee-togo' ></i>
-                  <span class="text nav-text">Data Produk</span>
-                </a>
-              </li>
-              <li class="nav-link">
-                <a href="#" class="text-decoration-none text-black">
-                  <i class='bx bxs-wallet' ></i>
-                  <span class="text nav-text">Data Transaksi</span>
-                </a>
-              </li>
-              <li class="nav-link active">
-                <a href="#" class="text-decoration-none text-black">
-                  <i class='bx bx-calendar-event' ></i>
-                  <span class="text nav-text">Data Jadwal</span>
-                </a>
-              </li>
-            </ul>
-            <div class="bottom-content ">
-              <ul>
-                <li class="nav-link">
-                  <a href="#" class="text-decoration-none text-black">
-                    <i class='bx bx-log-out'></i>
-                    <span class="text nav-text">Logout</span>
-                  </a>
-                </li>
-                <li class="mode">
-                  <div class="moon-sun">
-                    <i class='bx bx-moon icon moon'></i>
-                    <i class='bx bx-sun icon sun'></i>
-                  </div>
-                  <span class="mode-text text">Dark Mode</span>
-    
-                  <div class="toggle-switch">
-                    <span class="switch dark"></span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+  <!-- sidebar Start -->
+  <nav class="sidebar">
+    <header class="d-flex gap-2 align-items-center">
+      <div class="image-text">
+        <span class="image">
+          <img src="{{ asset('Assets/img/Logo.png') }}" alt="" srcset="">
+        </span>
+      </div>
+
+      <div class="text header-text">
+        <p class="name m-0">Omah Bakoel Kopi</p>
+        <p class="name-system m-0">Supp My Coffee</p>
+      </div>
+
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar h-100 d-flex justify-content-between flex-column">
+      <div class="menu d-flex flex-column h-100 justify-content-between"> 
+        <ul class="menu-links d-flex flex-column gap-2">
+          <li class="nav-link">
+            <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
+              <i class='bx bx-home' ></i>
+              <span class="text nav-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
+              <i class='bx bx-coffee-togo' ></i>
+              <span class="text nav-text">Data Produk</span>
+            </a>
+          </li>
+          <li class="nav-link">
+            <a href="{{route('admin.transaksi')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-wallet' ></i>
+              <span class="text nav-text">Data Transaksi</span>
+            </a>
+          </li>
+          <li class="nav-link active">
+            <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
+              <i class='bx bx-calendar-event' ></i>
+              <span class="text nav-text">Data Jadwal</span>
+            </a>
+          </li>
+        </ul>
+        <div class="bottom-content ">
+          <ul>
+            <li class="nav-link">
+              <a href="#" class="text-decoration-none text-black">
+                <i class='bx bx-log-out'></i>
+                <span class="text nav-text">Logout</span>
+              </a>
+            </li>
+            <li class="mode">
+              <div class="moon-sun">
+                <i class='bx bx-moon icon moon'></i>
+                <i class='bx bx-sun icon sun'></i>
+              </div>
+              <span class="mode-text text">Dark Mode</span>
+
+              <div class="toggle-switch">
+                <span class="switch dark"></span>
+              </div>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
   <!-- sidebar End -->
 
   <!-- Header Bg Start -->
@@ -127,252 +127,67 @@
     
     <p class="text-black title">Data Jadwal</p>
     <div class="Produk col-10 mt-4 ">
-      <table id="example" class="table table-striped mt-4" style="width:95%">
-        <thead>
+    @if(session()->has('success'))
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+    @endif
+    <table id="example" class="table table-striped mt-4" style="width: 95%">
+          <thead>
             <tr>
-                <th>No</th>
-                <th >ID Transaksi</th>
-                <th>Nama Customer</th>
-                <th>List Produk</th>
-                <th>Alamat</th>
-                <th>Jadwal Pengiriman</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-            <tr>
-              <td >02</td >
-              <td>03</td >
-              <td>Fajar</td >
-              <td >Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-                   Kopi Arabika 250 gr Biji Kopi : 2 <br>
-              </td >
-              <td>Jl Merpati No.4</td >
-              <td>15 April 2023</td >
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                    <form action="#" method="get">
-                      <input class="resi-input form-control-sm mb-3 mb-lg-1" type="text" name="resi" id="resi" placeholder="Masukkan No Resi">
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </form>
-                  </div>
-            </td >
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-              <th>No</th>
-              <th>ID Transaksi</th>
-              <th>Nama Customer</th>
+              <th>Id Pengiriman</th>
+              <th>Nama Cust</th>
               <th>List Produk</th>
               <th>Alamat</th>
               <th>Jadwal Pengiriman</th>
               <th>Aksi</th>
             </tr>
-        </tfoot>
-    </table>
+          </thead>
+          <tbody>
+            @foreach ($schedules as $schedule)
+            <tr>
+              <td>{{$schedule->id}}</td>
+              <td>{{$schedule->nama}}</td>
+              <td>
+                  @foreach ($schedule->details as $detail)
+                    {{$detail->nama_produk}} : {{$detail->qty}} (Qty) <br>
+                  @endforeach
+              </td>
+              <td>{{$schedule->alamat}}</td>
+              <td>{{$schedule->tanggal_pengiriman}}</td>
+              <td>
+                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
+                <div class="form-group flex-wrap d-none">
+                  <form action="{{route('admin.jadwal.update', $schedule->id)}}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <input
+                      class="resi-input rounded-3 form-control-sm mb-3 mb-lg-1"
+                      type="text"
+                      name="resi"
+                      id="resi"
+                      placeholder="Masukkan No Resi"
+                    />
+                    <button type="submit" class="btn btn-success">
+                      Submit
+                    </button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Id Pengiriman</th>
+              <th>Nama Cust</th>
+              <th>List Produk</th>
+              <th>Alamat</th>
+              <th>Jadwal Pengiriman</th>
+              <th>Aksi</th>
+            </tr>
+          </tfoot>
+        </table>
     </div>
   </section>
   <!-- Content End -->

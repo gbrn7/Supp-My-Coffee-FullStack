@@ -732,8 +732,7 @@ body[data-aos-easing=ease-in-out-quart] [data-aos], [data-aos][data-aos][data-ao
  * flip-left, flip-right, flip-up, flip-down
  */
 [data-aos^=flip][data-aos^=flip] {
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   transition-property: transform;
 }
 

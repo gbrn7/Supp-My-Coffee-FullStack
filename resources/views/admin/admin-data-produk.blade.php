@@ -79,7 +79,7 @@
             </a>
           </li>
           <li class="nav-link">
-            <a href="#" class="text-decoration-none text-black">
+            <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
               <i class='bx bx-calendar-event' ></i>
               <span class="text nav-text">Data Jadwal</span>
             </a>
@@ -152,7 +152,7 @@
                     <td>{{ $product->nama_produk}}</td>
                     <td class="text-capitalize">{{ $product->status}}</td>
                     <td class="">
-                    <div class="btn-wrapper d-flex gap-2">
+                    <div class="btn-wrapper d-md-flex d-block gap-2">
                         <a href="{{route('admin.produk.edit',  $product->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
                         <form action="{{route('admin.produk.destroy', $product->id)}}" method="post">
                             @method('delete')

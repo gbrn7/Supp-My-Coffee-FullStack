@@ -79,7 +79,7 @@
             </a>
           </li>
           <li class="nav-link">
-            <a href="#" class="text-decoration-none text-black">
+            <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
               <i class='bx bx-calendar-event' ></i>
               <span class="text nav-text">Data Jadwal</span>
             </a>

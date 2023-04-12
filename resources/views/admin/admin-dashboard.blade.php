@@ -79,7 +79,7 @@
             </a>
           </li>
           <li class="nav-link">
-            <a href="#" class="text-decoration-none text-black">
+            <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
               <i class='bx bx-calendar-event' ></i>
               <span class="text nav-text">Data Jadwal</span>
             </a>
@@ -157,105 +157,105 @@
 
         </div>
         <div class="row  row-3 mt-2 gap-3">
-        <div class="col-11 col-lg-5 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
-        <p class="m-0 pb-1  border-bottom border-dark">Top Produk</p>
-        <table id="" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nama Produk</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>01</td>
-                <td>Kopi arabika Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-            </tr>
-            <tr>
-                <td>02</td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-            </tr>
-            <tr>
-                <td>03</td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-            </tr>
-            <tr>
-                <td>04</td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-            </tr>
-            <tr>
-                <td>05</td>
-                <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                <td>Draft</td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>ID</th>
-                <th>Nama Produk</th>
-                <th>Status</th>
-            </tr>
-        </tfoot>
-        </table>
-            </div>
-        <div class="col-11 col-lg-4 bg-white mt-2 table-wrapper  p-2 border-dark rounded-3">
-              <p class="m-0 pb-1 border-bottom border-dark">Top Transaksi</p>
-              <table id="" class="table table-striped" style="width:100%">
+          <div class="col-11 col-lg-5 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
+                <p class="m-0 pb-1  border-bottom border-dark">Top Produk</p>
+                <table id="" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>ID User</th>
-                        <th>Total</th>
-                        <th>Status Pembayaran</th>
+                        <th>Nama Produk</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>01</td>
-                        <td>03</td>
-                        <td>Rp.400000</td>
-                        <td>Success</td>
+                        <td>Kopi arabika Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
+                        <td>Draft</td>
                     </tr>
                     <tr>
                         <td>02</td>
-                        <td>03</td>
-                        <td>Rp.300000</td>
-                        <td>Success</td>
+                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
+                        <td>Draft</td>
                     </tr>
                     <tr>
-                        <td>01</td>
+                        <td>03</td>
+                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
+                        <td>Draft</td>
+                    </tr>
+                    <tr>
                         <td>04</td>
-                        <td>Rp.500000</td>
-                        <td>Success</td>
+                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
+                        <td>Draft</td>
                     </tr>
                     <tr>
-                        <td>01</td>
-                        <td>03</td>
-                        <td>Rp.400000</td>
-                        <td>Success</td>
-                    </tr>
-                    <tr>
-                        <td>01</td>
-                        <td>03</td>
-                        <td>Rp.400000</td>
-                        <td>Success</td>
+                        <td>05</td>
+                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
+                        <td>Draft</td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>ID User</th>
-                        <th>Total</th>
-                        <th>Status Pembayaran</th>
+                        <th>Nama Produk</th>
+                        <th>Status</th>
                     </tr>
                 </tfoot>
-            </table>
-            </div>
+                </table>
+              </div>
+          <div class="col-11 col-lg-4 bg-white mt-2 table-wrapper  p-2 border-dark rounded-3">
+                <p class="m-0 pb-1 border-bottom border-dark">Top Transaksi</p>
+                <table id="" class="table table-striped" style="width:100%">
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>ID User</th>
+                          <th>Total</th>
+                          <th>Status Pembayaran</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td>01</td>
+                          <td>03</td>
+                          <td>Rp.400000</td>
+                          <td>Success</td>
+                      </tr>
+                      <tr>
+                          <td>02</td>
+                          <td>03</td>
+                          <td>Rp.300000</td>
+                          <td>Success</td>
+                      </tr>
+                      <tr>
+                          <td>01</td>
+                          <td>04</td>
+                          <td>Rp.500000</td>
+                          <td>Success</td>
+                      </tr>
+                      <tr>
+                          <td>01</td>
+                          <td>03</td>
+                          <td>Rp.400000</td>
+                          <td>Success</td>
+                      </tr>
+                      <tr>
+                          <td>01</td>
+                          <td>03</td>
+                          <td>Rp.400000</td>
+                          <td>Success</td>
+                      </tr>
+                  </tbody>
+                  <tfoot>
+                      <tr>
+                          <th>ID</th>
+                          <th>ID User</th>
+                          <th>Total</th>
+                          <th>Status Pembayaran</th>
+                      </tr>
+                  </tfoot>
+              </table>
+              </div>
         </div>
         <div class="row  row-4 mt-2 pb-4 gap-3">
           <div class="col-10 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">

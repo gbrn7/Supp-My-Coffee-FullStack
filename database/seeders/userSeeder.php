@@ -14,7 +14,7 @@ class userSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('user')->insert(
+        DB::table('user')->insert([
             [
             'nama' => 'Admin',
             'role' => 'admin',
@@ -35,6 +35,6 @@ class userSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]
-    );
+    ]);
     }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\JadwalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,10 @@ use App\Http\Controllers\Admin\TransaksiController;
 
       // Transaksi Route
       Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
+
+      // Jadwal Route
+      Route::group(['prefix' => 'jadwal'], function(){
+         Route::get('/', [JadwalController::class, 'index'])->name('admin.jadwal');
+         Route::put('/update/{id}', [JadwalController::class, 'update'])->name('admin.jadwal.update');
+      });
    });
