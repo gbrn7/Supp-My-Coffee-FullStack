@@ -130,10 +130,10 @@
         </div>
         <div class="row row-2 d-flex gap-2  mt-2">
             <div class="card card-1 col-10 col-lg-3 p-1 rounded-3">
-                <div class="head p-2 d-flex align-items-center gap-2 letter"><i class='text-danger bx bx-money-withdraw p-2 rounded-circle' ></i> <span>Total Revenue</span></div>
+                <div class="head p-2 d-flex align-items-center gap-2 letter"><i class='text-danger bx bx-money-withdraw p-2 rounded-circle' ></i> <span>Total Pendapatan</span></div>
                 <div class="content-text px-2 mt-3"><p 
                 data-purecounter-start="0"
-                data-purecounter-end="24340870"
+                data-purecounter-end="{{$revenue->revenue}}"
                 data-purecounter-duration="1"
                 data-purecounter-currency="Rp."
                 class="text m-0 purecounter">0</p></div>
@@ -142,23 +142,23 @@
                 <div class="head p-2 d-flex align-items-center gap-2 letter"><i class='bx bxs-package p-2 rounded-circle text-success' ></i> <span>Total Order</span></div>
                 <div class="content-text px-2 mt-3 "><p 
                 data-purecounter-start="0"
-                data-purecounter-end="4506"
+                data-purecounter-end="{{$totalOrder->totalOrder}}"
                 data-purecounter-duration="1"
                 class="text m-0 purecounter">0</p></div>
             </div>
             <div class="card card-3 col-10 col-lg-3 p-1 rounded-3">
-                <div class="head p-2 d-flex align-items-center gap-2 letter"><i class='text-primary bx bx-shopping-bag p-2 rounded-circle' ></i> <span>New Order</span></div>
+                <div class="head p-2 d-flex align-items-center gap-2 letter"><i class='text-primary bx bx-shopping-bag p-2 rounded-circle' ></i> <span>Perlu Dikirim</span></div>
                 <div class="content-text px-2 mt-3 "><p 
                 data-purecounter-start="0"
-                data-purecounter-end="58"
-                data-purecounter-duration="1."
+                data-purecounter-end="{{$newOrder->newOrder}}"
+                data-purecounter-duration="1"
                 class="text m-0 purecounter">0</p></div>
             </div>
 
         </div>
         <div class="row  row-3 mt-2 gap-3">
           <div class="col-11 col-lg-5 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
-                <p class="m-0 pb-1  border-bottom border-dark">Top Produk</p>
+                <p class="m-0 pb-1  border-bottom border-dark">Produk Terbaru</p>
                 <table id="" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -168,31 +168,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>01</td>
-                        <td>Kopi arabika Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                        <td>Draft</td>
+                    @foreach ($products as $product)
+                    <tr class="text-capitalize">
+                        <td>{{$product->id}}</td>
+                        <td>{{$product->nama_produk}}</td>
+                        <td>{{$product->status}}</td>
                     </tr>
-                    <tr>
-                        <td>02</td>
-                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                        <td>Draft</td>
-                    </tr>
-                    <tr>
-                        <td>03</td>
-                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                        <td>Draft</td>
-                    </tr>
-                    <tr>
-                        <td>04</td>
-                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                        <td>Draft</td>
-                    </tr>
-                    <tr>
-                        <td>05</td>
-                        <td>Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</td>
-                        <td>Draft</td>
-                    </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
@@ -204,7 +186,7 @@
                 </table>
               </div>
           <div class="col-11 col-lg-4 bg-white mt-2 table-wrapper  p-2 border-dark rounded-3">
-                <p class="m-0 pb-1 border-bottom border-dark">Top Transaksi</p>
+                <p class="m-0 pb-1 border-bottom border-dark">Transaksi Terbaru</p>
                 <table id="" class="table table-striped" style="width:100%">
                   <thead>
                       <tr>
@@ -215,36 +197,14 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr>
-                          <td>01</td>
-                          <td>03</td>
-                          <td>Rp.400000</td>
-                          <td>Success</td>
+                      @foreach ($transactions as $transaction)
+                      <tr class="text-text-capitalize">
+                          <td>{{$transaction->id}}</td>
+                          <td>{{$transaction->user_id}}</td>
+                          <td>Rp.{{$transaction->amount}}</td>
+                          <td>{{$transaction->status_pembayaran}}</td>
                       </tr>
-                      <tr>
-                          <td>02</td>
-                          <td>03</td>
-                          <td>Rp.300000</td>
-                          <td>Success</td>
-                      </tr>
-                      <tr>
-                          <td>01</td>
-                          <td>04</td>
-                          <td>Rp.500000</td>
-                          <td>Success</td>
-                      </tr>
-                      <tr>
-                          <td>01</td>
-                          <td>03</td>
-                          <td>Rp.400000</td>
-                          <td>Success</td>
-                      </tr>
-                      <tr>
-                          <td>01</td>
-                          <td>03</td>
-                          <td>Rp.400000</td>
-                          <td>Success</td>
-                      </tr>
+                      @endforeach
                   </tbody>
                   <tfoot>
                       <tr>
@@ -259,7 +219,7 @@
         </div>
         <div class="row  row-4 mt-2 pb-4 gap-3">
           <div class="col-10 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
-            <p class="m-0 pb-1 border-bottom border-dark">Top Schedule</p>
+            <p class="m-0 pb-1 border-bottom border-dark">Jadwal Pengiriman</p>
             <table id="" class="table table-striped  mb-5" style="width:100%">
               <thead>
                   <tr>
@@ -270,37 +230,14 @@
                   </tr>
               </thead>
               <tbody>
+                  @foreach ($schedules as $schedule)
                   <tr>
-                    <td>03</td >
-                    <td>Fajar</td >
-                    <td>Jl Merpati No.4</td >
-                    <td>15 April 2023</td >
+                    <td>{{$schedule->id}}</td >
+                    <td>{{$schedule->nama}}</td >
+                    <td>{{$schedule->alamat}}</td >
+                    <td>{{$schedule->tanggal_pengiriman}}</td >
                   </tr>
-                  <tr>
-                    <td>03</td >
-                    <td>Fajar</td >
-                    <td>Jl Merpati No.4</td >
-                    <td>15 April 2023</td >
-                  </tr>
-                  <tr>
-                    <td>03</td >
-                    <td>Fajar</td >
-                    <td>Jl Merpati No.4</td >
-                    <td>15 April 2023</td >
-                  </tr>
-                  <tr>
-                    <td>03</td >
-                    <td>Fajar</td >
-                    <td>Jl Merpati No.4</td >
-                    <td>15 April 2023</td >
-                  </tr>
-                  <tr>
-                    <td>03</td >
-                    <td>Fajar</td >
-                    <td>Jl Merpati No.4</td >
-                    <td>15 April 2023</td >
-                  </tr>
-
+                  @endforeach
               </tbody>
               <tfoot>
                   <tr>

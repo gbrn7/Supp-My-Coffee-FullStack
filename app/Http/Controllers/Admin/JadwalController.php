@@ -12,6 +12,22 @@ class JadwalController extends Controller
     
     public function index(){
 
+        $schedules = $this->getSchedule();
+
+        // dd($schedules, $detail, $detailProduk);
+        return view('admin.admin-data-jadwal', ['schedules' => $schedules]);
+    }
+
+    public function update(Request $request, $id){
+        $resi = $request->resi;
+        
+        $affectedRows = Pengiriman::where("id", $id)->update(["status" => $resi]);
+        
+        // dd($jadwalNew);
+        return redirect()->route('admin.jadwal')->with('success', 'Jadwal Telah Diupdate');
+    }
+
+    public function getSchedule(){
         $schedules = DB::table('transaksi as t')
         ->join('user', 'user.id', '=', 't.id')
         ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
@@ -25,6 +41,7 @@ class JadwalController extends Controller
         ->groupBy('t.alamat')
         ->groupBy('p.status')
         ->groupBy('p.tanggal_pengiriman')
+        ->orderBy('p.tanggal_pengiriman', 'asc')
         ->get();
 
         $details = DB::table('pengiriman as p')
@@ -38,6 +55,7 @@ class JadwalController extends Controller
         ->groupBy('p.id')
         ->groupBy('prod.nama_produk')
         ->groupBy('dp.qty')
+        ->orderBy('p.tanggal_pengiriman', 'asc')
         ->get();
         
         // dd($schedules, $details);
@@ -52,17 +70,6 @@ class JadwalController extends Controller
             $schedules[$key]->details =  $detailProduk;
         }
 
-
-        // dd($schedules, $detail, $detailProduk);
-        return view('admin.admin-data-jadwal', ['schedules' => $schedules]);
-    }
-
-    public function update(Request $request, $id){
-        $resi = $request->resi;
-        
-        $affectedRows = Pengiriman::where("id", $id)->update(["status" => $resi]);
-        
-        // dd($jadwalNew);
-        return redirect()->route('admin.jadwal')->with('success', 'Jadwal Telah Diupdate');
+        return $schedules;
     }
 }

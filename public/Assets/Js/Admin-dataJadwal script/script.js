@@ -67,6 +67,7 @@ $(document).ready(function () {
   $("#example").dataTable({
     "sPaginationType": "full_numbers",
     "bJQueryUI": true,
+    "ordering": false,
     "bAutoWidth": false, // Disable the auto width calculation 
     "aoColumns": [
       { "width": "7%" },

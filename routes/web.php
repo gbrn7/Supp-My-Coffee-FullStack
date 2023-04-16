@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\JadwalController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ use App\Http\Controllers\Admin\JadwalController;
 
 
    Route::group(['prefix' => 'admin'], function (){
-      Route::view('/', 'admin.admin-dashboard')->name('admin.dashboard');
+      Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
       
       // Produk Route
       Route::group(['prefix' => 'produk'], function(){
