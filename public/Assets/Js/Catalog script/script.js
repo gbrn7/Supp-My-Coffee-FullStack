@@ -56,6 +56,7 @@ products.forEach(product => {
   const y = product.querySelector('.btn-cart');
   y.addEventListener('click', () => {
     const id = product.querySelector('.id-product').value;
+    console.log(id);
     const title = product.querySelector('.title').innerHTML;
     const item = addToCart(id, title);
     if (item) {

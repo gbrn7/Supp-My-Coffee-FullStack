@@ -45,7 +45,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg navbar-light mt-lg-3">
       <div class="container py-1">
-        <img src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
+        <img loading="lazy" src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
         <button
           class="navbar-toggler"
           type="button"
@@ -104,11 +104,11 @@
               <div
                 class="btn-wrapper d-flex gap-3 justify-content-center justify-content-lg-start"
               >
-                <div class="btn">Get Started</div>
-                <img src="{{ asset('Assets/img/Arrow.svg')}}" alt="" srcset="" />
+                <a href="{{route('customer.catalog')}}" class="text-decoration-none text-white"><div class="btn">Get Started</div></a>
+                <img loading="lazy" src="{{ asset('Assets/img/Arrow.svg')}}" alt="" srcset="" />
               </div>
               <div class="payment-img d-none d-lg-inline">
-                <img src="{{ asset('Assets/img/Payment Gateway.svg')}}" class="img-fluid" />
+                <img loading="lazy" src="{{ asset('Assets/img/Payment Gateway.svg')}}" class="img-fluid" />
               </div>
             </div>
           </div>
@@ -117,7 +117,7 @@
             data-aos="fade-right"
             data-aos-duration="1500"
           >
-            <img src="{{ asset('Assets/img/Hero_img_index.png')}}" class="img-fluid" />
+            <img loading="lazy" src="{{ asset('Assets/img/Hero_img_index.png')}}" class="img-fluid" />
           </div>
         </div>
       </div>
@@ -126,7 +126,7 @@
 
     <!-- How it works Start -->
     <section class="howitworks" id="Howitworks">
-      <div class="wave-1 p-0"><img src="{{ asset('Assets/img/wave-1.svg')}}" class="" /></div>
+      <div class="wave-1 p-0"><img loading="lazy" src="{{ asset('Assets/img/wave-1.svg')}}" class="" /></div>
       <div class="container">
         <div class="row justify-content-md-center">
           <div
@@ -146,7 +146,7 @@
           >
             <div class="box">
               <div class="col-2 col-lg-4 text-center logo-wrapper bg-black">
-                <img src="{{ asset('Assets/img/CoffeeBeans.svg')}}" class="img-fluid" />
+                <img loading="lazy" src="{{ asset('Assets/img/CoffeeBeans.svg')}}" class="img-fluid" />
               </div>
               <div class="col-12 text">
                 <div class="title">Select Product</div>
@@ -164,7 +164,7 @@
           >
             <div class="box">
               <div class="col-2 col-lg-4 text-center logo-wrapper bg-black">
-                <img src="{{ asset('Assets/img/Money.svg')}}" class="img-fluid" />
+                <img loading="lazy" src="{{ asset('Assets/img/Money.svg')}}" class="img-fluid" />
               </div>
               <div class="col-12 text">
                 <div class="title">Make Payment</div>
@@ -182,7 +182,7 @@
           >
             <div class="box">
               <div class="col-2 col-lg-4 text-center logo-wrapper bg-black">
-                <img src="{{ asset('Assets/img/Packet.svg')}}" class="img-fluid" />
+                <img loading="lazy" src="{{ asset('Assets/img/Packet.svg')}}" class="img-fluid" />
               </div>
               <div class="col-12 text">
                 <div class="title">Receive Product</div>
@@ -195,7 +195,7 @@
           </div>
         </div>
       </div>
-      <div class="wave-2 p-0"><img src="{{ asset('Assets/img/wave-2.svg')}}" class="" /></div>
+      <div class="wave-2 p-0"><img loading="lazy" src="{{ asset('Assets/img/wave-2.svg')}}" class="" /></div>
     </section>
     <!-- How it works End -->
 
@@ -247,174 +247,191 @@
           </div>
         </div>
         <div
-          class="row row-2 mt-lg-5 mt-3 justify-content-center gap-0"
+          class="row row-2 mt-lg-5 mt-2 justify-content-center gap-0 gy-4"
           data-aos="zoom-in-down"
           data-aos-duration="800"
           data-aos-delay="200"
         >
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid" />
+        @if ($products)
+          @foreach ($products as $product)
+              <div class="col-6 col-lg-3 product p-2">
+                <div class="box">
+                  <a href="#" class="text-decoration-none">
+                    <div class="product-img">
+                    <img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid">                    </div>
+                  </a>
+                  <a href="" class="text-decoration-none">
+                    <div class="product-desc px-3 py-3">
+                      <div class="title">
+                      {{$product->nama_produk}}
+                      </div>
+                      <div class="footer d-flex justify-content-between pt-2">
+                        <div class="price">Rp.{{$product->harga}}</div>
+                        <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
+                      </div>
+                    </div>
+                  </a>
                 </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 30.000</div>
-                  </div>
-                </div>
-              </a>
             </div>
-          </div>
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid" />
+          @endforeach
+        @else          
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi
                 </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Robusta Gayo Monero Robusta Coffee 250g - Giling Halus
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 45.000</div>
-                  </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.30.000</div>
                 </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-2.jpg')}}" class="img-fluid" />
-                </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Arabika Mandailing Monero Arabica Coffee 200gr - Biji
-                    Kopi
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 40.000</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-2.jpg')}}" class="img-fluid" />
-                </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Robusta Gayo Monero Robusta Coffee 250g - Giling Halus
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 48.000</div>
-                  </div>
-                </div>
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
         </div>
-        <div
-          class="row row-2 mt-lg-3 mt-0 justify-content-center gap-0"
-          data-aos="zoom-in-down"
-          data-aos-duration="800"
-          data-aos-delay="300"
-        >
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-3.jpg')}}" class="img-fluid" />
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Robusta Gayo Monero Robusta Coffee 250g - Giling Halus
                 </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Arabika Flores Monero Arabica Coffee 200gr - Biji kopi
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 48.000</div>
-                  </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.45.000</div>
                 </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-3.jpg')}}" class="img-fluid" />
-                </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Arabika Flores Monero Arabica Coffee 200gr - Giling
-                    Halus
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 55.000</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-4.jpg')}}" class="img-fluid" />
-                </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Arabika Lintong Monero Arabica Coffee 200gr - Biji Kopi
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 42.000</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3 product p-2">
-            <div class="box">
-              <a href="#" class="text-decoration-none">
-                <div class="product-img">
-                  <img src="{{ asset('Assets/img/p-4.jpg')}}" class="img-fluid" />
-                </div>
-              </a>
-              <a href="" class="text-decoration-none">
-                <div class="product-desc px-3 py-3">
-                  <div class="title">
-                    Kopi Arabika Lintong Monero Arabica Coffee 200gr - Giling
-                    Halus
-                  </div>
-                  <div class="footer d-flex justify-content-between pt-2">
-                    <div class="price">Rp. 45.000</div>
-                  </div>
-                </div>
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
         </div>
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-2.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Arabika Mandailing Monero Arabica Coffee 200gr - Biji
+                  Kopi
+                </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.40.000</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-2.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Robusta Gayo Monero Robusta Coffee 250g - Giling Halus
+                </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.48.000</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-3.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Arabika Flores Monero Arabica Coffee 200gr - Biji kopi
+                </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.48.000</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-3.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Arabika Flores Monero Arabica Coffee 200gr - Giling
+                  Halus
+                </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.55.000</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-4.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Arabika Lintong Monero Arabica Coffee 200gr - Biji Kopi
+                </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.42.000</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3 product p-2">
+          <div class="box">
+            <a href="#" class="text-decoration-none">
+              <div class="product-img">
+                <img loading="lazy" src="{{ asset('Assets/img/p-4.jpg')}}" class="img-fluid" />
+              </div>
+            </a>
+            <a href="" class="text-decoration-none">
+              <div class="product-desc px-3 py-3">
+                <div class="title">
+                  Kopi Arabika Lintong Monero Arabica Coffee 200gr - Giling
+                  Halus
+                </div>
+                <div class="footer d-flex justify-content-between pt-2">
+                  <div class="price">Rp.45.000</div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        @endif
+          </div>
       </div>
     </section>
     <!-- Best Product End -->
@@ -422,7 +439,7 @@
     <!-- Contact Start -->
     <section class="contact" id="Contact">
       <div class="wave-3">
-        <img src="{{ asset('Assets/img/wave-3.svg')}}" alt="" srcset="" />
+        <img loading="lazy" src="{{ asset('Assets/img/wave-3.svg')}}" alt="" srcset="" />
       </div>
       <div class="container contact-wrapper">
         <div
@@ -501,17 +518,17 @@
           <div class="col-12 col-lg-6">
             <div class="content d-flex flex-column gap-3">
               <div class="img-wrap col-2">
-                <img class="img-fluid rounded-4" src="{{ asset('Assets/img/Logo.png')}}" />
+                <img loading="lazy" class="img-fluid rounded-4" src="{{ asset('Assets/img/Logo.png')}}" />
               </div>
               <div class="text col-7">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim
                 vitae consequuntur recusandae possimus soluta corporis
               </div>
               <div class="socmed-wrap col-4">
-                <a href="#"><img src="{{ asset('Assets/img/Instagram.png')}}" alt="" /></a>
-                <a href="#"><img src="{{ asset('Assets/img/Facebook.png')}}" alt="" /></a>
-                <a href="#"><img src="{{ asset('Assets/img/Whatsapp.png')}}" alt="" /></a>
-                <a href="#"><img src="{{ asset('Assets/img/Twitter.png')}}" alt="" /></a>
+                <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Instagram.png')}}" alt="" /></a>
+                <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Facebook.png')}}" alt="" /></a>
+                <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Whatsapp.png')}}" alt="" /></a>
+                <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Twitter.png')}}" alt="" /></a>
               </div>
             </div>
           </div>

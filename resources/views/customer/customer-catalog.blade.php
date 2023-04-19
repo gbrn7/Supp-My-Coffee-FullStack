@@ -33,8 +33,8 @@
     <!-- Navbar Start -->
     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light ">
       <div class="container py-1 d-lg-flex align-items-lg-center">
-        <a href="#" class="text-decoration-none">
-          <img src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
+        <a href="{{route('customer.catalog')}}" class="text-decoration-none">
+          <img loading="lazy" src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
         </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -140,17 +140,17 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="text-center img-wrapper">
-                <img src="{{ asset('Assets/img/ctlg-banner-1.png')}}" class="img-fluid">
+                <img loading="lazy" src="{{ asset('Assets/img/ctlg-banner-1.png')}}" class="img-fluid">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="text-center">
-                <img src="{{ asset('Assets/img/ctlg-banner-2.png')}}" class="img-fluid">
+                <img loading="lazy" src="{{ asset('Assets/img/ctlg-banner-2.png')}}" class="img-fluid">
               </div>
             </div>
             <div class="swiper-slide">
               <div class="text-center">
-                <img src="{{ asset('Assets/img/ctlg-banner-3.png')}}" class="img-fluid">
+                <img loading="lazy" src="{{ asset('Assets/img/ctlg-banner-3.png')}}" class="img-fluid">
               </div>
             </div>
           </div>
@@ -170,18 +170,19 @@
         </div>
       </div>
       <div class="row row-2 row-cols-2 row-cols-lg-4 gy-3"> 
+        @foreach ($products as $product)
         <div class=" product  p-2">
             <div class="box">
                 <a href="#" class="text-decoration-none">
-                    <div class="product-img"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid"></div>
+                    <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                 </a>
                 <a href="" class="text-decoration-none">
                     <div class="product-desc px-3 py-3">
-                      <input type="hidden" value="7" class="id-product">
-                        <div class="title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                    <input type="hidden" class="id-product" value="{{$product->id}}">
+                        <div class="title">{{$product->nama_produk}}</div>
                         <div class="footer d-flex justify-content-between pt-2">
-                            <div class="price">Rp. 30.000</div>
-                            <div class="trans d-flex align-items-end">702 Terjual</div>
+                            <div class="price">Rp.{{$product->harga}}</div>
+                            <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
                         </div>
                       </div>
                     </a>
@@ -192,6 +193,7 @@
                     </div>
             </div>
         </div>
+        @endforeach
       </div>
     </div>
   </section>
@@ -210,19 +212,20 @@
       <div class="row row-2">
         <div  class="swiper mySwiper-2">
           <div class="swiper-wrapper">
+            @foreach ($newProducts as $product)
             <div class="swiper-slide">
               <div class="product p-2">
                 <div class="box">
                     <a href="#" class="text-decoration-none">
-                        <div class="product-img"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid"></div>
+                    <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                     </a>
                     <a href="" class="text-decoration-none">
                         <div class="product-desc px-3 py-3">
                           <input type="hidden" value="99" class="id-product">
-                            <div class="title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                            <div class="title">{{$product->nama_produk}}</div>
                             <div class="footer d-flex justify-content-between pt-2">
-                                <div class="price">Rp. 30.000</div>
-                                <div class="trans d-flex align-items-end">702 Terjual</div>
+                                <div class="price">Rp. {{$product->harga}}</div>
+                                <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
                             </div>
                           </div>
                         </a>
@@ -232,32 +235,9 @@
                           </button>
                         </div>
                 </div>
+              </div>  
             </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="product p-2">
-                <div class="box">
-                    <a href="#" class="text-decoration-none">
-                        <div class="product-img"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid"></div>
-                    </a>
-                    <a href="" class="text-decoration-none">
-                        <div class="product-desc px-3 py-3">
-                          <input type="hidden" value="7" class="id-product">
-                            <div class="title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
-                            <div class="footer d-flex justify-content-between pt-2">
-                                <div class="price">Rp. 30.000</div>
-                                <div class="trans d-flex align-items-end">702 Terjual</div>
-                            </div>
-                          </div>
-                        </a>
-                        <div class="btn-cart-wrapper px-3 pt-1 pb-3">
-                          <button class="btn-cart text-center">
-                            <p class="btn-text m-0">Add to cart</p>
-                          </button>
-                        </div>
-                </div>
-            </div>
-            </div>
+            @endforeach
           </div>
           <div class="bx bx-chevron-right-circle"></div>
           <div class="bx bx-chevron-left-circle"></div>
@@ -274,13 +254,13 @@
             <div class="row row-1 mt-5">
                 <div class="col-12 col-lg-6">
                     <div class="content d-flex flex-column gap-3">
-                        <div class="img-wrap col-2"><img class="img-fluid rounded-4" src="{{ asset('Assets/img/Logo.png')}}"></div>
+                        <div class="img-wrap col-2"><img loading="lazy" class="img-fluid rounded-4" src="{{ asset('Assets/img/Logo.png')}}"></div>
                         <div class="text col-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim vitae consequuntur recusandae possimus soluta corporis </div>
                         <div class="socmed-wrap col-4">
-                            <a href="#"><img src="{{ asset('Assets/img/Instagram.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('Assets/img/Facebook.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('Assets/img/Whatsapp.png')}}" alt=""></a>
-                            <a href="#"><img src="{{ asset('Assets/img/Twitter.png')}}" alt=""></a>
+                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Instagram.png')}}" alt=""></a>
+                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Facebook.png')}}" alt=""></a>
+                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Whatsapp.png')}}" alt=""></a>
+                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Twitter.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>

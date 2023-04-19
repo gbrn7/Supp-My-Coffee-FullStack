@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\JadwalController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Customer\indexController;
+use App\Http\Controllers\Customer\catalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,10 @@ use App\Http\Controllers\Admin\DashboardController;
 // Route::get('/catalog', function () {
 //    return view('');
 // });
+
+   Route::get('/', [indexController::class, 'index'])->name('customer.index');
+
+   Route::get('/catalog', [catalogController::class, 'index'])->name('customer.catalog');
 
    Route::group(['prefix' => 'admin'], function (){
       Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
