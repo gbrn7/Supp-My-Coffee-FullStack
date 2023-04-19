@@ -26,8 +26,13 @@ use App\Http\Controllers\Customer\detailProdukController;
 
    Route::get('/', [indexController::class, 'index'])->name('customer.index');
 
-   Route::get('/catalog', [catalogController::class, 'index'])->name('customer.catalog');
-   Route::get('/catalog/{id}', [detailProdukController::class, 'index'])->name('customer.catalog.detail');
+   
+   Route::group(['prefix' => 'catalog'], function(){
+      Route::get('/', [catalogController::class, 'index'])->name('customer.catalog');
+      Route::get('/{id}', [detailProdukController::class, 'index'])->name('customer.catalog.detail');
+      Route::post('/search', [catalogController::class, 'search'])->name('customer.catalog.search');
+      Route::get('/categories/{category}', [catalogController::class, 'categories'])->name('customer.catalog.category');
+   });
 
    Route::group(['prefix' => 'admin'], function (){
       Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');

@@ -31,7 +31,12 @@ class detailProdukController extends Controller
         ->groupBy('prod.id')
         ->first();
         // dd($sales);
-        $product-> sales =  $sales-> sales;
+
+        if($sales == null){
+            $product-> sales =  0;
+        }else{
+            $product-> sales =  $sales-> sales;
+        }
         return $product;
     }
 

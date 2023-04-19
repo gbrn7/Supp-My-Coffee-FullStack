@@ -49,9 +49,8 @@
                       <div class="caret bx bx-chevron-down"></div>
                     </div>
                     <ul class="menu">
-                      <li><a href="#" class="text-decoration-none text-black title">Arabika</a></li>
-                      <li><a href="#" class="text-decoration-none text-black title">Robusta</a></li>
-                      <li><a href="#" class="text-decoration-none text-black title">Liberika</a></li>
+                      <li><a href="{{route('customer.catalog.category', 'Arabika')}}" class="text-decoration-none text-black title">Arabika</a></li>
+                      <li><a href="{{route('customer.catalog.category', 'Robusta')}}" class="text-decoration-none text-black title">Robusta</a></li>
                     </ul>
                   </div>
                 </li>
@@ -64,9 +63,10 @@
               </ul>
             </div>
             <div class="right-content align-items-start d-flex flex-column flex-lg-row  gap-3  ">
-              <form action="#" method="get">
+              <form action="{{route('customer.catalog.search')}}" method="post">
+                @csrf
                 <div class="input-group d-flex align-items-center">
-                  <input type="text" name="Search" class="search form " id="">
+                  <input type="text" name="search" class="search form">
                   <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
                 </div>
               </form>
@@ -162,7 +162,7 @@
   <!-- Banner End -->
 
   <!-- Recomendation Start -->
-  <section class="recomendation mt-4">
+  <section class="recomendation mt-4" id="recomendation">
     <div class="container recomendation-wrapper">
       <div class="row row-1">
         <div class="col-12">
@@ -202,7 +202,7 @@
   <!-- Bottom Start -->
   <div class="bottom">
   <!-- What's New Start -->
-  <section class="new mt-4">
+  <section class="new mt-4" id="whatsnew">
     <div class="container new-wrapper">
       <div class="row row-1">
         <div class="col-12">

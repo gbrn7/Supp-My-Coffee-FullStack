@@ -68,4 +68,66 @@ class catalogController extends Controller
         
         return $newProducts;
     }
+
+    public function search(Request $request){
+        $data = $request->search;
+        // dd($data);
+        $products = DB::table('produk')
+        ->select('*')
+        ->where('status', '=', 'publish')
+        ->where('nama_produk' , 'LIKE', '%'.$data.'%')
+        ->limit(16)
+        ->get();
+
+        $sales = DB::table('produk as prod')
+        ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
+        ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
+        ->groupBy('prod.id')
+        ->get();
+
+        foreach ($products as $key => $product) {
+            $products[$key]->sales =  0;
+            foreach ($sales as $key2 => $sale) {
+                if($products[$key]->id == $sales[$key2]->id_produk){
+                    $products[$key]->sales =  $sales[$key2]->sales;
+                }
+            }            
+        }
+
+        $newProducts = $this->getNewProducts();
+        
+        // dd($products, $newProducts);
+        return view('customer.customer-catalog', ['products' => $products, 'newProducts' => $newProducts]);
+    }
+
+    public function categories($categories){
+        // dd($categories);
+        $products = DB::table('produk')
+        ->select('*')
+        ->where('status', '=', 'publish')
+        ->where('nama_produk' , 'LIKE', '%'.$categories.'%')
+        ->limit(16)
+        ->get();
+    
+        $sales = DB::table('produk as prod')
+        ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
+        ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
+        ->groupBy('prod.id')
+        ->get();
+
+        foreach ($products as $key => $product) {
+            $products[$key]->sales =  0;
+            foreach ($sales as $key2 => $sale) {
+                if($products[$key]->id == $sales[$key2]->id_produk){
+                    $products[$key]->sales =  $sales[$key2]->sales;
+                }
+            }            
+        }
+
+        $newProducts = $this->getNewProducts();
+
+        // dd($products);
+        return view('customer.customer-catalog', ['products' => $products, 'newProducts' => $newProducts]);
+
+    }
 }

@@ -15,7 +15,7 @@ class produkSeeder extends Seeder
     {
         DB::table('produk')->insert([
             [
-            'nama_produk' => 'Kopi Robusta Cek',
+            'nama_produk' => 'Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi',
             'harga' => 40000,
             'desc' => 'kopi robusta cek 2345',
             'status' => 'draft',
@@ -25,7 +25,7 @@ class produkSeeder extends Seeder
             'updated_at' => now()
             ],
             [
-            'nama_produk' => 'Kopi Robusta Cek 2',
+            'nama_produk' => 'Kopi Robusta Gayo Monero Robusta Coffee 500g - Biji Kopi',
             'harga' => 50000,
             'desc' => 'kopi robusta cek 222222',
             'status' => 'publish',
@@ -35,7 +35,7 @@ class produkSeeder extends Seeder
             'updated_at' => now()
             ],
             [
-            'nama_produk' => 'Kopi Robusta Cek 3',
+            'nama_produk' => 'Kopi Arabika Gayo Monero Robusta Coffee 250g - Biji Kopi',
             'harga' => 56000,
             'desc' => 'kopi robusta cek 333365656',
             'status' => 'publish',

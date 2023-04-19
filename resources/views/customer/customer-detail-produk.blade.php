@@ -30,8 +30,8 @@
     <!-- Navbar Start -->
       <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light ">
         <div class="container py-1 d-lg-flex align-items-lg-center">
-          <a href="#" class="text-decoration-none">
-    <img src="{{asset('Assets/img/Logo.png')}}" class="logo" />
+          <a href="{{route('customer.catalog')}}" class="text-decoration-none">
+          <img src="{{asset('Assets/img/Logo.png')}}" class="logo" />
           </a>            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -129,7 +129,7 @@
     <!-- Navbar End -->
 
     <!-- Detail Start -->
-      <section class="detail">
+      <section class="detail">  
         <div class="container">
           <div class="row row-1 justify-content-center  align-items-center product">
             <div class="col-6 img-wrapper">
@@ -138,7 +138,7 @@
             <div class="col-4 desc-wrapper">
               <div class="head">
                 <div class="title">{{$product -> nama_produk}}</div>
-                <div class="trans">{{$product -> sales}}</div>
+                <div class="trans">{{$product -> sales}} Terjual</div>
                 <div class="price">{{$product -> harga}}</div>
               </div>
               <div class="footer">
@@ -173,13 +173,13 @@
         </div>
       </div>
       <div class="row row-2">
-        <div  class="swiper mySwiper-2">
+        <div  class="swiper mySwiper">
           <div class="swiper-wrapper">
             @foreach ($newProducts as $product)
             <div class="swiper-slide">
               <div class="product p-2">
                 <div class="box">
-                    <a href="#" class="text-decoration-none">
+                    <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
                     <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                     </a>
                     <a href="" class="text-decoration-none">
