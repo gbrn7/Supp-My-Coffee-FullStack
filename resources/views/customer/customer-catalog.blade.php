@@ -173,7 +173,7 @@
         @foreach ($products as $product)
         <div class=" product  p-2">
             <div class="box">
-                <a href="#" class="text-decoration-none">
+                <a href="{{route('customer.catalog.detail', $product->id}}" class="text-decoration-none">
                     <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                 </a>
                 <a href="" class="text-decoration-none">
@@ -216,7 +216,7 @@
             <div class="swiper-slide">
               <div class="product p-2">
                 <div class="box">
-                    <a href="#" class="text-decoration-none">
+                  <a href="{{route('customer.catalog.detail', $product->id}}" class="text-decoration-none">
                     <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                     </a>
                     <a href="" class="text-decoration-none">
