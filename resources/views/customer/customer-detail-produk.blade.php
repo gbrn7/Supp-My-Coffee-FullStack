@@ -32,7 +32,7 @@
         <div class="container py-1 d-lg-flex align-items-lg-center">
           <a href="{{route('customer.catalog')}}" class="text-decoration-none">
           <img src="{{asset('Assets/img/Logo.png')}}" class="logo" />
-          </a>            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          </a>     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
             <div class="collapse mt-3 mt-lg-0 navbar-collapse justify-content-between align-items-center toggle" id="navbarNav">
@@ -131,7 +131,7 @@
     <!-- Detail Start -->
       <section class="detail">  
         <div class="container">
-          <div class="row row-1 justify-content-center  align-items-center product">
+          <div class="row row-1 justify-content-evenly  align-items-center product">
             <div class="col-6 img-wrapper">
             <img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid">
             </div>
@@ -139,7 +139,7 @@
               <div class="head">
                 <div class="title">{{$product -> nama_produk}}</div>
                 <div class="trans">{{$product -> sales}} Terjual</div>
-                <div class="price">{{$product -> harga}}</div>
+                <div class="price">Rp.{{$product -> harga}}</div>
               </div>
               <div class="footer">
                 <div class="desc-wrap">
@@ -187,7 +187,7 @@
                           <input type="hidden" value="99" class="id-product">
                             <div class="title">{{$product->nama_produk}}</div>
                             <div class="footer d-flex justify-content-between pt-2">
-                                <div class="price">Rp. {{$product->harga}}</div>
+                                <div class="price">Rp.{{$product->harga}}</div>
                                 <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
                             </div>
                           </div>
