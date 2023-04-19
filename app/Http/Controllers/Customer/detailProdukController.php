@@ -10,36 +10,29 @@ class detailProdukController extends Controller
 {
     public function index($id){
         
-        $products = $this->getProducts($id);
+        $product = $this->getProducts($id);
         $newProducts = $this->getNewProducts();
 
-        dd($products, $newProducts);
-        return view('customer.customer-detail-produk', ['products' => $products, 'newProducts' => $newProducts]);
+        // dd($product, $newProducts);
+        return view('customer.customer-detail-produk', ['product' => $product, 'newProducts' => $newProducts]);
     }
 
     public function getProducts($id){
-        $products = DB::table('produk')
+        $product = DB::table('produk')
             ->select('*')
             ->where('id', '=', $id)
             ->where('status', '=', 'publish')
-            ->get();
+            ->First();
         
         $sales = DB::table('produk as prod')
         ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
+        ->where('id', '=', $id)
         ->groupBy('prod.id')
-        ->get();
-
-        foreach ($products as $key => $product) {
-            $products[$key]->sales =  0;
-            foreach ($sales as $key2 => $sale) {
-                if($products[$key]->id == $sales[$key2]->id_produk){
-                    $products[$key]->sales =  $sales[$key2]->sales;
-                }
-            }            
-        }
-
-        return $products;
+        ->first();
+        // dd($sales);
+        $product-> sales =  $sales-> sales;
+        return $product;
     }
 
     public function getNewProducts(){
@@ -67,4 +60,6 @@ class detailProdukController extends Controller
         
         return $newProducts;
     }
+
+  
 }
