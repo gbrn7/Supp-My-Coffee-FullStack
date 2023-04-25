@@ -37,7 +37,7 @@ use App\Http\Controllers\RegisterController;
       Route::get('/categories/{category}', [catalogController::class, 'categories'])->name('customer.catalog.category');
    });
 
-   Route::group(['prefix' => 'admin'], function (){
+   Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
       Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
       
       // Produk Route

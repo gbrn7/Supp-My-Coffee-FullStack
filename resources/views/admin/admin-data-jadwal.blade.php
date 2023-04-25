@@ -60,13 +60,13 @@
     <div class="menu-bar h-100 d-flex justify-content-between flex-column">
       <div class="menu d-flex flex-column h-100 justify-content-between"> 
         <ul class="menu-links d-flex flex-column gap-2">
-          <li class="nav-link active">
+          <li class="nav-link ">
             <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
               <i class='bx bx-home' ></i>
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link ">
             <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
               <i class='bx bx-coffee-togo' ></i>
               <span class="text nav-text">Data Produk</span>
@@ -78,7 +78,7 @@
               <span class="text nav-text">Data Transaksi</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
               <i class='bx bx-calendar-event' ></i>
               <span class="text nav-text">Data Jadwal</span>
