@@ -88,7 +88,7 @@
         <div class="bottom-content ">
           <ul>
             <li class="nav-link">
-              <a href="#" class="text-decoration-none text-black">
+            <a href="{{route('admin.logout')}}" class="text-decoration-none text-black">
                 <i class='bx bx-log-out'></i>
                 <span class="text nav-text">Logout</span>
               </a>

@@ -81,11 +81,11 @@
               <a class="nav-link nav-link-4" href="#Contact">Contact</a>
             </li>
             <li class="nav-item mt-3 d-lg-none mt-lg-0">
-              <div class="btn btn-login">Login</div>
+              <div class="btn btn-login"><a href="{{route('customer.login')}}" class="text-decoration-none text-white">Login</a></div>
             </li>
           </ul>
         </div>
-        <div class="btn btn-login d-none d-lg-block">Login</div>
+        <div class="btn btn-login d-none d-lg-block"><a href="{{route('customer.login')}}" class="text-decoration-none text-white">Login</a></div>
       </div>
     </nav>
     <!-- Navbar End -->
