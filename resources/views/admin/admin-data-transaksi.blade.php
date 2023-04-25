@@ -41,7 +41,7 @@
   <!-- Pre Load End -->
 
   <!-- sidebar start -->
-  <nav class="sidebar d-none">
+  <nav class="sidebar">
     <header class="d-flex gap-2 align-items-center">
       <div class="image-text">
         <span class="image">
@@ -60,7 +60,7 @@
     <div class="menu-bar h-100 d-flex justify-content-between flex-column">
       <div class="menu d-flex flex-column h-100 justify-content-between"> 
         <ul class="menu-links d-flex flex-column gap-2">
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
               <i class='bx bx-home' ></i>
               <span class="text nav-text">Dashboard</span>
@@ -72,7 +72,7 @@
               <span class="text nav-text">Data Produk</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.transaksi')}}" class="text-decoration-none text-black">
               <i class='bx bxs-wallet' ></i>
               <span class="text nav-text">Data Transaksi</span>
@@ -88,7 +88,7 @@
         <div class="bottom-content ">
           <ul>
             <li class="nav-link">
-              <a href="#" class="text-decoration-none text-black">
+            <a href="{{route('admin.logout')}}" class="text-decoration-none text-black">
                 <i class='bx bx-log-out'></i>
                 <span class="text nav-text">Logout</span>
               </a>

@@ -8,6 +8,9 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Customer\indexController;
 use App\Http\Controllers\Customer\catalogController;
 use App\Http\Controllers\Customer\detailProdukController;
+use App\Http\Controllers\Customer\customerLoginController;
+use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,5 +57,21 @@ use App\Http\Controllers\Customer\detailProdukController;
       Route::group(['prefix' => 'jadwal'], function(){
          Route::get('/', [JadwalController::class, 'index'])->name('admin.jadwal');
          Route::put('/update/{id}', [JadwalController::class, 'update'])->name('admin.jadwal.update');
-      });
+      });  
    });
+
+      // Login Route (member)
+      Route::get('/login', [customerLoginController::class, 'index'])->name('customer.login');
+      Route::post('/login', [customerLoginController::class, 'authenticate'])->name('customer.login.authenticate');
+      Route::get('/logout', [customerLoginController::class, 'logout'])->name('customer.logout');
+      
+      // Login Route (admin)
+      Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
+      Route::post('admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.authenticate');
+      Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+      
+      //Register Route
+      Route::get('/register', [RegisterController::class, 'index'])->name('regisPage')->middleware('guest');
+      Route::post('/register', [RegisterController::class, 'store'])->name('regis.store');
+      
+      //Logout Route
