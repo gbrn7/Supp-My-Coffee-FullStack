@@ -9,7 +9,9 @@ use App\Http\Controllers\Customer\indexController;
 use App\Http\Controllers\Customer\catalogController;
 use App\Http\Controllers\Customer\detailProdukController;
 use App\Http\Controllers\Customer\accountController;
+use App\Http\Controllers\Customer\subscribeController;
 use App\Http\Controllers\Customer\customerLoginController;
+use App\Http\Controllers\Customer\rajaOngkirController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -28,6 +30,20 @@ use App\Http\Controllers\RegisterController;
 //    return view('');
 // });
 
+   // Login Route (member)
+   Route::get('/login', [customerLoginController::class, 'index'])->name('customer.login');
+   Route::post('/login', [customerLoginController::class, 'authenticate'])->name('customer.login.authenticate');
+   Route::get('/logout', [customerLoginController::class, 'logout'])->name('customer.logout');
+   
+   // Login Route (admin)
+   Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
+   Route::post('admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.authenticate');
+   Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+   
+   //Register Route
+   Route::get('/register', [RegisterController::class, 'index'])->name('regisPage');
+   Route::post('/register', [RegisterController::class, 'store'])->name('regis.store');
+
    Route::get('/', [indexController::class, 'index'])->name('customer.index');
 
    Route::group(['prefix' => 'customer'], function(){
@@ -39,7 +55,9 @@ use App\Http\Controllers\RegisterController;
          Route::get('/categories/{category}', [catalogController::class, 'categories'])->name('customer.catalog.category');
       });
       
-      Route::get('account', [accountController::class, 'index'])->name('customer.account')->middleware('cust.auth');
+      Route::get('/account', [accountController::class, 'index'])->name('customer.account')->middleware('cust.auth');
+      
+      Route::post('/subcribe', [subscribeController::class, 'index'])->name('customer.subscribe')->middleware('cust.auth');
    });
 
    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
@@ -65,19 +83,12 @@ use App\Http\Controllers\RegisterController;
       });  
    });
 
-      // Login Route (member)
-      Route::get('/login', [customerLoginController::class, 'index'])->name('customer.login');
-      Route::post('/login', [customerLoginController::class, 'authenticate'])->name('customer.login.authenticate');
-      Route::get('/logout', [customerLoginController::class, 'logout'])->name('customer.logout');
-      
-      // Login Route (admin)
-      Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
-      Route::post('admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.authenticate');
-      Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-      
-      //Register Route
-      Route::get('/register', [RegisterController::class, 'index'])->name('regisPage');
-      Route::post('/register', [RegisterController::class, 'store'])->name('regis.store');
+   // Get Region Data
+   Route::get('/provinsi/{idProvinsi}/kota', [rajaOngkirController::class, 'getKabKot'])->name('getKabKota');
+   
+   // Get Paket
+   Route::get('/asal/{idKotaAsal}/tujuan/{idKotaTujuan}/berat/{berat}/ekpedisi/{ekspedisi}', [rajaOngkirController::class, 'getPaket'])->name('getPaket');
+   
       
       // Route::get('/register', [RegisterController::class, 'index'])->name('regisPage')->middleware('guest');
-      //Logout Route
+      

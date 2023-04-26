@@ -43,7 +43,7 @@
             <div class="left-content ms-lg-3 d-flex justify-content-start">
               <ul class="navbar-nav gap-3 text-lg-start mt-4 mb-4 mb-lg-0 mt-lg-0 d-flex align-items-start align-items-lg-center">
                 <li class="nav-item mt-3 mt-lg-0">
-                  <div href="#" class="nav-link dropdown ddn-ctg p-0 bg-transparent border-0">
+                  <div class="nav-link dropdown ddn-ctg p-0 bg-transparent border-0">
                     <div class="ddn  select d-flex align-items-center gap-2">
                       <span class="selected">Categories</span>
                       <div class="caret bx bx-chevron-down"></div>
@@ -81,7 +81,8 @@
                   <div class="caret bx bx-chevron-down"></div>
                 </div>
                 <ul class="menu menu-cart">
-                  <form action="#">
+                  <form action="{{route('customer.subscribe')}}" method="post">
+                  @csrf
                   <div class="menu-wrap d-flex flex-column">
                       <!-- <li>
                         <input type="hidden" name="id" class="id" value="01">

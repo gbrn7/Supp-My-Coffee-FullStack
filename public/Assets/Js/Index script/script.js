@@ -46,4 +46,7 @@ a.forEach((e) => {
     })
 });
 
-AOS.init();
+
+onload = () => {
+    AOS.init();
+}
