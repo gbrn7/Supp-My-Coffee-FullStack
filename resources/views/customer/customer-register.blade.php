@@ -16,6 +16,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('Assets/Css/Signup style/main.css')}}" />
 
+      <!-- Link Remixicon -->
+    <link rel="stylesheet" href="{{ asset('Assets/Vendor/RemixIcon-master/fonts/remixicon.css')}}" />
+
     <!--Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,25 +43,26 @@
                     <div class="header">
                         <div class="text-center">
                             <img src="{{ asset('Assets/img/Logo.png') }}" class="logo">
-                            <h1  class="my-0 my-lg-3">Create an account</h1>
+                            <h1  class="my-0 my-lg-3">Create an Account</h1>
                         </div>
                     </div>
                     <form action="{{route('regis.store')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="signup-form d-flex flex-column gap-1 gap-lg-2 mt-2 mt-lg-4">
                         <label for="name" class="col-12">Nama</label>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama" value="{{ old('name') }}">
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" value="{{ old('nama') }}">
                             <label for="address" class="col-12">Alamat</label>
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="Masukkan alamat" value="{{ old('address') }}">
+                                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat" value="{{ old('alamat') }}">
                                     <label for="phone" class="col-12">No Telepon</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Masukkan no telepon" value="{{ old('phone') }}">
+                                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan no telepon" value="{{ old('no_telp') }}">
                                     <label for="email" class="col-12">Email</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Masukkan email" required value="{{ old('email') }}">
                                     <div class="password-container">
                                         <label for="password" class="col-12">Password</label>
                                         <div class="pass-wrapper position-relative d-flex">
                                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukkan password" required value="{{ old('password') }}">
-                                            <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon">
+                                            <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                                            <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
                                             @error('password')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

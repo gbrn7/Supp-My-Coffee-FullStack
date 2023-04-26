@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head-wrap>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catalog</title>
+  <title>Account</title>
 
   <!-- Icon -->
-  <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png')}}" type="image/x-icon">
+  <link rel="icon" type="image/x-icon" href="{{ asset('Assets/img/Logo.png')}}">
   
   <!-- CSS Bootrap-->
   <link rel="stylesheet" href="{{ asset('Assets/Vendor/bootstrap-5.2/css/bootstrap.min.css')}}" />
@@ -25,17 +25,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ asset('Assets/Css/Catalog style/main.css')}}" />
+  <link rel="stylesheet" href="{{ asset('Assets/Css/Account Style/main.css')}}" />
 
-</head>
+</head-wrap>
 <body>
 
     <!-- Navbar Start -->
     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light ">
       <div class="container py-1 d-lg-flex align-items-lg-center">
-        <a href="{{route('customer.catalog')}}" class="text-decoration-none">
-          <img loading="lazy" src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
-        </a>
+          <a href="#" class="text-decoration-none">
+            <img src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -49,8 +49,9 @@
                       <div class="caret bx bx-chevron-down"></div>
                     </div>
                     <ul class="menu">
-                      <li><a href="{{route('customer.catalog.category', 'Arabika')}}" class="text-decoration-none text-black title">Arabika</a></li>
-                      <li><a href="{{route('customer.catalog.category', 'Robusta')}}" class="text-decoration-none text-black title">Robusta</a></li>
+                      <li><a href="#" class="text-decoration-none text-black title">Arabika</a></li>
+                      <li><a href="#" class="text-decoration-none text-black title">Robusta</a></li>
+                      <li><a href="#" class="text-decoration-none text-black title">Liberika</a></li>
                     </ul>
                   </div>
                 </li>
@@ -63,14 +64,13 @@
               </ul>
             </div>
             <div class="right-content align-items-start d-flex flex-column flex-lg-row  gap-3  ">
-              <form action="{{route('customer.catalog.search')}}" method="post">
-                @csrf
+              <form action="#" method="get">
                 <div class="input-group d-flex align-items-center">
-                  <input type="text" name="search" class="search form">
+                  <input type="text" name="Search" class="search form " id="">
                   <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
                 </div>
               </form>
-              <a href="{{route('customer.account')}}" class="text-decoration-none text-black account d-flex align-items-center gap-2">
+              <a href="#" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                 <i class='bx bxs-user'></i>
                 <p class="m-0">Account</p>
               </a>
@@ -82,7 +82,7 @@
                 </div>
                 <ul class="menu menu-cart">
                   <form action="#">
-                  <div class="menu-wrap d-flex flex-column">
+                  <div class="menu-wrap d-flex flex-column-reverse">
                       <!-- <li>
                         <input type="hidden" name="id" class="id" value="01">
                         <div class="title m-0 row align-items-center">
@@ -130,143 +130,179 @@
           </div>
         </div>
     </nav>
-  <!-- Navbar End -->
+    <!-- Navbar End -->
 
-  <!-- Banner Start -->
-  <section class="banner">
-    <div class="container banner-wrapper">
-      <div class="row justify-content-center">
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="text-center img-wrapper">
-                <img loading="lazy" src="{{ asset('Assets/img/ctlg-banner-1.png')}}" class="img-fluid">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="text-center">
-                <img loading="lazy" src="{{ asset('Assets/img/ctlg-banner-2.png')}}" class="img-fluid">
-              </div>
-            </div>
-            <div class="swiper-slide">
-              <div class="text-center">
-                <img loading="lazy" src="{{ asset('Assets/img/ctlg-banner-3.png')}}" class="img-fluid">
-              </div>
-            </div>
+    <!-- Header Start -->
+    <section class="head">
+      <div class="container">
+        <div class="row row-1 justify-content-center">
+          <div class="col-4 d-flex justify-content-center gap-lg-4 gap-2  align-items-center title-wrapper">
+              <i class='bx bx-user-circle'></i>
+              <p class="title m-0">Account</p>
           </div>
-          <div class="swiper-scrollbar"></div>
         </div>
-      </div>
-    </div>
-  </section>
-  <!-- Banner End -->
-
-  <!-- Recomendation Start -->
-  <section class="recomendation mt-4" id="recomendation">
-    <div class="container recomendation-wrapper">
-      <div class="row row-1">
-        <div class="col-12">
-          <p class="title">Recomendation For You</p>
-        </div>
-      </div>
-      <div class="row row-2 row-cols-2 row-cols-lg-4 gy-3"> 
-        @foreach ($products as $product)
-        <div class=" product  p-2">
-            <div class="box">
-                <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
-                    <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
-                </a>
-                <a href="" class="text-decoration-none">
-                    <div class="product-desc px-3 py-3">
-                    <input type="hidden" class="id-product" value="{{$product->id}}">
-                        <div class="title">{{$product->nama_produk}}</div>
-                        <div class="footer d-flex justify-content-between pt-2">
-                            <div class="price">Rp.{{$product->harga}}</div>
-                            <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
-                        </div>
-                      </div>
-                    </a>
-                    <div class="btn-cart-wrapper px-3 pt-1 pb-3">
-                      <button class="btn-cart text-center">
-                        <p class="btn-text m-0">Add to cart</p>
-                      </button>
-                    </div>
-            </div>
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </section>
-  <!-- Recomendation End -->
-
-  <!-- Bottom Start -->
-  <div class="bottom">
-  <!-- What's New Start -->
-  <section class="new mt-4" id="whatsnew">
-    <div class="container new-wrapper">
-      <div class="row row-1">
-        <div class="col-12">
-          <p class="title">What's New</p>
-        </div>
-      </div>
-      <div class="row row-2">
-        <div  class="swiper mySwiper-2">
-          <div class="swiper-wrapper">
-            @foreach ($newProducts as $product)
-            <div class="swiper-slide">
-              <div class="product p-2">
-                <div class="box">
-                  <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
-                    <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
-                    </a>
-                    <a href="" class="text-decoration-none">
-                        <div class="product-desc px-3 py-3">
-                          <input type="hidden" value="99" class="id-product">
-                            <div class="title">{{$product->nama_produk}}</div>
-                            <div class="footer d-flex justify-content-between pt-2">
-                                <div class="price">Rp. {{$product->harga}}</div>
-                                <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
-                            </div>
-                          </div>
-                        </a>
-                        <div class="btn-cart-wrapper px-3 pt-1 pb-3">
-                          <button class="btn-cart text-center">
-                            <p class="btn-text m-0">Add to cart</p>
-                          </button>
-                        </div>
+        <div class="row row-2 justify-content-center">
+          <div class="col-12 col-lg-3 text-center toggle-wrapper position-relative">
+            <input type="checkbox" class="checkbox ">
+            <label class="switch" for="checkbox">
+              <div class="slider-wrapper w-100 d-flex ">
+                <div class="slider"></div>
+              </div>
+                <div class="text-wrapper w-100 d-flex justify-content-between">
+                  <p class="m-0 profile col-6">Profile</p>
+                  <p class="m-0 history col-6">History</p>
                 </div>
-              </div>  
-            </div>
-            @endforeach
+            </label>
           </div>
-          <div class="bx bx-chevron-right-circle"></div>
-          <div class="bx bx-chevron-left-circle"></div>
-          <div class="swiper-pagination"></div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- What's New End -->
+    </section>
+    <!-- Header End -->
 
-      <!-- Footer Start -->
-    <section class="footer">
+    <!-- Profile Start -->
+    <section class="profile" id="profile">
+      <div class="container profile-wrapper d-flex flex-column gap-4">
+        <div class="row row-1 justify-content-center">
+          <div class="col-lg-6 col-12">
+            <div class="title-wrapper">
+              <p class="name m-0 mb-2">Name</p>
+            </div>
+            <input type="text" disabled value="Isyana Sarasvati" name="name" id="name" class="col-12">
+          </div>
+        </div>
+        <div class="row row-2 justify-content-center">
+          <div class="col-lg-6 col-12">
+            <div class="title-wrapper">
+              <p class="name m-0 mb-2">Email</p>
+            </div>
+            <input type="text" disabled value="IsyanaSarasvati@gmail.com" name="email" id="email" class="col-12">
+          </div>
+        </div>
+        <div class="row row-3 justify-content-center">
+          <div class="col-lg-6 col-12">
+            <div class="title-wrapper">
+              <p class="name m-0 mb-2">Address</p>
+            </div>
+            <input type="text" disabled value="Jl Merpati Putih No 7, Jakarta Selatan" name="address" id="address" class="col-12">
+          </div>
+        </div>
+        <div class="row row-4 justify-content-center">
+          <div class="col-lg-6 col-12">
+            <div class="title-wrapper">
+              <p class="name m-0 mb-2">Phone</p>
+            </div>
+            <input type="text" disabled value="089632547456" name="phone" id="phone" class="col-12">
+          </div>
+        </div>
+        <div class="row row-5 justify-content-center">
+          <div class="col-lg-6 col-12">
+            <a href="{{route('customer.logout')}}" class="text-decoration-none text-black">
+              <div class="row justify-content-end">
+                  <div class="btn-wrapper text-center p-2 col-3 ">
+                    <p class="name m-0">Logout</p>
+                  </div>
+                </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Profile End -->
+
+    <!-- History Start -->
+    <section class="history d-none" id="history">
+      <div class="container history-wrapper">
+      <div class="row row-1 p-3 p-md-0">
+          <div class="col-md-3 col-6 col-lg-2 justify-content-center text-wrapper d-flex ">
+            <p class="t-history-1  t-history bb m-0">History</p>
+          </div>
+        </div>
+      <div class="row row-2 p-3 p-md-0 op-wrapper">
+          <div class="col-12 mt-3 d-flex flex-column align-items-center item py-4">
+            <div class="col-10  d-flex justify-content-between">
+              <p class="title m-0">Product</p>
+              <p class="status m-0 col-3">Status</p>
+            </div>
+            <div class="col-10 mt-3 product-wrapper d-flex justify-content-between">
+              <div class="product col-8 col-lg-6 left-content d-flex flex-column gap-2">
+                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
+                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
+                  <div class="col-9 d-flex justify-content-between flex-column">
+                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
+                  </div>
+                </div>
+                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
+                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
+                  <div class="col-9 d-flex justify-content-between flex-column">
+                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
+                  </div>
+                </div>
+                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
+                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
+                  <div class="col-9 d-flex justify-content-between flex-column">
+                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 right-content d-flex flex-column justify-content-between">
+                <div class="bg-dark status-field  text-white btn-1 bg-dark text-center py-2 rounded-3">On Process</div>
+              </div>
+          </div>
+        </div>
+          <div class="col-12 mt-3 d-flex flex-column align-items-center item py-4">
+            <div class="col-10  d-flex justify-content-between">
+              <p class="title m-0">Product</p>
+              <p class="status m-0 col-3">Status</p>
+            </div>
+            <div class="col-10 mt-3 product-wrapper d-flex justify-content-between">
+              <div class="product col-8 col-lg-6 left-content d-flex flex-column gap-2">
+                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
+                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
+                  <div class="col-9 d-flex justify-content-between flex-column">
+                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
+                  </div>
+                </div>
+                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
+                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
+                  <div class="col-9 d-flex justify-content-between flex-column">
+                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
+                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3 right-content d-flex flex-column justify-content-between">
+                <div class="bg-dark status-field  text-white btn-1 bg-dark text-center py-2 rounded-3">085602589632</div>
+              </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <!-- Hisroty End -->
+
+    <!-- Footer Start -->
+       <section class="footer">
         <div class="container footer-wrapper">
             <div class="row row-1 mt-5">
                 <div class="col-12 col-lg-6">
                     <div class="content d-flex flex-column gap-3">
-                        <div class="img-wrap col-2"><img loading="lazy" class="img-fluid rounded-4" src="{{ asset('Assets/img/Logo.png')}}"></div>
+                        <div class="img-wrap col-2"><img class="img-fluid rounded-4" src="{{ asset('Assets/img/Logo.png')}}"></div>
                         <div class="text col-7">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim vitae consequuntur recusandae possimus soluta corporis </div>
                         <div class="socmed-wrap col-4">
-                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Instagram.png')}}" alt=""></a>
-                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Facebook.png')}}" alt=""></a>
-                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Whatsapp.png')}}" alt=""></a>
-                            <a href="#"><img loading="lazy" src="{{ asset('Assets/img/Twitter.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('Assets/img/Instagram.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('Assets/img/Facebook.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('Assets/img/Whatsapp.png')}}" alt=""></a>
+                            <a href="#"><img src="{{ asset('Assets/img/Twitter.png')}}" alt=""></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-6 d-flex gap-5 mt-4 mt-lg-0">
                     <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">
-                        <div class="head">Product</div>
+                        <div class="head-wrap">Product</div>
                         <div class="child d-flex flex-column gap-1">
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Catalog</p></a>
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Select Product</p></a>
@@ -275,7 +311,7 @@
                         </div>
                     </div>
                     <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">
-                        <div class="head">Information</div>
+                        <div class="head-wrap">Information</div>
                         <div class="child d-flex flex-column gap-1">
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Customer</p></a>
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Social Media</p></a>
@@ -284,7 +320,7 @@
                         </div>
                     </div>
                     <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">
-                        <div class="head">Company</div>
+                        <div class="head-wrap">Company</div>
                         <div class="child d-flex flex-column gap-1">
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Company Info</p></a>
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Investor</p></a>
@@ -293,7 +329,7 @@
                         </div>
                     </div>
                     <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">
-                        <div class="head">Supports</div>
+                        <div class="head-wrap">Supports</div>
                         <div class="child d-flex flex-column gap-1">
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Terms And Conditions</p></a>
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Insurance</p></a>
@@ -305,8 +341,7 @@
         </div>
     </section>
     <!-- Footer End -->
-  </div>
-  <!-- Bottom End -->
+
 
 </body>
   <!-- Swiper JS -->
@@ -316,7 +351,7 @@
   <script src="{{ asset('Assets/Vendor/bootstrap-5.2/js/bootstrap.bundle.min.js')}}"></script>
 
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/Catalog script/script.js')}}"></script>
+  <script src="{{ asset('Assets/Js/Account Script/script.js')}}"></script>
 
 
 

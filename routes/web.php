@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Customer\indexController;
 use App\Http\Controllers\Customer\catalogController;
 use App\Http\Controllers\Customer\detailProdukController;
+use App\Http\Controllers\Customer\accountController;
 use App\Http\Controllers\Customer\customerLoginController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\RegisterController;
@@ -29,12 +30,16 @@ use App\Http\Controllers\RegisterController;
 
    Route::get('/', [indexController::class, 'index'])->name('customer.index');
 
-   
-   Route::group(['prefix' => 'catalog'], function(){
-      Route::get('/', [catalogController::class, 'index'])->name('customer.catalog');
-      Route::get('/{id}', [detailProdukController::class, 'index'])->name('customer.catalog.detail');
-      Route::post('/search', [catalogController::class, 'search'])->name('customer.catalog.search');
-      Route::get('/categories/{category}', [catalogController::class, 'categories'])->name('customer.catalog.category');
+   Route::group(['prefix' => 'customer'], function(){
+
+      Route::group(['prefix' => 'catalog'], function(){
+         Route::get('/', [catalogController::class, 'index'])->name('customer.catalog');
+         Route::get('/{id}', [detailProdukController::class, 'index'])->name('customer.catalog.detail');
+         Route::post('/search', [catalogController::class, 'search'])->name('customer.catalog.search');
+         Route::get('/categories/{category}', [catalogController::class, 'categories'])->name('customer.catalog.category');
+      });
+      
+      Route::get('account', [accountController::class, 'index'])->name('customer.account')->middleware('cust.auth');
    });
 
    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
@@ -71,7 +76,8 @@ use App\Http\Controllers\RegisterController;
       Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
       
       //Register Route
-      Route::get('/register', [RegisterController::class, 'index'])->name('regisPage')->middleware('guest');
+      Route::get('/register', [RegisterController::class, 'index'])->name('regisPage');
       Route::post('/register', [RegisterController::class, 'store'])->name('regis.store');
       
+      // Route::get('/register', [RegisterController::class, 'index'])->name('regisPage')->middleware('guest');
       //Logout Route

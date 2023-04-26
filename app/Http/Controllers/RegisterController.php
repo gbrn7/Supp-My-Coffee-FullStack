@@ -15,20 +15,25 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'email' => 'required|unique:user',
             'password' => 'required|min:5'
         ]);
 
-        $data = $request -> except('_token');
+        $isEmailExist = User::where('email', $request->email)->exists();
+        if($isEmailExist){
+            return back()->withErrors([
+                'email' => 'This email already exist'
+            ])->withInput();
+        }
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
-
-        User::create($validatedData);
-
-        $request->session()->flash('success', 'Registrasi berhasil. Silahkan login!');
+        $data['role'] = 'member'; //adding the array
+        $data['password'] = Hash::make($request->password); //hash password and override array
         
-        return redirect('/login');
+        dd($data);
+        User::create($data);
+
+        return redirect()->route('customer.login');
     }
 }
 ?>

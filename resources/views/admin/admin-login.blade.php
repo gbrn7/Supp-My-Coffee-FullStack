@@ -17,6 +17,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('Assets/Css/Login style/main.css')}}" />
 
+    <!-- Link Remixicon -->
+    <link rel="stylesheet" href="{{ asset('Assets/Vendor/RemixIcon-master/fonts/remixicon.css')}}" />
+
     <!--Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +61,8 @@
                                 <label for="password">Password</label>
                                 <div class="pass-wrapper position-relative d-flex">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
-                                    <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon">
+                                    <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                                    <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
                                 </div>
                             </div>
                             <button class="login-btn mt-1 mt-lg-2" type="submit">Login</button>

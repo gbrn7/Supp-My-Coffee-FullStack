@@ -57,7 +57,8 @@
                                 <label for="password">Password</label>
                                 <div class="pass-wrapper position-relative d-flex">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" required value="{{old('password')}}">
-                                    <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon">
+                                    <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                                    <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
                                 </div>
                             </div>
                             <div class="text-center">
