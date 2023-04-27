@@ -33,7 +33,7 @@
     <!-- Navbar Start -->
     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light ">
       <div class="container py-1 d-lg-flex align-items-lg-center">
-          <a href="#" class="text-decoration-none">
+          <a href="{{route('customer.catalog')}}" class="text-decoration-none">
             <img src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,10 +56,10 @@
                   </div>
                 </li>
                 <li class="nav-item mt-3 mt-lg-0">
-                  <a href="#recomendation" class="nav-link p-0">Recomendation</a>
+                  <a href="{{route('customer.catalog')}}" class="nav-link p-0">Recomendation</a>
                 </li>
                 <li class="nav-item mt-3 mt-lg-0">
-                  <a href="#whatsnew" class="nav-link p-0">What's New</a>
+                  <a href="{{route('customer.catalog')}}" class="nav-link p-0">What's New</a>
                 </li>
               </ul>
             </div>

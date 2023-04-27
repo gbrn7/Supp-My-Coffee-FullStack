@@ -222,7 +222,7 @@
                     </a>
                     <a href="" class="text-decoration-none">
                         <div class="product-desc px-3 py-3">
-                          <input type="hidden" value="99" class="id-product">
+                          <input type="hidden" value="{{$product->id}}" class="id-product">
                             <div class="title">{{$product->nama_produk}}</div>
                             <div class="footer d-flex justify-content-between pt-2">
                                 <div class="price">Rp. {{$product->harga}}</div>

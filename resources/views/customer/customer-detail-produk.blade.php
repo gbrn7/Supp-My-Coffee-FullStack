@@ -52,10 +52,10 @@
                     </div>
                   </li>
                   <li class="nav-item mt-3 mt-lg-0">
-                    <a href="#recomendation" class="nav-link p-0">Recomendation</a>
+                    <a href="{{route('customer.catalog')}}" class="nav-link p-0">Recomendation</a>
                   </li>
                   <li class="nav-item mt-3 mt-lg-0">
-                    <a href="#whatsnew" class="nav-link p-0">What's New</a>
+                    <a href="{{route('customer.catalog')}}" class="nav-link p-0">What's New</a>
                   </li>
                 </ul>
               </div>
@@ -66,7 +66,7 @@
                     <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
                   </div>
                 </form>
-                <a href="#" class="text-decoration-none text-black account d-flex align-items-center gap-2">
+                <a href="{{route('customer.account')}}" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                   <i class='bx bxs-user'></i>
                   <p class="m-0">Account</p>
                 </a>
@@ -77,7 +77,8 @@
                     <div class="caret bx bx-chevron-down"></div>
                   </div>
                   <ul class="menu menu-cart">
-                    <form action="#">
+                    <form action="{{route('customer.subscribe')}}" method="post">
+                    @csrf
                     <div class="menu-wrap d-flex flex-column-reverse">
                         <!-- <li>
                           <input type="hidden" name="id" class="id" value="01">
@@ -184,7 +185,7 @@
                     </a>
                     <a href="" class="text-decoration-none">
                         <div class="product-desc px-3 py-3">
-                          <input type="hidden" value="99" class="id-product">
+                          <input type="hidden" value="{{$product->id}}" class="id-product">
                             <div class="title">{{$product->nama_produk}}</div>
                             <div class="footer d-flex justify-content-between pt-2">
                                 <div class="price">Rp.{{$product->harga}}</div>

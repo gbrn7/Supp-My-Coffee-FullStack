@@ -33,7 +33,7 @@
     <!-- Navbar Start -->
     <nav class="navbar  bg-white navbar-expand-lg navbar-light ">
         <div class="container py-1 d-lg-flex align-items-lg-center">
-        <a href="#" class="text-decoration-none">
+        <a href="{{route('customer.catalog')}}" class="text-decoration-none">
             <img src="{{ asset('Assets/img/Logo.png')}}" class="logo" />
         </a>
     </nav>
@@ -42,6 +42,8 @@
 <!-- Content Start -->
 <section class="content mt-3 mt-lg-0">
     <div class="container">
+     <form enctype="multipart/form-data" action="{{route('customer.checkout', $products)}}" method="POST">
+        @csrf
         <div class="row row-high">
             <div class="col-10">
                 <label class="mb-1" for="">Provinsi</label>
@@ -72,8 +74,8 @@
                 </select>
             </div>
             <div class="col-10">
-                <label class="mb-1 " for="exampleFormControlInput1" class="">Berat</label>
-                <input type="text" name="berat" class="form-control mb-3 berat" disabled  id="berat" value="1000">
+                <label class="mb-1 " for="exampleFormControlInput1" class="">Berat (gr)</label>
+                <input type="text" name="berat" class="form-control mb-3 berat" disabled  id="berat" value="{{$totalBerat}}">
             </div>
             <div class="col-10">
                 <label class="mb-1" for="">Pilih Paket</label>
@@ -83,14 +85,13 @@
             </div>
         </div>
         <div class="row row-1 mt-3">
-            <form action="#" method="get">
             <div class="col-10">
                     <div class="form-check once">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" checked>
                         <label class="mb-1" class="form-check-label" for="flexRadioDefault1">Beli Sekali</label>
                     </div>
                     <div class="form-check ">
-                        <input class="form-check-input subs" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <input class="form-check-input subs" type="radio" name="flexRadioDefault" id="flexRadioDefault">
                         <label class="mb-1" class="form-check-label" for="flexRadioDefault2">Berlangganan</label>
                     </div>
             </div>
@@ -106,7 +107,7 @@
                 <div class="range-wrapper d-flex gap-2 gap-md-3 align-items-center">
                     <div class="col-7 range d-flex justify-content-between ">
                         <div class="minus d-inline-block" class="col-4">-</div>
-                        <input type="text"  value="2"  class="col-8 qty-input">
+                        <input type="text" name="subs"  value="0"  class="col-8 qty-input subs-input">
                         <div class="plus d-inline-block"  class="col-4">+</div>
                     </div>
                     <p class="mb-0 d-inline-block">Bulan Kedepan</p>
@@ -129,7 +130,7 @@
                 <button type="submit" class="disabled col-3 col-lg-2 btn btn-dark d-flex justify-content-center align-items-center">Checkout</button>
             </div>
         </div>
-    </form>
+     </form>
     </div>
 </section>
 <!-- Content End -->

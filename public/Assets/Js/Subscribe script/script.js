@@ -13,6 +13,8 @@ const dateWrap = row3.querySelector(".date-wrapper");
 const datecol = row3.querySelector(".date-col");
 const paket = document.querySelector(".paket");
 const alamat = document.querySelector(".alamat");
+const subsInput = document.querySelector('.subs-input');
+console.log(subsInput.value);
 iteminit();
 dateInit();
 
@@ -58,6 +60,7 @@ $(document).ready(function(){
             value.costs.forEach(e => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
+            btnCheckout.classList.remove('disabled');
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
@@ -85,6 +88,7 @@ $(document).ready(function(){
             value.costs.forEach(e => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
+            btnCheckout.classList.remove('disabled');
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
@@ -112,6 +116,7 @@ $(document).ready(function(){
             value.costs.forEach(e => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
+            btnCheckout.classList.remove('disabled');
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
@@ -147,6 +152,17 @@ alamat.addEventListener("keyup", (event)=>{
   }
 });
 
+alamat.addEventListener("change", (event)=>{
+  
+
+  if(alamat.value && paket.value != 'x'){
+    btnCheckout.classList.remove('disabled');
+  } else if( paket.value == 'x' && !btnCheckout.classList.contains('disabled')){
+    btnCheckout.classList.add('disabled');
+  }
+
+});
+
 btnConfirm.addEventListener("click", () => {
   datecol.classList.remove("d-none");
   if (dateWrap.childElementCount > 0) {
@@ -165,13 +181,19 @@ radioBtn.forEach((e) => {
         row2.classList.remove("d-none");
         row3.classList.remove("d-none");
         btnCheckout.classList.add("disabled")
-
+        subsInput.value = 2;
+        console.log(subsInput.value); 
       }
     } else {
       if (!row2.classList.contains("d-none") && !row3.classList.contains("d-none")) {
         row2.classList.add("d-none");
         row3.classList.add("d-none");
-        btnCheckout.classList.remove("disabled")
+        // console.log(subsInput.value);
+        subsInput.value = 0;
+        console.log(subsInput.value);
+        if(alamat.value != '' && paket.value != 'x'){
+          btnCheckout.classList.remove("disabled")
+        }
       }
     }
   });
