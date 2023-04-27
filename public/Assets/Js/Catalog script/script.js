@@ -56,7 +56,6 @@ products.forEach(product => {
   const y = product.querySelector('.btn-cart');
   y.addEventListener('click', () => {
     const id = product.querySelector('.id-product').value;
-    console.log(id);
     const title = product.querySelector('.title').innerHTML;
     const item = addToCart(id, title);
     if (item) {
@@ -68,21 +67,6 @@ products.forEach(product => {
 });
 
 function addToCart(id, title) {
-  const item = elementFromHtml(
-    `
-    <li>
-    <input type="hidden" class="id" name="id" value="${id}">
-    <div class="title m-0 row align-items-center">
-      <div class="col-8 title">${title}</div>
-      <div class="col-3 qty-btn d-flex gap-3 justify-content-center align-items-center">
-        <div class="minus"  class="col-4">-</div>
-        <input type="text"  value="1"  class="col-4 qty-input">
-        <div class="plus" class="col-4">+</div>
-      </div>
-      <div class="col-1 delete-wrap text-center"><i class='bx bx-trash'></i></div>
-    </div>
-  </li>
-    `);
   const menu = document.querySelector('.menu-wrap');
   const items = document.querySelectorAll('.menu-wrap li');
   let isDuplicate = false;
@@ -93,9 +77,25 @@ function addToCart(id, title) {
     }
   }
   if (!isDuplicate) {
+    const item = elementFromHtml(
+      `
+      <li>
+      <input type="hidden" class="id" name="id-${id}" value="${id}">
+      <div class="title m-0 row align-items-center">
+        <div class="col-8 title">${title}</div>
+        <div class="col-3 qty-btn d-flex gap-3 justify-content-center align-items-center">
+          <div class="minus"  class="col-4">-</div>
+          <input type="text" name="qty-${id}"  value="1"  class="col-4 qty-input">
+          <div class="plus" class="col-4">+</div>
+        </div>
+        <div class="col-1 delete-wrap text-center"><i class='bx bx-trash'></i></div>
+      </div>
+    </li>
+      `);
     menu.appendChild(item);
     return item;
   }
+
   return false;
 }
 
