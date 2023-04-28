@@ -33,7 +33,7 @@ class JadwalController extends Controller
         ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
         ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
         ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-        ->select('p.id', 'user.nama', 't.alamat', 'p.status', 'p.tanggal_pengiriman')
+        ->select('p.id', 'user.nama', 't.alamat', 'p.status', 'p.tanggal_pengiriman', 't.ekspedisi')
         ->where('p.status', '=', 'On Process')
         ->where('t.status_pembayaran', '=', 'SUCCESS')
         ->groupBy('p.id')
@@ -41,6 +41,7 @@ class JadwalController extends Controller
         ->groupBy('t.alamat')
         ->groupBy('p.status')
         ->groupBy('p.tanggal_pengiriman')
+        ->groupBy('t.ekspedisi')
         ->orderBy('p.tanggal_pengiriman', 'asc')
         ->get();
 

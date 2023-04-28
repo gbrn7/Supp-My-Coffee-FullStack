@@ -10,6 +10,7 @@ use Kavist\RajaOngkir\Facades\RajaOngkir;
 class checkoutController extends Controller
 {
     public function index(Request $request){
+        // dd($request->only('berat'));
         $products = $this->processData($request->except('_token', 'provinsi', 'kabupaten/kota', 'alamat', 'ekspedisi', 'paket', 'flexRadioDefault', 'subs'));
         $alamat = $this->getAlamat($request->only('provinsi', 'kabupaten/kota', 'alamat',));
         $totalHarga = $this->getTotalHarga($products);
@@ -18,12 +19,13 @@ class checkoutController extends Controller
         $biayaPengiriman = $this->getBiayaPengiriman($subs, $request->only('paket'));
         $biayaTransaksi = 5000;
         $totalTagihan = $this->getTotalTagihan($totalHarga, $biayaPengiriman, $biayaTransaksi);
+        $ekpedisiDetail = $this->getEkspedisiDetail($request->only( 'ekspedisi'), $biayaPengiriman);
 
-        // dd($totalHarga, $banyakBarang, $biayaTransaksi, $products, $alamat, $subs, $biayaPengiriman, $totalTagihan);
+        dd($totalHarga, $banyakBarang, $biayaTransaksi, $products, $alamat, $subs, $biayaPengiriman, $totalTagihan, $ekpedisiDetail);
 
         return view('customer.customer-checkout', ['products' => $products, 'totalHarga' => $totalHarga, 
         'banyakBarang' => $banyakBarang, 'subs' => $subs, 'biayaPengiriman' => $biayaPengiriman, 'biayaTransaksi' => $biayaTransaksi,
-        'totalTagihan' => $totalTagihan, 'alamat' => $alamat]);
+        'totalTagihan' => $totalTagihan, 'alamat' => $alamat, 'ekpedisiDetail' => $ekpedisiDetail]);
     }
 
     public function processData($dataRaw){
@@ -105,5 +107,11 @@ class checkoutController extends Controller
         }
         // dd($banyakBarang);
         return $banyakBarang;
+    }
+
+    public function getEkspedisiDetail($dataRaw, $biayaPengiriman){
+        // dd($dataRaw['ekspedisi'].' Rp.'.$biayaPengiriman);
+
+        return $dataRaw['ekspedisi'].' Rp.'.$biayaPengiriman;
     }
 }

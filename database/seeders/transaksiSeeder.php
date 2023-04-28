@@ -17,6 +17,7 @@ class transaksiSeeder extends Seeder
             [
                 'user_id' => '2',
                 'alamat' => 'kepanjen',
+                'ekspedisi' => 'tiki Rp.26000',
                 'transaction_code' => 'FGYT56',
                 'status_pembayaran' => 'SUCCESS',
                 'created_at' => now(),
@@ -25,6 +26,7 @@ class transaksiSeeder extends Seeder
             [
                 'user_id' => '2',
                 'alamat' => 'Madiun',
+                'ekspedisi' => 'jne Rp.36000',
                 'transaction_code' => 'GHJTU9',
                 'status_pembayaran' => 'SUCCESS',
                 'created_at' => now(),

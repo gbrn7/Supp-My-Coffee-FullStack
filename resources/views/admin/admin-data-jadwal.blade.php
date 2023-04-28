@@ -135,10 +135,11 @@
     <table id="example" class="table table-striped mt-4" style="width: 95%">
           <thead>
             <tr>
-              <th>Id Pengiriman</th>
+              <th>Id</th>
               <th>Nama Cust</th>
               <th>List Produk</th>
               <th>Alamat</th>
+              <th>Ekspedisi</th>
               <th>Jadwal Pengiriman</th>
               <th>Aksi</th>
             </tr>
@@ -150,10 +151,11 @@
               <td>{{$schedule->nama}}</td>
               <td>
                   @foreach ($schedule->details as $detail)
-                    {{$detail->nama_produk}} : {{$detail->qty}} (Qty) <br>
+                    {{$detail->nama_produk}} : {{$detail->qty}} Pcs <br><br>
                   @endforeach
               </td>
               <td>{{$schedule->alamat}}</td>
+              <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
               <td>{{$schedule->tanggal_pengiriman}}</td>
               <td>
                 <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
@@ -179,10 +181,11 @@
           </tbody>
           <tfoot>
             <tr>
-              <th>Id Pengiriman</th>
+              <th>Id</th>
               <th>Nama Cust</th>
               <th>List Produk</th>
               <th>Alamat</th>
+              <th>Ekspedisi</th>
               <th>Jadwal Pengiriman</th>
               <th>Aksi</th>
             </tr>

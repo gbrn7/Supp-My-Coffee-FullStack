@@ -14,6 +14,7 @@ const datecol = row3.querySelector(".date-col");
 const paket = document.querySelector(".paket");
 const alamat = document.querySelector(".alamat");
 const subsInput = document.querySelector('.subs-input');
+const ekpedisiDetail = document.querySelector('.ekspedisi-detail');
 console.log(subsInput.value);
 iteminit();
 dateInit();

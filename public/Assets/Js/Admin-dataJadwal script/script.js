@@ -70,9 +70,10 @@ $(document).ready(function () {
     "ordering": false,
     "bAutoWidth": false, // Disable the auto width calculation 
     "aoColumns": [
-      { "width": "7%" },
       { "width": "5%" },
-      { "width": "20%" },
+      { "width": "10%" },
+      { "width": "32%" },
+      { "width": "12%" }, 			    
       { "width": "10%" }, 			    
       { "width": "10%" },			     			    			     			    
       { "width": "15%" }
