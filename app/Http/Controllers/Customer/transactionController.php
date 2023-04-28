@@ -18,9 +18,10 @@ class transactionController extends Controller
         $customer = auth()->user();
         $transaksi = $this->createTransaksi($request);
         $pengiriman = $this->createPengiriman($request);
-        $detailProduk = $this->createDetailProduk($request);
-
-        dd($transaksi, $pengiriman, $detailProduk);
+        $totalTagihan = $request['totalTagihan'];
+        
+        
+        dd($transaksi, $pengiriman, $totalTagihan);
 
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
@@ -34,7 +35,7 @@ class transactionController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => $transaction->transaction_code,
-                'gross_amount' => $transaction->amount,
+                'gross_amount' => $totalTagihan,
             ),
             'customer_details' => array(
                 'first_name' => $customer->nama,
@@ -72,7 +73,17 @@ class transactionController extends Controller
         $pengiriman;
 
         $first = Carbon::create(date('Y'), date('m'), $data['subsDate']);
+        // dd($first);
 
+        //material for detail Produk
+        $dataRaw = $request->except('_token', 'alamat', 'ekpedisiDetail', 'subs', 'subsDate', 'totalTagihan');
+        $dataProduk = [];
+
+        foreach ($dataRaw as $key => $value) {
+            array_push($dataProduk, $value);
+        }
+
+        //Execution
         for ($i=0; $i < $data['subs']; $i++) {
             if($i == 0){
                 $pengiriman = Pengiriman::create([
@@ -80,40 +91,33 @@ class transactionController extends Controller
                     'tanggal_pengiriman' => now(),
                     'id_transaksi' => $idTransaksi,
                 ]);
+                $this->createDetailProduk($dataProduk);
             }else{
+                $second = Carbon::create($first->year, $first->month, $data['subsDate']);
                 $pengiriman = Pengiriman::create([
                     'status' => 'On Process',
-                    'tanggal_pengiriman' => $first->addMonth(1),
+                    'tanggal_pengiriman' => $second,
                     'id_transaksi' => $idTransaksi,
                 ]);
-                $first = $first->addMonth(1);
+                $this->createDetailProduk($dataProduk);
+                $first->addMonth(1);
             }
         };
         // dd($pengiriman);
         return $pengiriman;
     }
-    public function createDetailProduk($request){
-        $dataRaw = $request->except('_token', 'alamat', 'ekpedisiDetail', 'subs', 'subsDate');
+
+    public function createDetailProduk($dataProduk){
         $idPengiriman =  DB::table('pengiriman')->max('id');
-        $data = [];
-        $temp = [];
         $detailPengiriman;
 
-        foreach ($dataRaw as $key => $value) {
-            array_push($data, $value);
-        }
-
-        for ($i=0; $i < count($data); $i++) { 
+        for ($i=0; $i < count($dataProduk); $i++) { 
             if($i%2 != 0){
-                array_push($temp, $data[$i]);
                 $detailPengiriman = Detail_produk::create([
                     'id_pengiriman' => $idPengiriman,
-                    'id_produk' => $temp[0],
-                    'qty' => $temp[1],
+                    'id_produk' => $dataProduk[$i-1],
+                    'qty' => $dataProduk[$i],
                 ]);
-                $temp = [];
-            }else{
-                array_push($temp, $data[$i]);
             }
         }
         // dd($detailPengiriman);

@@ -41,6 +41,7 @@
             <input type="hidden" name="subs" value="{{$subs}}">
             <input type="hidden" name="subsDate" value="{{$subsDate}}">
             <input type="hidden" name="ekpedisiDetail" value="{{$ekpedisiDetail}}">
+            <input type="hidden" name="totalTagihan" value="{{$totalTagihan}}">
           <div class="row row-1 justify-content-between p-2 p-lg-0">
             <div class="col-lg-6 col-12 left-content">
               <div class="col-6 text-wrapper">
