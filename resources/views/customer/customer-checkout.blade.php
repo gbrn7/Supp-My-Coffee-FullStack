@@ -35,9 +35,12 @@
               <img src="{{asset('Assets/img/atasCheckoutPage.svg')}}" alt="logo" class="img-fluid">
             </div>
           </div>
-          <form action="#">
+          <form action="{{route('customer.transaction')}}" method="POST" enctype="multipart/form-data">
+            @csrf
             <input type="hidden" name="alamat" value="{{$alamat}}">
             <input type="hidden" name="subs" value="{{$subs}}">
+            <input type="hidden" name="subsDate" value="{{$subsDate}}">
+            <input type="hidden" name="ekpedisiDetail" value="{{$ekpedisiDetail}}">
           <div class="row row-1 justify-content-between p-2 p-lg-0">
             <div class="col-lg-6 col-12 left-content">
               <div class="col-6 text-wrapper">

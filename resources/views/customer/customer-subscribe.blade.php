@@ -99,7 +99,7 @@
         <div class="row row-2 mt-3 d-none">
             <div class="mb-3 col-4 col-lg-2">
                 <label class="mb-1" for="date-selector" class="form-label">Setiap Tanggal</label>
-                <select class="form-select date-selector tanggal" id="date-selector" aria-label="Default select example">
+                <select class="form-select date-selector tanggal" name="subsDate" id="date-selector" aria-label="Default select example">
                 </select>
             </div>
             <div class="col-5 col-lg-3">
@@ -107,7 +107,7 @@
                 <div class="range-wrapper d-flex gap-2 gap-md-3 align-items-center">
                     <div class="col-7 range d-flex justify-content-between ">
                         <div class="minus d-inline-block" class="col-4">-</div>
-                        <input type="text" name="subs"  value="0"  class="col-8 qty-input subs-input">
+                        <input type="text" name="subs"  value="1"  class="col-8 qty-input subs-input">
                         <div class="plus d-inline-block"  class="col-4">+</div>
                     </div>
                     <p class="mb-0 d-inline-block">Bulan Kedepan</p>

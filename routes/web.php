@@ -13,8 +13,9 @@ use App\Http\Controllers\Customer\subscribeController;
 use App\Http\Controllers\Customer\customerLoginController;
 use App\Http\Controllers\Customer\rajaOngkirController;
 use App\Http\Controllers\Customer\checkoutController;
+use App\Http\Controllers\Customer\RegisterController;
+use App\Http\Controllers\Customer\transactionController as customerTransaksiController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
-use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,8 @@ use App\Http\Controllers\RegisterController;
       Route::post('/subcribe', [subscribeController::class, 'index'])->name('customer.subscribe')->middleware('cust.auth');
       
       Route::post('/checkout', [checkoutController::class, 'index'])->name('customer.checkout')->middleware('cust.auth');
+      
+      Route::post('/checkout/transaction', [customerTransaksiController::class, 'index'])->name('customer.transaction')->middleware('cust.auth');
    });
 
    Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){

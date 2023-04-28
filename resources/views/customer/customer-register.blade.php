@@ -49,28 +49,40 @@
                     <form action="{{route('regis.store')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="signup-form d-flex flex-column gap-1 gap-lg-2 mt-2 mt-lg-4">
-                        <label for="name" class="col-12">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" value="{{ old('nama') }}">
+                            <label for="name" class="col-12">Nama</label>
+                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" value="{{ old('nama') }}">
+                            @error('nama')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
                             <label for="address" class="col-12">Alamat</label>
-                                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat" value="{{ old('alamat') }}">
-                                    <label for="phone" class="col-12">No Telepon</label>
-                                    <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan no telepon" value="{{ old('no_telp') }}">
-                                    <label for="email" class="col-12">Email</label>
-                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Masukkan email" required value="{{ old('email') }}">
-                                    <div class="password-container">
-                                        <label for="password" class="col-12">Password</label>
-                                        <div class="pass-wrapper position-relative d-flex">
-                                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukkan password" required value="{{ old('password') }}">
-                                            <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
-                                            <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
-                                            @error('password')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                            @enderror
-                                        </div>
+                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat" value="{{ old('alamat') }}">
+                            @error('alamat')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            <label for="phone" class="col-12">No Telepon</label>
+                            <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan no telepon" value="{{ old('no_telp') }}">
+                            @error('no_telp')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            <label for="email" class="col-12">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Masukkan email" required value="{{ old('email') }}">
+                            @error('email')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            <div class="password-container">
+                                <label for="password" class="col-12">Password</label>
+                                <div class="pass-wrapper position-relative d-flex">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Masukkan password" required value="{{ old('password') }}">
+                                    <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                                    <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
+                                    @error('password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
                                     </div>
-                                    <button class="signup-btn mt-2 mt-lg-3" type="submit">Buat akun</button>
+                                    @enderror
+                                </div>
+                            </div>
+                            <button class="signup-btn mt-2 mt-lg-3" type="submit">Buat akun</button>
                         </form>
                         <div class="text-center mt-1 mt-lg-2">
                             <span class="d-inline">Sudah memiliki akun? <a href="{{route('customer.login')}}" class="d-inline text-decoration-none">Login</a></span>

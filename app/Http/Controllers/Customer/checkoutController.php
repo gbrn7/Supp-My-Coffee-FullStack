@@ -10,22 +10,23 @@ use Kavist\RajaOngkir\Facades\RajaOngkir;
 class checkoutController extends Controller
 {
     public function index(Request $request){
-        // dd($request->only('berat'));
-        $products = $this->processData($request->except('_token', 'provinsi', 'kabupaten/kota', 'alamat', 'ekspedisi', 'paket', 'flexRadioDefault', 'subs'));
+        // dd($request->except('_token'));
+        $products = $this->processData($request->except('_token', 'provinsi', 'kabupaten/kota', 'alamat', 'ekspedisi', 'paket', 'flexRadioDefault', 'subs', 'subsDate'));
         $alamat = $this->getAlamat($request->only('provinsi', 'kabupaten/kota', 'alamat',));
         $totalHarga = $this->getTotalHarga($products);
         $banyakBarang = $this->getBanyakBarang($products);
         $subs = $this->getSubs($request->only('subs'));
+        $subsDate = $this->getSubs($request->only('subsDate'));
         $biayaPengiriman = $this->getBiayaPengiriman($subs, $request->only('paket'));
         $biayaTransaksi = 5000;
         $totalTagihan = $this->getTotalTagihan($totalHarga, $biayaPengiriman, $biayaTransaksi);
         $ekpedisiDetail = $this->getEkspedisiDetail($request->only( 'ekspedisi'), $biayaPengiriman);
 
-        dd($totalHarga, $banyakBarang, $biayaTransaksi, $products, $alamat, $subs, $biayaPengiriman, $totalTagihan, $ekpedisiDetail);
+        // dd($totalHarga, $banyakBarang, $biayaTransaksi, $products, $alamat, $subs, $subsDate, $biayaPengiriman, $totalTagihan, $ekpedisiDetail);
 
         return view('customer.customer-checkout', ['products' => $products, 'totalHarga' => $totalHarga, 
         'banyakBarang' => $banyakBarang, 'subs' => $subs, 'biayaPengiriman' => $biayaPengiriman, 'biayaTransaksi' => $biayaTransaksi,
-        'totalTagihan' => $totalTagihan, 'alamat' => $alamat, 'ekpedisiDetail' => $ekpedisiDetail]);
+        'totalTagihan' => $totalTagihan, 'alamat' => $alamat, 'ekpedisiDetail' => $ekpedisiDetail, 'subsDate' => $subsDate]);
     }
 
     public function processData($dataRaw){
@@ -78,21 +79,22 @@ class checkoutController extends Controller
     }
 
     public function getSubs($dataRaw){
-        $subs = $dataRaw['subs'];
-        if($subs == 0){
-            return 1;
-        }else{
-            return $subs;
+        $subs ;
+        foreach ($dataRaw as $key => $value) {
+            $subs = $value;
         }
+        // dd($subs);
+        // if($subs == 0){
+        //     return 1;
+        // }else{
+        //     return $subs;
+        // }
+        return $subs;
     }
 
     public function getBiayaPengiriman($subs, $paket){
         // dd($subs, $paket['paket']);
-        if($subs === 0){
-            return 1 * $paket['paket'];
-        }else{
-            return $subs * $paket['paket'];
-        }
+        return $subs * $paket['paket'];
     }
 
     public function getTotalTagihan($totalHarga, $biayaPengiriman, $biayaTransaksi){
