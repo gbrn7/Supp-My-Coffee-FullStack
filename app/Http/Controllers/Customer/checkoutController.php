@@ -84,11 +84,11 @@ class checkoutController extends Controller
             $subs = $value;
         }
         // dd($subs);
-        // if($subs == 0){
-        //     return 1;
-        // }else{
-        //     return $subs;
-        // }
+        if($subs == 0){
+            return 1;
+        }else{
+            return $subs;
+        }
         return $subs;
     }
 

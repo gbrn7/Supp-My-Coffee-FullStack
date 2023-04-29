@@ -21,7 +21,7 @@ class transactionController extends Controller
         $totalTagihan = $request['totalTagihan'];
         
         
-        dd($transaksi, $pengiriman, $totalTagihan);
+        // dd($transaksi, $pengiriman, $totalTagihan);
 
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
@@ -34,7 +34,7 @@ class transactionController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $transaction->transaction_code,
+                'order_id' => $transaksi->transaction_code,
                 'gross_amount' => $totalTagihan,
             ),
             'customer_details' => array(
@@ -45,6 +45,7 @@ class transactionController extends Controller
         );
 
         $createMidtransTransaction = \Midtrans\snap::createTransaction($params);
+        // dd($createMidtransTransaction);
         $midtransRedirectUrl = $createMidtransTransaction->redirect_url;
 
         return redirect($midtransRedirectUrl);
@@ -67,6 +68,7 @@ class transactionController extends Controller
 
         return $transaksi;
     }
+
     public function createPengiriman($request){
         $data = $request->only('subs', 'subsDate');
         $idTransaksi =  DB::table('transaksi')->max('id');
@@ -124,5 +126,9 @@ class transactionController extends Controller
         }
         // dd($detailPengiriman);
         return $detailPengiriman;
+    }
+
+    public function paymentFinish(){
+        return view('customer.customer-payment-finish');
     }
 }

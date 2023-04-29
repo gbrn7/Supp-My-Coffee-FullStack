@@ -26,8 +26,11 @@ class detailProdukController extends Controller
         
         $sales = DB::table('produk as prod')
         ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
+        ->join('pengiriman as p', 'dp.id_pengiriman', '=' , 'p.id')
+        ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
-        ->where('id', '=', $id)
+        ->where('t.status_pembayaran', '=', 'success')
+        ->where('prod.id', '=', $id)
         ->groupBy('prod.id')
         ->first();
         // dd($sales);
@@ -50,7 +53,10 @@ class detailProdukController extends Controller
 
         $sales = DB::table('produk as prod')
         ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
+        ->join('pengiriman as p', 'dp.id_pengiriman', '=' , 'p.id')
+        ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
+        ->where('t.status_pembayaran', '=', 'success')
         ->groupBy('prod.id')
         ->get();
 

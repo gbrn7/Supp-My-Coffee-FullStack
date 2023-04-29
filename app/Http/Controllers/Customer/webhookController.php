@@ -44,7 +44,8 @@ class webhookController extends Controller
           // and response with 200 OK
           $status = 'pending';
         }
+
         $transaksi = Transaksi::where('transaction_code', $transactionCode)->first();
-        $transaksi->update(['status' => $status]);
+        $transaksi->update(['status_pembayaran' => $status]);
     }
 }

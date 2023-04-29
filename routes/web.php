@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\LoginController as AdminLoginController;
    Route::get('/login', [customerLoginController::class, 'index'])->name('customer.login');
    Route::post('/login', [customerLoginController::class, 'authenticate'])->name('customer.login.authenticate');
    Route::get('/logout', [customerLoginController::class, 'logout'])->name('customer.logout');
+   Route::get('/payment-finish', [customerTransaksiController::class, 'paymentFinish'])->name('customer.payment-finish');
    
    // Login Route (admin)
    Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
@@ -66,7 +67,7 @@ use App\Http\Controllers\Admin\LoginController as AdminLoginController;
       Route::post('/checkout/transaction', [customerTransaksiController::class, 'index'])->name('customer.transaction')->middleware('cust.auth');
    });
 
-   Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function (){
+   Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth']], function (){
       Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
       
       // Produk Route
