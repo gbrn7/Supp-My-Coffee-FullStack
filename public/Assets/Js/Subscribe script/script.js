@@ -91,7 +91,9 @@ $(document).ready(function(){
             value.costs.forEach(e => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
-            btnCheckout.classList.remove('disabled');
+            if(alamat.value != ''){
+              btnCheckout.classList.remove('disabled');
+            }
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
@@ -119,7 +121,9 @@ $(document).ready(function(){
             value.costs.forEach(e => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
-            btnCheckout.classList.remove('disabled');
+            if(alamat.value != ''){
+              btnCheckout.classList.remove('disabled');
+            }
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
