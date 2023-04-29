@@ -146,7 +146,7 @@
               <td>{{$transaction->alamat}}</td>
               <td>{{$transaction->amount}}</td>
               <td>{{$transaction->transaction_code}}</td>
-              <td>{{$transaction->status_pembayaran}}</td>
+              <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
             </tr>
           @endforeach
         </tbody>
