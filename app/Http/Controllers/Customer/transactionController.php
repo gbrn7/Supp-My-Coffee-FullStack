@@ -92,8 +92,10 @@ class transactionController extends Controller
                     'id_transaksi' => $idTransaksi,
                 ]);
                 $this->createDetailProduk($dataProduk);
+                $first->addMonth(1);
             }else{
                 $second = Carbon::create($first->year, $first->month, $data['subsDate']);
+                // dd($second);
                 $pengiriman = Pengiriman::create([
                     'status' => 'On Process',
                     'tanggal_pengiriman' => $second,
