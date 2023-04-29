@@ -13,9 +13,8 @@ class checkoutController extends Controller
         // dd($request->except('_token'));
         $products = $this->processData($request->except('_token', 'provinsi', 'kabupaten/kota', 'alamat', 'ekspedisi', 'paket', 'flexRadioDefault', 'subs', 'subsDate'));
         $alamat = $this->getAlamat($request->only('provinsi', 'kabupaten/kota', 'alamat',));
-        $totalHarga = $this->getTotalHarga($products);
-        $banyakBarang = $this->getBanyakBarang($products);
         $subs = $this->getSubs($request->only('subs'));
+        $totalHarga = $this->getTotalHarga($products, $subs);
         $subsDate = $this->getSubs($request->only('subsDate'));
         $biayaPengiriman = $this->getBiayaPengiriman($subs, $request->only('paket'));
         $biayaTransaksi = 5000;
@@ -25,7 +24,7 @@ class checkoutController extends Controller
         // dd($totalHarga, $banyakBarang, $biayaTransaksi, $products, $alamat, $subs, $subsDate, $biayaPengiriman, $totalTagihan, $ekpedisiDetail);
 
         return view('customer.customer-checkout', ['products' => $products, 'totalHarga' => $totalHarga, 
-        'banyakBarang' => $banyakBarang, 'subs' => $subs, 'biayaPengiriman' => $biayaPengiriman, 'biayaTransaksi' => $biayaTransaksi,
+        'subs' => $subs, 'biayaPengiriman' => $biayaPengiriman, 'biayaTransaksi' => $biayaTransaksi,
         'totalTagihan' => $totalTagihan, 'alamat' => $alamat, 'ekpedisiDetail' => $ekpedisiDetail, 'subsDate' => $subsDate]);
     }
 
@@ -68,14 +67,14 @@ class checkoutController extends Controller
         return $alamat;
     }
 
-    public function getTotalHarga($dataRaw){
+    public function getTotalHarga($dataRaw, $subs){
         $totalHarga = 0;
         foreach ($dataRaw as $key => $value) {
             $totalHarga += $dataRaw[$key]['subTotal'];
             // dd($dataRaw[$key]['subTotal']);
         }
         
-        return $totalHarga;
+        return $totalHarga * $subs;
     }
 
     public function getSubs($dataRaw){
@@ -99,16 +98,6 @@ class checkoutController extends Controller
 
     public function getTotalTagihan($totalHarga, $biayaPengiriman, $biayaTransaksi){
         return $totalHarga+$biayaPengiriman+$biayaTransaksi;
-    }
-
-    public function getBanyakBarang($products){
-        $banyakBarang = 0;
-        foreach ($products as $key => $value) {
-            $banyakBarang += $products[$key]['qty'];
-            // dd($products[$key]['qty']);
-        }
-        // dd($banyakBarang);
-        return $banyakBarang;
     }
 
     public function getEkspedisiDetail($dataRaw, $biayaPengiriman){

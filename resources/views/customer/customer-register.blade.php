@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Assets/Css/Signup style/main.css">
-    <title>Sign Up</title>
+    <title>Sign Up | Supp My Coffee</title>
      <!-- Icon -->
      <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png')}}" type="image/x-icon">
     

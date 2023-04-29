@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Detail</title>
+  <title>Product Detail | Supp My Coffee</title>
   <!-- Icon -->
   <link rel="shortcut icon" href="{{asset('Assets/img/Logo.png')}}" type="image/x-icon">
 
@@ -60,7 +60,7 @@
                     {{$product->nama_produk}}
                     </p>
                     <p class="qty mb-0">
-                      {{$product->qty}} pcs 
+                      {{$product->qty}} pcs
                     </p>
                     <p class="harga mt-3">
                       Rp.{{$product->subTotal}}
@@ -85,7 +85,7 @@
                         Total Pembelian
                       </p>
                       <p class="detail">
-                        Total harga {{$banyakBarang}} barang
+                        Total harga barang {{$subs}} kali Pengiriman
                       </p>
                   </div>
                   <div class="price-detail">
