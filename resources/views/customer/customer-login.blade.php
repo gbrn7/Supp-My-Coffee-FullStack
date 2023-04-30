@@ -51,10 +51,18 @@
                     <div class="alert alert-danger text-center mt-2" role="alert">
                         {{ session('loginError') }}
                     </div>
+                    @elseif ($errors->any())
+                    <div class="alert alert-danger text-center mt-2">
+                        <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                        </ul>
+                    </div>
                     @endif
                     <form action="{{route('customer.login.authenticate')}}" enctype="multipart/form-data" method="post">
                     @csrf
-                    <div class="login-form d-flex flex-column gap-1 gap-lg-2 mt-2 mt-lg-4 mt-4" >
+                    <div class="login-form d-flex flex-column gap-1 gap-lg-2 mt-2 mt-lg-3" >
                             <label for="email">Email</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" autofocus required value="{{old('email')}}">
                             <div class="password-container">

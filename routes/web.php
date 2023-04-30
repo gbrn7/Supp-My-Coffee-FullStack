@@ -14,6 +14,7 @@ use App\Http\Controllers\Customer\customerLoginController;
 use App\Http\Controllers\Customer\rajaOngkirController;
 use App\Http\Controllers\Customer\checkoutController;
 use App\Http\Controllers\Customer\RegisterController;
+use App\Http\Controllers\Customer\dateController;
 use App\Http\Controllers\Customer\transactionController as customerTransaksiController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 
@@ -95,6 +96,9 @@ use App\Http\Controllers\Admin\LoginController as AdminLoginController;
    
    // Get Paket
    Route::get('/asal/{idKotaAsal}/tujuan/{idKotaTujuan}/berat/{berat}/ekpedisi/{ekspedisi}', [rajaOngkirController::class, 'getPaket'])->name('getPaket');
+
+   // Get Date
+   Route::get('/getDate/{subs}/date/{subsdate}', [dateController::class, 'index'])->name('getDate');
    
       
       // Route::get('/register', [RegisterController::class, 'index'])->name('regisPage')->middleware('guest');

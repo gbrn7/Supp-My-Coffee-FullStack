@@ -18,7 +18,7 @@ class AdminAuthenticate
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if($user->role == 'admin'){
+        if($user && $user->role == 'admin'){
             return $next($request);
         }
 

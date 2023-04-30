@@ -133,6 +133,7 @@ $(document).ready(function(){
       $('select[name="paket"]').append('<option selected value="x">-- Pilih Paket --</option>');
     }
   })
+
 });
 
 paket.addEventListener("change", ()=>{
@@ -171,14 +172,34 @@ alamat.addEventListener("change", (event)=>{
 });
 
 btnConfirm.addEventListener("click", () => {
-  datecol.classList.remove("d-none");
-  if (dateWrap.childElementCount > 0) {
-    dateWrap.innerHTML = '';
-  }
-  confirmInit();
-  if (btnCheckout.classList.contains("disabled") && alamat.value != '' && paket.value != 'x') {
-    btnCheckout.classList.remove("disabled");
-  }
+
+  const subsValue = subsInput.value;
+  const subsDate = document.querySelector('.tanggal').value;
+  jQuery.ajax({
+    url:`/getDate/${subsValue}/date/${subsDate}`,
+    type:"Get",
+    dataType:"json",
+    success:function(data){
+      $('.date-wrapper').empty();
+      data.forEach(e => {
+          datecol.classList.remove("d-none");
+          $(".date-wrapper").append(`<p class="mb-1">${e}</p>`);
+          if (btnCheckout.classList.contains("disabled") && alamat.value != '' && paket.value != 'x') {
+              btnCheckout.classList.remove("disabled"); 
+              }
+      });
+    },
+  });
+
+  // console.log('test')
+  // datecol.classList.remove("d-none");
+  // if (dateWrap.childElementCount > 0) {
+  //   dateWrap.innerHTML = '';
+  // }
+  // confirmInit();
+  // if (btnCheckout.classList.contains("disabled") && alamat.value != '' && paket.value != 'x') {
+  //   btnCheckout.classList.remove("disabled");
+  // }
 });
 
 radioBtn.forEach((e) => {
@@ -189,7 +210,7 @@ radioBtn.forEach((e) => {
         row3.classList.remove("d-none");
         btnCheckout.classList.add("disabled")
         subsInput.value = 2;
-        console.log(subsInput.value); 
+        // console.log(subsInput.value); 
       }
     } else {
       if (!row2.classList.contains("d-none") && !row3.classList.contains("d-none")) {
