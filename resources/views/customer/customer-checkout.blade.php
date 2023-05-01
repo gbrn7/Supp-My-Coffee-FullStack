@@ -37,11 +37,13 @@
           </div>
           <form action="{{route('customer.transaction')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" name="provinsi" value="{{$provinsi}}">
+            <input type="hidden" name="kabupaten/kota" value="{{$kabKot}}">
+            <input type="hidden" name="ekspedisi" value="{{$ekspedisi}}">
+            <input type="hidden" name="paket" value="{{$paket}}">
             <input type="hidden" name="alamat" value="{{$alamat}}">
             <input type="hidden" name="subs" value="{{$subs}}">
             <input type="hidden" name="subsDate" value="{{$subsDate}}">
-            <input type="hidden" name="ekpedisiDetail" value="{{$ekpedisiDetail}}">
-            <input type="hidden" name="totalTagihan" value="{{$totalTagihan}}">
           <div class="row row-1 justify-content-between p-2 p-lg-0">
             <div class="col-lg-6 col-12 left-content">
               <div class="col-6 text-wrapper">
@@ -60,7 +62,7 @@
                     {{$product->nama_produk}}
                     </p>
                     <p class="qty mb-0">
-                      {{$product->qty}} pcs
+                      {{$product->qty}} pcs X Rp.{{$product->harga}}
                     </p>
                     <p class="harga mt-3">
                       Rp.{{$product->subTotal}}
@@ -85,7 +87,7 @@
                         Total Pembelian
                       </p>
                       <p class="detail">
-                        Total harga barang {{$subs}} kali Pengiriman
+                        Rp.{{$totalHargaSekali}} X {{$subs}} Pengiriman
                       </p>
                   </div>
                   <div class="price-detail">
@@ -100,7 +102,7 @@
                       </p>
                       
                       <p class="detail">
-                        Biaya {{$subs}} kali Pengiriman
+                        Rp.{{$biayaKirimSekali}} X {{$subs}} Pengiriman
                       </p>
                       
                   </div>

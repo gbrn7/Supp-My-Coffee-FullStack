@@ -58,8 +58,8 @@ $(document).ready(function(){
           // console.log(data);
           $.each(data, function(key, value){
             // console.log(value.code, value.costs[0].service, value.costs[0].cost[0].value);
-            value.costs.forEach(e => {
-              $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
+            value.costs.forEach( (e, key) => {
+              $('select[name="paket"]').append(`<option class="text-capitalize" value= ${key}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
             if(alamat.value != ''){
               btnCheckout.classList.remove('disabled');
@@ -88,8 +88,8 @@ $(document).ready(function(){
           // console.log(data);
           $.each(data, function(key, value){
             // console.log(value.code, value.costs[0].service, value.costs[0].cost[0].value);
-            value.costs.forEach(e => {
-              $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
+            value.costs.forEach( (e, key) => {
+              $('select[name="paket"]').append(`<option class="text-capitalize" value= ${key}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
             if(alamat.value != ''){
               btnCheckout.classList.remove('disabled');
@@ -118,8 +118,8 @@ $(document).ready(function(){
           // console.log(data);
           $.each(data, function(key, value){
             // console.log(value.code, value.costs[0].service, value.costs[0].cost[0].value);
-            value.costs.forEach(e => {
-              $('select[name="paket"]').append(`<option class="text-capitalize" value= ${e.cost[0].value}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
+            value.costs.forEach( (e, key) => {
+              $('select[name="paket"]').append(`<option class="text-capitalize" value= ${key}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
             if(alamat.value != ''){
               btnCheckout.classList.remove('disabled');

@@ -31,4 +31,17 @@ class rajaOngkirController extends Controller
 
         return json_encode($paket);
     }
+    public function getPaket2($idKotaAsal, $idKotaTujuan, $berat, $ekspedisi){
+        // dd($idKotaAsal, $idKotaTujuan, $berat, $ekspedisi["ekspedisi"]);
+        $paket = RajaOngkir::ongkosKirim([
+            'origin'        => $idKotaAsal,     // ID kota/kabupaten asal
+            'destination'   => $idKotaTujuan['kabupaten/kota'],      // ID kota/kabupaten tujuan
+            'weight'        => $berat,    // berat barang dalam gram
+            'courier'       => $ekspedisi["ekspedisi"]    // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
+        ])->get();
+
+        // dd($paket);
+
+        return $paket;
+    }
 }
