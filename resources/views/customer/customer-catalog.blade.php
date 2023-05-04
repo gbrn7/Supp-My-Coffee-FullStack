@@ -49,8 +49,8 @@
                       <div class="caret bx bx-chevron-down"></div>
                     </div>
                     <ul class="menu">
-                      <li><a href="{{route('customer.catalog.category', 'Arabika')}}" class="text-decoration-none text-black title">Arabika</a></li>
-                      <li><a href="{{route('customer.catalog.category', 'Robusta')}}" class="text-decoration-none text-black title">Robusta</a></li>
+                      <li><a href="#" class="text-decoration-none text-black title">Arabika</a></li>
+                      <li><a href="#" class="text-decoration-none text-black title">Robusta</a></li>
                     </ul>
                   </div>
                 </li>
@@ -63,8 +63,7 @@
               </ul>
             </div>
             <div class="right-content align-items-start d-flex flex-column flex-lg-row  gap-3  ">
-              <form action="{{route('customer.catalog.search')}}" method="post">
-                @csrf
+              <form action="#" method="">
                 <div class="input-group d-flex align-items-center">
                   <input type="text" name="search" class="search form">
                   <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
