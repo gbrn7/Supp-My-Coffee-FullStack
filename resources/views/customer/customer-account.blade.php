@@ -167,7 +167,7 @@
             <div class="title-wrapper">
               <p class="name m-0 mb-2">Name</p>
             </div>
-            <input type="text" disabled value="Isyana Sarasvati" name="name" id="name" class="col-12">
+            <input type="text" disabled value="{{$user->nama}}" name="name" id="name" class="col-12">
           </div>
         </div>
         <div class="row row-2 justify-content-center">
@@ -175,7 +175,7 @@
             <div class="title-wrapper">
               <p class="name m-0 mb-2">Email</p>
             </div>
-            <input type="text" disabled value="IsyanaSarasvati@gmail.com" name="email" id="email" class="col-12">
+            <input type="text" disabled value="{{$user->email}}" name="email" id="email" class="col-12">
           </div>
         </div>
         <div class="row row-3 justify-content-center">
@@ -183,7 +183,7 @@
             <div class="title-wrapper">
               <p class="name m-0 mb-2">Address</p>
             </div>
-            <input type="text" disabled value="Jl Merpati Putih No 7, Jakarta Selatan" name="address" id="address" class="col-12">
+            <input type="text" disabled value="{{$user->alamat}}" name="address" id="address" class="col-12">
           </div>
         </div>
         <div class="row row-4 justify-content-center">
@@ -191,7 +191,7 @@
             <div class="title-wrapper">
               <p class="name m-0 mb-2">Phone</p>
             </div>
-            <input type="text" disabled value="089632547456" name="phone" id="phone" class="col-12">
+            <input type="text" disabled value="{{$user->no_telp}}" name="phone" id="phone" class="col-12">
           </div>
         </div>
         <div class="row row-5 justify-content-center">

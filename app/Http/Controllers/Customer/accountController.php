@@ -10,6 +10,7 @@ class accountController extends Controller
     public function index(){
 
         // dd('test');
-        return view('customer.customer-account');
+        $user = auth() ->user();
+        return view('customer.customer-account',['user'=> $user]);
     }
 }

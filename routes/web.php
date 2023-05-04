@@ -55,6 +55,7 @@ use App\Http\Controllers\Admin\LoginController as AdminLoginController;
       Route::group(['prefix' => 'catalog'], function(){
          Route::get('/', [catalogController::class, 'index'])->name('customer.catalog');
          Route::get('/{id}', [detailProdukController::class, 'index'])->name('customer.catalog.detail');
+         Route::post('/search', [catalogController::class, 'search'])->name('customer.catalog.search');
       });
       
       Route::get('/account', [accountController::class, 'index'])->name('customer.account')->middleware('cust.auth');
