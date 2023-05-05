@@ -154,7 +154,7 @@
                     <td class="">
                     <div class="btn-wrapper d-md-flex d-block gap-2">
                         <a href="{{route('admin.produk.edit',  $product->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
-                        <form action="{{route('admin.produk.destroy', $product->id)}}" method="post">
+                        <form action="{{route('admin.produk.destroy', $product->id)}}" method="post" onsubmit="return confirm('Yakin hapus data?')">
                             @method('delete')
                             @csrf
                             <input type="hidden" name="">
