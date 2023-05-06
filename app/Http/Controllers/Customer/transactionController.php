@@ -10,6 +10,8 @@ use App\Models\Detail_produk;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\transactionMail;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 use App\Http\Controllers\Customer\rajaOngkirController;
 use App\Http\Controllers\Customer\checkoutController;
@@ -30,6 +32,8 @@ class transactionController extends Controller
         $subs = ($request->only('subs'))['subs'];
         $subsDate = ($request->only('subsDate'))['subsDate'];
 
+        // dd($products);
+
 
         $totalBerat = $checkoutObj->getTotalBerat($this->getProducts($request));
         $package = $rajaOngkirObj->getPaket2(255, $request->only('kabupaten/kota'), $totalBerat, $request->only('ekspedisi'));
@@ -47,6 +51,7 @@ class transactionController extends Controller
         // dd($transaksi, $pengiriman, $totalTagihan);
 
         $midtransRedirectUrl = $this->midtransTransaction($transaksi, $totalTagihan, $customer);
+        $sendMail = $this->sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $subs, $checkoutObj->biayaTransaksi, $totalTagihan);
         return redirect($midtransRedirectUrl);
     }
 
@@ -157,6 +162,26 @@ class transactionController extends Controller
         $namaPaket = $package[0]['code']." ".$package[0]['costs'][$paket]['service']." Rp.".$package[0]['costs'][$paket]['cost'][0]['value'];
         // dd($namaPaket);
         return $namaPaket;
+    }
+
+    public function sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $subs, $biayaTransaksi, $totalTagihan ){
+
+        $mailData = [
+           'products'  => $products,
+           'biayaPengiriman' => $biayaPengiriman,
+           'subs' => $subs,
+           'biayaTransaksi' => $biayaTransaksi,
+           'totalTagihan'  => $totalTagihan
+        ];
+        // dd($mailData);
+
+        try {
+            Mail::to($customer->email)->send(new transactionMail($midtransRedirectUrl, $mailData));
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+
+        return 'success';
     }
 
     public function midtransTransaction($transaksi, $totalTagihan, $customer){
