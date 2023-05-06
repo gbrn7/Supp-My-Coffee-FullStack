@@ -128,6 +128,7 @@ class checkoutController extends Controller
 
     public function getBiayaPengirimanSekali($package, $paket){
         $paket = $paket['paket'];
+        // dd($package, $paket);
         $biaya = $package[0]['costs'][$paket]['cost'][0]['value'];
         // dd($biaya[0]['costs'][$paket]['cost'][0]['value']);
         return $biaya;

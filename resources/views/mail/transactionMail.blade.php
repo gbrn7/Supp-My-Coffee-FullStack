@@ -7,8 +7,9 @@
 @foreach ($mailData['products'] as $product)
 | {{$product->nama_produk}} | Rp.{{$product->harga}} | {{$product->qty}} | {{$product->subTotal}} |
 @endforeach
-| Biaya Pengiriman {{$mailData['subs']}} kali |  |  | Rp.{{$mailData['biayaPengiriman']}} |
+| Biaya Pengiriman | Rp.{{$mailData['biayaPengirimanSekali']}} | {{$mailData['subs']}} | Rp.{{$mailData['biayaPengiriman']}} |
 | Biaya Transaksi |  |  | Rp.{{$mailData['biayaTransaksi']}} |
+| | | | |
 | Total Tagihan |  |  | Rp.{{$mailData['totalTagihan']}} |
 @endcomponent
 

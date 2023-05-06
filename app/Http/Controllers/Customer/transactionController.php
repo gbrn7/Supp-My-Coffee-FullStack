@@ -39,6 +39,7 @@ class transactionController extends Controller
         $package = $rajaOngkirObj->getPaket2(255, $request->only('kabupaten/kota'), $totalBerat, $request->only('ekspedisi'));
         $ekpedisiDetail = $this->getEkspedisiDetail($package, $request->only('paket'));
         $totalHarga = $checkoutObj->getTotalHarga($products, $subs);
+        $biayaPengirimanSekali = $checkoutObj->getBiayaPengirimanSekali($package, $request->only('paket'));
         $biayaPengiriman = $checkoutObj->getBiayaPengiriman($package, $request->only('paket'), $subs);
         $totalTagihan = $checkoutObj->getTotalTagihan($totalHarga, $biayaPengiriman, $checkoutObj->biayaTransaksi);
 
@@ -51,7 +52,7 @@ class transactionController extends Controller
         // dd($transaksi, $pengiriman, $totalTagihan);
 
         $midtransRedirectUrl = $this->midtransTransaction($transaksi, $totalTagihan, $customer);
-        $sendMail = $this->sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $subs, $checkoutObj->biayaTransaksi, $totalTagihan);
+        $sendMail = $this->sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $biayaPengirimanSekali, $subs, $checkoutObj->biayaTransaksi, $totalTagihan);
         return redirect($midtransRedirectUrl);
     }
 
@@ -164,11 +165,12 @@ class transactionController extends Controller
         return $namaPaket;
     }
 
-    public function sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $subs, $biayaTransaksi, $totalTagihan ){
+    public function sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $biayaPengirimanSekali, $subs, $biayaTransaksi, $totalTagihan ){
 
         $mailData = [
            'products'  => $products,
            'biayaPengiriman' => $biayaPengiriman,
+           'biayaPengirimanSekali' => $biayaPengirimanSekali,
            'subs' => $subs,
            'biayaTransaksi' => $biayaTransaksi,
            'totalTagihan'  => $totalTagihan

@@ -50,7 +50,7 @@ $(document).ready(function(){
     // console.log(kabKotVal, beratVal, ekpedisiVal);
     if(ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x'){
       jQuery.ajax({
-        url:`/asal/155/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
+        url:`/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
         type:"Get",
         dataType:"json",
         success:function(data){
@@ -80,7 +80,7 @@ $(document).ready(function(){
     // console.log(kabKotVal, beratVal, ekpedisiVal);
     if(ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x'){
       jQuery.ajax({
-        url:`/asal/155/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
+        url:`/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
         type:"Get",
         dataType:"json",
         success:function(data){
@@ -110,7 +110,7 @@ $(document).ready(function(){
     // console.log(kabKotVal, beratVal, ekpedisiVal);
     if(ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x'){
       jQuery.ajax({
-        url:`/asal/155/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
+        url:`/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
         type:"Get",
         dataType:"json",
         success:function(data){
