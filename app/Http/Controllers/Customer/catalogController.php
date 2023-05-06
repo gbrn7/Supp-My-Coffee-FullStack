@@ -22,8 +22,11 @@ class catalogController extends Controller
         $products = DB::table('produk')
             ->select('*')
             ->where('status', '=', 'publish')
+            ->whereNull('deleted_at')
             ->limit(16)
             ->get();
+
+        // dd($products);
         
         $sales = DB::table('produk as prod')
         ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
@@ -31,9 +34,11 @@ class catalogController extends Controller
         ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
         ->where('t.status_pembayaran', '=', 'success')
-        ->where('deleted_at','=','null')
+        ->whereNull('prod.deleted_at')
         ->groupBy('prod.id')
         ->get();
+
+        // dd($sales);
 
         foreach ($products as $key => $product) {
             $products[$key]->sales =  0;
@@ -51,6 +56,7 @@ class catalogController extends Controller
         $newProducts = DB::table('produk as prod')
         ->select('*')
         ->where('status', '=', 'publish')
+        ->whereNull('deleted_at')
         ->limit(6)
         ->orderBy('prod.id', 'desc')
         ->get();
@@ -61,7 +67,7 @@ class catalogController extends Controller
         ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
         ->where('t.status_pembayaran', '=', 'success')
-        ->where('deleted_at','=','null')
+        ->whereNull('prod.deleted_at')
         ->groupBy('prod.id')
         ->get();
 
@@ -84,6 +90,7 @@ class catalogController extends Controller
             ->select('*')
             ->where('status', '=', 'publish')
             ->where('nama_produk','like','%'.$data.'%')
+            ->whereNull('deleted_at')
             ->limit(16)
             ->get();
         
@@ -93,7 +100,7 @@ class catalogController extends Controller
         ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
         ->where('t.status_pembayaran', '=', 'success')
-        ->where('deleted_at','=','null')
+        ->whereNull('prod.deleted_at')
         ->groupBy('prod.id')
         ->get();
 

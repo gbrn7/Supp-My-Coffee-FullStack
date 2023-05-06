@@ -22,6 +22,7 @@ class detailProdukController extends Controller
             ->select('*')
             ->where('id', '=', $id)
             ->where('status', '=', 'publish')
+            ->whereNull('deleted_at')
             ->First();
         
         $sales = DB::table('produk as prod')
@@ -31,6 +32,7 @@ class detailProdukController extends Controller
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
         ->where('t.status_pembayaran', '=', 'success')
         ->where('prod.id', '=', $id)
+        ->whereNull('prod.deleted_at')
         ->groupBy('prod.id')
         ->first();
         // dd($sales);
@@ -47,6 +49,7 @@ class detailProdukController extends Controller
         $newProducts = DB::table('produk as prod')
         ->select('*')
         ->where('status', '=', 'publish')
+        ->whereNull('deleted_at')
         ->limit(6)
         ->orderBy('prod.id', 'desc')
         ->get();
@@ -57,6 +60,7 @@ class detailProdukController extends Controller
         ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
         ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
         ->where('t.status_pembayaran', '=', 'success')
+        ->whereNull('prod.deleted_at')
         ->groupBy('prod.id')
         ->get();
 
