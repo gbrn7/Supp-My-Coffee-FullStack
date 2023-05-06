@@ -64,9 +64,10 @@
               </ul>
             </div>
             <div class="right-content align-items-start d-flex flex-column flex-lg-row  gap-3  ">
-              <form action="#" method="get">
+            <form action="{{route('customer.catalog.search')}}" method="post">
+                @csrf
                 <div class="input-group d-flex align-items-center">
-                  <input type="text" name="Search" class="search form " id="">
+                  <input type="text" name="search" class="search form">
                   <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
                 </div>
               </form>

@@ -86,6 +86,7 @@ class catalogController extends Controller
     public function search(Request $request)
     {
         $data = $request -> search;
+        // dd($data);
         $products = DB::table('produk')
             ->select('*')
             ->where('status', '=', 'publish')
@@ -93,6 +94,8 @@ class catalogController extends Controller
             ->whereNull('deleted_at')
             ->limit(16)
             ->get();
+
+        // dd($products);
         
         $sales = DB::table('produk as prod')
         ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')

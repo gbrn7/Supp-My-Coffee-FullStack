@@ -60,12 +60,13 @@
                 </ul>
               </div>
               <div class="right-content align-items-start d-flex flex-column flex-lg-row  gap-3  ">
-                <form action="#" method="get">
-                  <div class="input-group d-flex align-items-center">
-                    <input type="text" name="Search" class="search form " id="">
-                    <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
-                  </div>
-                </form>
+              <form action="{{route('customer.catalog.search')}}" method="post">
+                @csrf
+                <div class="input-group d-flex align-items-center">
+                  <input type="text" name="search" class="search form">
+                  <button class="border-0" type="submit"><i class='bx bx-search' ></i></button>
+                </div>
+              </form>
                 <a href="{{route('customer.account')}}" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                   <i class='bx bxs-user'></i>
                   <p class="m-0">Account</p>
