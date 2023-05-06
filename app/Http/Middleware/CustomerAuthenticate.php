@@ -17,7 +17,7 @@ class CustomerAuthenticate
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        if($user){
+        if($user && $user->role == 'member'){
             return $next($request);
         }
 
