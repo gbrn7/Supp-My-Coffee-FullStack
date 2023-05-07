@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\customer\webhookController;
+use App\Http\Livewire\VisualisasiData;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('webhook', [webhookController::class, 'handler']);
+
+Route::get('', [VisualisasiData::class, 'handler'])->name('api.chart');
