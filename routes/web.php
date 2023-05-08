@@ -57,6 +57,7 @@ use App\Http\Livewire\VisualisasiData;
          Route::get('/', [catalogController::class, 'index'])->name('customer.catalog');
          Route::get('/{id}', [detailProdukController::class, 'index'])->name('customer.catalog.detail');
          Route::post('/search', [catalogController::class, 'search'])->name('customer.catalog.search');
+         Route::get('/searchByCat/{category}', [catalogController::class, 'searchByCategory'])->name('customer.catalog.searchByCategory');
       });
       
       Route::get('/account', [accountController::class, 'index'])->name('customer.account')->middleware('cust.auth');
