@@ -120,4 +120,41 @@ class catalogController extends Controller
         // dd($products);
         return view('customer.customer-catalog', ['products' => $products, 'newProducts' => $newProducts]);
     }
+    public function searchByCategory($category)
+    {
+        $data = $category;
+        // dd($data);
+        $products = DB::table('produk')
+            ->select('*')
+            ->where('status', '=', 'publish')
+            ->where('nama_produk','like','%'.$data.'%')
+            ->whereNull('deleted_at')
+            ->limit(16)
+            ->get();
+
+        // dd($products);
+        
+        $sales = DB::table('produk as prod')
+        ->join('detail_produk as dp', 'dp.id_produk', '=' , 'prod.id')
+        ->join('pengiriman as p', 'dp.id_pengiriman', '=' , 'p.id')
+        ->join('transaksi as t', 't.id', '=', 'p.id_transaksi')
+        ->select('prod.id as id_produk', DB::raw('sum(dp.qty) as sales'))
+        ->where('t.status_pembayaran', '=', 'success')
+        ->whereNull('prod.deleted_at')
+        ->groupBy('prod.id')
+        ->get();
+
+        foreach ($products as $key => $product) {
+            $products[$key]->sales =  0;
+            foreach ($sales as $key2 => $sale) {
+                if($products[$key]->id == $sales[$key2]->id_produk){
+                    $products[$key]->sales =  $sales[$key2]->sales;
+                }
+            }            
+        }
+
+        $newProducts = $this->getNewProducts();
+        // dd($products);
+        return view('customer.customer-catalog', ['products' => $products, 'newProducts' => $newProducts]);
+    }
 }

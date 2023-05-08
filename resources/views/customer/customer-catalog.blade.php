@@ -49,8 +49,8 @@
                       <div class="caret bx bx-chevron-down"></div>
                     </div>
                     <ul class="menu">
-                      <li><a href="#" class="text-decoration-none text-black title">Arabika</a></li>
-                      <li><a href="#" class="text-decoration-none text-black title">Robusta</a></li>
+                      <li><a href="{{route('customer.catalog.searchByCategory', 'Arabika')}}" class="text-decoration-none text-black title">Arabika</a></li>
+                      <li><a href="{{route('customer.catalog.searchByCategory', 'Robusta')}}" class="text-decoration-none text-black title">Robusta</a></li>
                     </ul>
                   </div>
                 </li>
