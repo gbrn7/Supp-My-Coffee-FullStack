@@ -219,66 +219,32 @@
           </div>
         </div>
       <div class="row row-2 p-3 p-md-0 op-wrapper">
-          <div class="col-12 mt-3 d-flex flex-column align-items-center item py-4">
+
+        @foreach($historys as $history)
+        <div class="col-12 mt-3 d-flex flex-column align-items-center item py-4">
             <div class="col-10  d-flex justify-content-between">
               <p class="title m-0">Product</p>
               <p class="status m-0 col-3">Status</p>
             </div>
             <div class="col-10 mt-3 product-wrapper d-flex justify-content-between">
               <div class="product col-8 col-lg-6 left-content d-flex flex-column gap-2">
+                @foreach($history->products as $product) 
                 <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
-                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
+                  <div class="col-2 img-wrapper"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid rounded-3"></div>
                   <div class="col-9 d-flex justify-content-between flex-column">
-                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
-                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
+                    <div class="col-12 title">{{$product->nama_produk}}</div>
+                    <div class="col-7 col-lg-5 title">{{$product->qty}} x Rp.{{$product->harga}}</div>
                   </div>
                 </div>
-                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
-                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
-                  <div class="col-9 d-flex justify-content-between flex-column">
-                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
-                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
-                  </div>
-                </div>
-                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
-                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
-                  <div class="col-9 d-flex justify-content-between flex-column">
-                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
-                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
-                  </div>
-                </div>
+                @endforeach
               </div>
               <div class="col-3 right-content d-flex flex-column justify-content-between">
-                <div class="bg-dark status-field  text-white btn-1 bg-dark text-center py-2 rounded-3">On Process</div>
+                <div class="bg-dark status-field  text-white btn-1 bg-dark text-center py-2 rounded-3">{{$history->status}}</div>
               </div>
           </div>
+        @endforeach
+          
         </div>
-          <div class="col-12 mt-3 d-flex flex-column align-items-center item py-4">
-            <div class="col-10  d-flex justify-content-between">
-              <p class="title m-0">Product</p>
-              <p class="status m-0 col-3">Status</p>
-            </div>
-            <div class="col-10 mt-3 product-wrapper d-flex justify-content-between">
-              <div class="product col-8 col-lg-6 left-content d-flex flex-column gap-2">
-                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
-                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
-                  <div class="col-9 d-flex justify-content-between flex-column">
-                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
-                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
-                  </div>
-                </div>
-                <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
-                  <div class="col-2 img-wrapper"><img src="{{ asset('Assets/img/p-1.jpg')}}" class="img-fluid rounded-3"></div>
-                  <div class="col-9 d-flex justify-content-between flex-column">
-                    <div class="col-12 title">Kopi Robusta Gayo Monero Robusta Coffee 250g - Biji Kopi</div>
-                    <div class="col-7 col-lg-5 title">2 x Rp.45.000</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-3 right-content d-flex flex-column justify-content-between">
-                <div class="bg-dark status-field  text-white btn-1 bg-dark text-center py-2 rounded-3">085602589632</div>
-              </div>
-          </div>
         </div>
       </div>
       </div>
