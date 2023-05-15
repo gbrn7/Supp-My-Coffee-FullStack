@@ -32,8 +32,8 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string',
             'produk_thumbnail' => 'required|image|mimes:png,jpg,jpeg',
             'desc' => 'required|string',
-            'berat' => 'required|numeric|min:-2147483648|max:2147483648',
-            'harga' => 'required|numeric|min:-2.22507385850720|max:1.797693134862315',
+            'berat' => 'required|numeric|min:-2147483648',
+            'harga' => 'required|numeric|min:-2.22507385850720',
         ]);
 
         $thumbnail = $request->produk_thumbnail;
@@ -64,8 +64,8 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string',
             'produk_thumbnail' => 'image|mimes:png,jpg,jpeg',
             'desc' => 'required|string',
-            'berat' => 'required|numeric|min:-2147483648|max:2147483648',
-            'harga' => 'required|numeric|min:-2.22507385850720|max:1.797693134862315',
+            'berat' => 'required|numeric|min:-2147483648',
+            'harga' => 'required|numeric|min:-2.22507385850720',
             'status' => 'required|string',
         ]);
 
