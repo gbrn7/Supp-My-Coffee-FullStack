@@ -14,7 +14,7 @@ class JadwalController extends Controller
 
         $schedules = $this->getSchedule();
 
-        // dd($schedules, $detail, $detailProduk);
+        // dd($schedules);
         return view('admin.admin-data-jadwal', ['schedules' => $schedules]);
     }
 
@@ -29,7 +29,7 @@ class JadwalController extends Controller
 
     public function getSchedule(){
         $schedules = DB::table('transaksi as t')
-        ->join('user', 'user.id', '=', 't.id')
+        ->join('user', 'user.id', '=', 't.user_id')
         ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
         ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
         ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
