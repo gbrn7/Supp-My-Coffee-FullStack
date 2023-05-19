@@ -131,7 +131,7 @@
         <thead>
             <tr>
                 <th>ID Transaksi</th>
-                <th>ID User</th>
+                <th>Nama</th>
                 <th>Alamat</th>
                 <th>Total</th>
                 <th>Kode Transaksi</th>
@@ -142,7 +142,7 @@
           @foreach ($transactions as $transaction)
             <tr>
               <td>{{$transaction->id}}</td>
-              <td>{{$transaction->user_id}}</td>
+              <td>{{$transaction->nama}}</td>
               <td>{{$transaction->alamat}}</td>
               <td>{{$transaction->amount}}</td>
               <td>{{$transaction->transaction_code}}</td>
@@ -153,7 +153,7 @@
         <tfoot>
             <tr>
                 <th>ID Transaksi</th>
-                <th>ID User</th>
+                <th>Nama</th>
                 <th>Alamat</th>
                 <th>Total</th>
                 <th>Kode Transaksi</th>
