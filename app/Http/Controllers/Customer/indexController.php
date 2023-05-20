@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 class indexController extends Controller
 {
     public function index(){
+
+        if(auth()->user()){
+            return redirect()->route('customer.catalog');
+        }
         
         $products = $this->getProducts();
 

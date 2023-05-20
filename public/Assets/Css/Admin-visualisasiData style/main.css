@@ -604,7 +604,7 @@ body.dark .content .row-4 .table-wrapper p {
 }
 
 .row .chart-wrapper{
-  max-height: 40vh;
+  height: 40vh;
   background-color: var(--sidebar-color);
 }
 
