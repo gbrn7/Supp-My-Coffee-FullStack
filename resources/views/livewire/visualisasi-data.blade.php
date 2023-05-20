@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        {{-- Bar Chart Init --}}
+        {{-- Bar Chart Config --}}
         const ctx = document.getElementById('myChart');
         let chartDataPerWeek = JSON.parse('<?php echo $transactionsPerWeek ?>');
         const dataBarChart = {
@@ -44,7 +44,9 @@
                                     }
                                 }
                             },
-
+                            animation :{
+                                duration : 1500,
+                            },
                             maintainAspectRatio: false,
                             responsive: true,
                             scales: {
@@ -71,7 +73,7 @@
         }
         let myChart;
 
-        {{-- Line Chart Init --}}
+        {{-- Line Chart Config --}}
         const ctx2 = document.getElementById('myChart2');
         let chartDataPerMonth = JSON.parse('<?php echo $transactionsPerMonth ?>');
         const dataLineChart = {
@@ -120,6 +122,9 @@
                                 }
                                 },
                             },
+                            animation : {
+                                duration : 1500,
+                            },
                             transitions: {
                                 show: {
                                     animations: {
@@ -158,8 +163,8 @@
             z.classList.remove("d-none");
             headBg.classList.remove("d-none");
             load.classList.add("close");    
-            const myChart = new Chart(ctx, dataBarChart);
-            const myChart2 = new Chart(ctx2, dataLineChart);
+            myChart = new Chart(ctx, dataBarChart);
+            myChart2 = new Chart(ctx2, dataLineChart);
 
         }, 1000);
 
@@ -177,7 +182,8 @@
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                // console.log(data.transactionsPerWeek, data.transactionsPerMonth);
+                // console.log(data.transactionsPerWeek.label);
+                // console.log(myChart);
                 myChart.data.labels = data.transactionsPerWeek.label;
                 myChart.data.datasets[0].data = data.transactionsPerWeek.data;
                 myChart.update();
