@@ -31,11 +31,6 @@
     <!-- Link AOS -->
     <link rel="stylesheet" href="{{ asset('Assets/Vendor/aos-2/dist/aos.css')}}" />
 
-    <!-- Link Swiper's CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css'"
-    />
 
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('Assets/Css/Index style/main.css')}}" />
@@ -608,6 +603,4 @@
   <!-- Main Js -->
   <script src="{{ asset('Assets/Js/Index script/script.js')}}"></script>
 
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 </html>

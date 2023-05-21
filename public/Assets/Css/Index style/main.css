@@ -369,7 +369,7 @@ body::-webkit-scrollbar {
 }
 .contact .wave-3 {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   top: -10px;
   right: 0;
   left: 0;
