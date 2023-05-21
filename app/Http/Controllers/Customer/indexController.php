@@ -11,8 +11,10 @@ class indexController extends Controller
 {
     public function index(){
 
-        if(auth()->user()->role == 'member'){
+        if(auth()->user() ){
+            if(auth()->user()->role == 'member'){
             return redirect()->route('customer.catalog');
+            }
         }
         
         $products = $this->getProducts();
