@@ -222,7 +222,7 @@
                     Kopi
                   </div>
                 </div>
-                <a href="" class="text-decoration-none"
+                <a href="{{route('customer.catalog')}}" class="text-decoration-none"
                   ><div class="right-content text-bg-light">Get Started</div></a
                 >
               </div>
