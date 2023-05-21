@@ -3,9 +3,12 @@
         {{-- content --}}
         <canvas id="myChart"></canvas>
     </div>
-    <div class="col-10 p-3 rounded rounded-3 mt-3 chart-wrapper">
+    <div class="col-10 col-lg-10 p-3 rounded rounded-3 mt-2 chart-wrapper">
         {{-- content --}}
         <canvas id="myChart2"></canvas>
+    </div>
+    <div class="col-10 col-lg-10 p-3 rounded rounded-3 mt-2 info-wrapper">
+        
     </div>
 </div>
 
