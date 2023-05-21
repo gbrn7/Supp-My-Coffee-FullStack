@@ -213,6 +213,11 @@ font-size: 16px;
   width: 5px;
 }
 
+.left-content .produk .img-wrapper img{
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
 .right-content{
   max-height: 668px;
   overflow-y: auto;

@@ -49,7 +49,7 @@
               <div class="col-6 text-wrapper">
                 Pembelian Produk
               </div>
-              <div class="produk-wrap">
+              <div class="produk-wrap d-flex flex-column gap-1">
                 @foreach ($products as $product)
                 <div class="col-12 produk d-flex gap-4">
                 <input type="hidden" name="p-{{$loop->index}}" value="{{$product->id}}">
@@ -188,7 +188,7 @@
                               <a href="#" class="text-decoration-none text-black"><p class="m-0">Company Info</p></a>
                               <a href="#" class="text-decoration-none text-black"><p class="m-0">Investor</p></a>
                               <a href="#" class="text-decoration-none text-black"><p class="m-0">Partners</p></a>
-                              <a href="#" class="text-decoration-none text-black"><p class="m-0">Email</p></a>
+                              <a href="{{route('admin.login')}}" class="text-decoration-none text-black"><p class="m-0">Admin</p></a>
                           </div>
                       </div>
                       <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">

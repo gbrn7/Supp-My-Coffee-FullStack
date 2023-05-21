@@ -587,6 +587,8 @@ $dot-color: rgba(0, 0, 0, 0.466);
                     // max-width: 50px;
                     // min-width: 50px;
                     img{
+                        aspect-ratio: 1 / 1;
+                        object-fit: cover;
                         max-width: 100px;
                         @include media-breakpoint-down(sm){
                             width: 30px;

@@ -254,7 +254,7 @@
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Company Info</p></a>
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Investor</p></a>
                             <a href="#" class="text-decoration-none text-black"><p class="m-0">Partners</p></a>
-                            <a href="#" class="text-decoration-none text-black"><p class="m-0">Email</p></a>
+                            <a href="{{route('admin.login')}}" class="text-decoration-none text-black"><p class="m-0">Admin</p></a>
                         </div>
                     </div>
                     <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">

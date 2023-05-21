@@ -469,6 +469,9 @@ body.dark .content .table {
   font-size: 15px;
 }
 .content .table tbody tr td img {
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
   max-width: 100px;
 }
 @media (max-width: 575.98px) {

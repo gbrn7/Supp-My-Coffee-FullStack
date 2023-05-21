@@ -248,15 +248,12 @@
         </div>
         <div
           class="row row-2 mt-lg-5 mt-2 justify-content-center gap-0 gy-4"
-          data-aos="zoom-in-down"
-          data-aos-duration="800"
-          data-aos-delay="200"
         >
         @if ($products)
           @foreach ($products as $product)
               <div class="col-6 col-lg-3 product p-2">
                 <div class="box">
-                  <a href="#" class="text-decoration-none">
+                <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
                     <div class="product-img">
                     <img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid">                    </div>
                   </a>
@@ -412,7 +409,7 @@
         </div>
         <div class="col-6 col-lg-3 product p-2">
           <div class="box">
-            <a href="#" class="text-decoration-none">
+          <a href="#" class="text-decoration-none">
               <div class="product-img">
                 <img loading="lazy" src="{{ asset('Assets/img/p-4.jpg')}}" class="img-fluid" />
               </div>
@@ -579,9 +576,7 @@
                 <a href="#" class="text-decoration-none text-black"
                   ><p class="m-0">Partners</p></a
                 >
-                <a href="#" class="text-decoration-none text-black"
-                  ><p class="m-0">Email</p></a
-                >
+                <a href="{{route('admin.login')}}" class="text-decoration-none text-black"><p class="m-0">Admin</p></a>
               </div>
             </div>
             <div class="link-wrap col-1 col-md-2 d-flex flex-column gap-3">

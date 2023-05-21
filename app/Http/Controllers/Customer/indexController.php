@@ -11,7 +11,7 @@ class indexController extends Controller
 {
     public function index(){
 
-        if(auth()->user()){
+        if(auth()->user()->role == 'member'){
             return redirect()->route('customer.catalog');
         }
         
@@ -25,6 +25,7 @@ class indexController extends Controller
         $products = DB::table('produk')
             ->select('*')
             ->where('status', '=', 'publish')
+            ->whereNull('deleted_at')
             ->limit(8)
             ->get();
 
