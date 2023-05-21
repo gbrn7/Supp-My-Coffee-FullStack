@@ -27,6 +27,7 @@ class accountController extends Controller
         ->where('user.id', '=', $userId)
         ->groupBy('p.status')
         ->groupBy('p.id')
+        ->orderBy('status', 'desc')
         ->orderBy('p.tanggal_pengiriman', 'asc')
         ->get();
 

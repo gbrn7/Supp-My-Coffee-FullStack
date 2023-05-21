@@ -145,7 +145,7 @@
               </div>
               <div class="footer">
                 <div class="desc-wrap">
-                  <input type="hidden" value="7" class="id-product">
+                  <input type="hidden" value="{{$product->id}}" class="id-product">
                   <div class="title">Deskripsi Produk</div>
                   <div class="desc">
                   {{$product -> desc}}
