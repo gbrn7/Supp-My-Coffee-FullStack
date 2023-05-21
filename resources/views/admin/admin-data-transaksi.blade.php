@@ -131,7 +131,7 @@
         <thead>
             <tr>
                 <th>ID Transaksi</th>
-                <th>Nama</th>
+                <th>Nama Cust</th>
                 <th>Alamat</th>
                 <th>Total</th>
                 <th>Kode Transaksi</th>
@@ -153,7 +153,7 @@
         <tfoot>
             <tr>
                 <th>ID Transaksi</th>
-                <th>Nama</th>
+                <th>Nama Cust</th>
                 <th>Alamat</th>
                 <th>Total</th>
                 <th>Kode Transaksi</th>
