@@ -84,6 +84,12 @@
               <span class="text nav-text">Data Jadwal</span>
             </a>
           </li>
+          <li class="nav-link">
+            <a href="{{route('admin.visualisasiData')}}" class="text-decoration-none text-black">
+              <i class='bx bx-bar-chart-alt'></i>
+              <span class="text nav-text">Visualisasi Data</span>
+            </a>
+          </li>
         </ul>
         <div class="bottom-content ">
           <ul>

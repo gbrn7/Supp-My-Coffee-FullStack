@@ -45,10 +45,10 @@ onload = () => {
     if (z.classList.contains("main")) {
       new PureCounter();
     }
-  }, 1500);
+  }, 1000);
 
   setTimeout(() => {
     body.removeChild(load);
-  }, 3500);
+  }, 2000);
 };
 

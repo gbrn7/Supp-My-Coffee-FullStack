@@ -89,7 +89,10 @@ use App\Http\Livewire\VisualisasiData;
       Route::group(['prefix' => 'jadwal'], function(){
          Route::get('/', [JadwalController::class, 'index'])->name('admin.jadwal');
          Route::put('/update/{id}', [JadwalController::class, 'update'])->name('admin.jadwal.update');
-      });  
+      });
+
+      //Visualisasi Dara Route
+      Route::get('/visualisasiData', VisualisasiData::class, 'render')->name('admin.visualisasiData');
    });
 
    // Get Region Data
