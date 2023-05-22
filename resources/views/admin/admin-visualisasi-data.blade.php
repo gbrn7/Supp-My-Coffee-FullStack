@@ -20,7 +20,7 @@
     @livewireStyles
     @stack('css')
 </head>
-<body class="vh-100 dark">
+<body class="vh-100">
 
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">

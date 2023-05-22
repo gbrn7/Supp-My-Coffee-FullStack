@@ -105,7 +105,7 @@ use App\Http\Livewire\VisualisasiData;
    Route::get('/getDate/{subs}/date/{subsdate}', [dateController::class, 'index'])->name('getDate');
    
    //Livewire
-   Route::get('/tutorial', VisualisasiData::class, 'render')->name('admin.visualisasiData');
+   // Route::get('/tutorial', VisualisasiData::class, 'render')->name('admin.visualisasiData');
 
    
       
