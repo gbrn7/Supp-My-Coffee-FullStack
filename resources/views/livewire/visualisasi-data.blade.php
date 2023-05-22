@@ -1,19 +1,57 @@
 <div class="row">
-    <div class="col-10 p-3 rounded rounded-3 mt-3 chart-wrapper">
+    <div class="col-10 p-3 rounded rounded-3 mt-2 chart-wrapper">
         {{-- content --}}
         <canvas id="myChart"></canvas>
     </div>
-    <div class="col-10 col-lg-10 p-3 rounded rounded-3 mt-2 chart-wrapper">
-        {{-- content --}}
-        <canvas id="myChart2"></canvas>
-    </div>
-    <div class="col-10 col-lg-10 p-3 rounded rounded-3 mt-2 info-wrapper">
-        
+    <div class="bottom-wrapper col-10 d-lg-flex">
+        <div class="col-12 split-content p-3 rounded rounded-3 mt-2 chart-wrapper">
+            {{-- content --}}
+            <canvas id="myChart2"></canvas>
+        </div>
+        <div class="col-12 split-content d-flex justify-content-between col-lg-6 p-3 rounded rounded-3 mt-2 info-wrapper">
+            <div class="box ">
+                <div class="col-12 gap-3 content-wrapper">
+                    <div class="col-2 col-lg-4  text-center logo-wrapper">
+                        <img loading="lazy" src="{{ asset('Assets/img/Money.svg')}}" class="img-fluid" />
+                    </div>
+                    <div class="col-12 text">
+                        <div class="title text-center">Total Penjualan</div>
+                        <div class="desc mt-1 text-center revenue"
+                        >Rp.{{$revenue}}</div>
+                    </div>
+                </div>
+            </div> 
+            <div class="box ">
+                <div class="col-12 gap-3 content-wrapper">
+                    <div class="col-2 col-lg-4  text-center logo-wrapper">
+                        <img loading="lazy" src="{{ asset('Assets/img/CoffeeBeans.svg')}}" class="img-fluid" />
+                    </div>
+                    <div class="col-12 text">
+                        <div class="title text-center">Total Produk Terjual</div>
+                        <div class="desc mt-1 text-center totalPenjualan">{{$totalPenjualan}} Produk</div>
+                    </div>
+                </div>
+            </div> 
+            <div class="box ">
+                <div class="col-12 gap-3 content-wrapper">
+                    <div class="col-4 col-lg-4  text-center logo-wrapper">
+                        <img loading="lazy" src="{{ asset('Assets/img/user-solid-24.png')}}" class="img-fluid" />
+                    </div>
+                    <div class="col-12 text">
+                        <div class="title text-center">Jumlah Customer</div>
+                        <div class="desc mt-1 text-center totalCustomer">{{$totalCustomer}} Orang</div>
+                    </div>
+                </div>
+            </div> 
+        </div>
     </div>
 </div>
 
 {{-- Javascript --}}
 @push('js')
+
+  <!-- Pure Counter JS -->
+  <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
 
     {{-- Chart --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -168,7 +206,8 @@
             load.classList.add("close");    
             myChart = new Chart(ctx, dataBarChart);
             myChart2 = new Chart(ctx2, dataLineChart);
-
+            new PureCounter();
+            // console.log('test');
         }, 1000);
 
         setTimeout(() => {
@@ -194,6 +233,16 @@
                 myChart2.data.labels = data.transactionsPerMonth.label;
                 myChart2.data.datasets[0].data = data.transactionsPerMonth.data;
                 myChart2.update();
+
+                let x = document.querySelector(".revenue");
+                let y = document.querySelector(".totalPenjualan");
+                let z = document.querySelector(".totalCustomer");
+
+                // console.log(x,y,z, data);
+                // console.log(data.revenue, data.totalPenjualan, data.totalCustomer);
+                x.innerHTML = "Rp." + data.revenue;
+                y.innerHTML = data.totalPenjualan + " Produk";
+                z.innerHTML = data.totalCustomer + " Orang";
             },
             error: function(data){
                 console.log(data);

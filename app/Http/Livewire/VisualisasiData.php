@@ -18,8 +18,14 @@ class VisualisasiData extends Component
         // dd($dataSets['transactionsPerWeek']);
         $transactionsPerWeek = json_encode($dataSets['transactionsPerWeek']);
         $transactionsPerMonth = json_encode($dataSets['transactionsPerMonth']);
+        $revenue = $dataSets['revenue'];
+        $totalPenjualan = $dataSets['totalPenjualan'];
+        $totalCustomer = $dataSets['totalCustomer'];
+        // dd($dataSets);
         // dd($transactionsPerMonth, $transactionsPerWeek);
-        return view('livewire.visualisasi-data', ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth])->extends('admin.admin-visualisasi-data')->section('content');
+        // dd($revenue, $totalPenjualan, $totalCustomer);
+        return view('livewire.visualisasi-data', ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth, 'revenue' => $revenue, 
+        'totalPenjualan' => $totalPenjualan, 'totalCustomer' => $totalCustomer])->extends('admin.admin-visualisasi-data')->section('content');
     }
 
 
@@ -76,6 +82,30 @@ class VisualisasiData extends Component
 
         // dd($transactionsPerMonth, $transactionsPerWeek);
 
-        return ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth];
+
+        $revenue = DB::table('transaksi as t')
+        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
+        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
+        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
+        ->select(DB::raw('sum(dp.qty * prod.harga) as revenue'))
+        ->where('t.status_pembayaran', '=', 'SUCCESS')
+        ->first();
+
+        $totalPenjualan = DB::table('transaksi as t')
+        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
+        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
+        ->select(DB::raw('sum(dp.qty) as totalPenjualan'))
+        ->where('t.status_pembayaran', '=', 'SUCCESS')
+        ->first();
+
+        $totalCustomer = DB::table('user')
+        ->select(DB::raw('count(user.id) as totalCustomer'))
+        ->where('user.role', '=', 'member')
+        ->first();
+
+        // dd($revenue, $totalPenjualan, $totalCustomer);
+
+        return ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth, 'revenue' => number_format($revenue->revenue,2), 
+        'totalPenjualan' => (double) $totalPenjualan->totalPenjualan, 'totalCustomer' => (double) $totalCustomer->totalCustomer];
     }
 }
