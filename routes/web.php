@@ -79,7 +79,7 @@ use App\Http\Livewire\VisualisasiData;
          Route::post('/store', [ProdukController::class, 'store'])->name('admin.produk.store');
          Route::get('/edit/{id}', [ProdukController::class, 'edit'])->name('admin.produk.edit');
          Route::put('/update/{id}', [ProdukController::class, 'update'])->name('admin.produk.update');
-         Route::delete('/destroy/{id}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
+         Route::POST('/destroy/{id}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
       });
 
       // Transaksi Route

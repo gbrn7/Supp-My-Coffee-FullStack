@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class ProdukController extends Controller
 {
@@ -17,6 +19,9 @@ class ProdukController extends Controller
         
         $products = Produk::all();
 
+        $title = 'Delete User!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
         // dd(\DB::getQueryLog());
 
         return view('admin.admin-data-produk', ['products' => $products]);
@@ -45,7 +50,9 @@ class ProdukController extends Controller
 
         Produk::create($data);
 
-        return redirect()->route('admin.produk')->with('success', 'Product Created');
+        // Alert::success('Success', 'Produk Telah Ditambahkan');
+
+        return redirect()->route('admin.produk')->with('success', 'Produk Ditambahkan!');;
         // dd($data);
         
     }
@@ -87,12 +94,15 @@ class ProdukController extends Controller
         $product->update($data);
 
         // dd($data);
-        return redirect()->route('admin.produk')->with('success', 'Product Updated');
+        return redirect()->route('admin.produk')->with('success', 'Produk Diedit!');
 
     }
 
     public function destroy($id){
+
+        // example:
+
         Produk::find($id)->delete();
-        return redirect()->route('admin.produk')->with('success', 'Product Deleted');
+        return redirect()->route('admin.produk')->with('success', 'Product Dihapus!');
     }
 }

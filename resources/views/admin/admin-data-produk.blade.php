@@ -20,7 +20,7 @@
 
 </head>
 <body class="dark">
-
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -163,8 +163,8 @@
                         <form action="{{route('admin.produk.destroy', $product->id)}}" method="post" onsubmit="return confirm('Yakin hapus data?')">
                             @method('delete')
                             @csrf
-                            <input type="hidden" name="">
-                            <button type="submit" class="btn btn-danger">
+                            <input type="hidden" name="_method">
+                            <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
                                 <i class='bx bx-trash text-white' ></i>
                             </button>
                         </form>

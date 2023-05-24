@@ -36,6 +36,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \RealRashid\SweetAlert\ToSweetAlert::class,
         ],
 
         'api' => [
@@ -65,5 +66,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cust.auth' => \App\Http\Middleware\CustomerAuthenticate::class,
         'admin.auth' => \App\Http\Middleware\AdminAuthenticate::class,
+        // SweetAlert
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        
     ];
 }
