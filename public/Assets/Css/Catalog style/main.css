@@ -463,9 +463,9 @@ body::-webkit-scrollbar {
   background-color: #000000;
   color: white;
 }
-.bottom .new .new-wrapper .row-2 .bx-chevron-right-circle {
+.bottom .new .new-wrapper .row-2 .bxs-chevron-right-circle {
   position: absolute;
-  color: black;
+  color: white;
   z-index: 10;
   top: 50%;
   font-size: 40px;
@@ -473,13 +473,13 @@ body::-webkit-scrollbar {
   right: 10px;
 }
 @media (max-width: 767.98px) {
-  .bottom .new .new-wrapper .row-2 .bx-chevron-right-circle {
+  .bottom .new .new-wrapper .row-2 .bxs-chevron-right-circle {
     font-size: 30px;
   }
 }
-.bottom .new .new-wrapper .row-2 .bx-chevron-left-circle {
+.bottom .new .new-wrapper .row-2 .bxs-chevron-left-circle {
   position: absolute;
-  color: black;
+  color: white;
   z-index: 10;
   top: 50%;
   font-size: 40px;
@@ -487,7 +487,7 @@ body::-webkit-scrollbar {
   left: 10px;
 }
 @media (max-width: 767.98px) {
-  .bottom .new .new-wrapper .row-2 .bx-chevron-left-circle {
+  .bottom .new .new-wrapper .row-2 .bxs-chevron-left-circle {
     font-size: 30px;
   }
 }

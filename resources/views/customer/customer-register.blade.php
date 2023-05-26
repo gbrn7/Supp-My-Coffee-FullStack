@@ -50,17 +50,17 @@
                     @csrf
                     <div class="signup-form d-flex flex-column gap-1 gap-lg-2 mt-2 mt-lg-4">
                             <label for="name" class="col-12">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan nama" value="{{ old('nama') }}">
+                            <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Masukkan nama" value="{{ old('nama') }}">
                             @error('nama')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <label for="address" class="col-12">Alamat</label>
-                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat" value="{{ old('alamat') }}">
+                            <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" placeholder="Masukkan alamat" value="{{ old('alamat') }}">
                             @error('alamat')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                             <label for="phone" class="col-12">No Telepon</label>
-                            <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="Masukkan no telepon" value="{{ old('no_telp') }}">
+                            <input type="text" class="form-control @error('no_telp') is-invalid @enderror" id="no_telp" name="no_telp" placeholder="Masukkan no telepon" value="{{ old('no_telp') }}">
                             @error('no_telp')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror

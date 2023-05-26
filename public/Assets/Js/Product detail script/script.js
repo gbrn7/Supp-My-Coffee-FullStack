@@ -152,8 +152,8 @@ function elementFromHtml(html) {
 
 var swiper2 = new Swiper(".mySwiper", {
   navigation: {
-    nextEl: ".bx-chevron-right-circle",
-    prevEl: ".bx-chevron-left-circle",
+    nextEl: ".bxs-chevron-right-circle",
+    prevEl: ".bxs-chevron-left-circle",
   },
   pagination: {
     el: ".swiper-pagination",

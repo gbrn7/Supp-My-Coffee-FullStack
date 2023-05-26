@@ -204,8 +204,8 @@
             </div>
             @endforeach
           </div>
-          <div class="bx bx-chevron-right-circle"></div>
-          <div class="bx bx-chevron-left-circle"></div>
+          <div class="bx bxs-chevron-right-circle"></div>
+          <div class="bx bxs-chevron-left-circle"></div>
           <div class="swiper-pagination"></div>
         </div>
       </div>

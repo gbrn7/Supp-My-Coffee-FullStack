@@ -160,8 +160,8 @@ var swiper = new Swiper(".mySwiper", {
 
 var swiper2 = new Swiper(".mySwiper-2", {
   navigation: {
-    nextEl: ".bx-chevron-right-circle",
-    prevEl: ".bx-chevron-left-circle",
+    nextEl: ".bxs-chevron-right-circle",
+    prevEl: ".bxs-chevron-left-circle",
   },
   pagination: {
     el: ".swiper-pagination",
