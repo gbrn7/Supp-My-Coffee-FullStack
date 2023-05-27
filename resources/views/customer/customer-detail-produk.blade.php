@@ -41,7 +41,7 @@
                   <li class="nav-item mt-3 mt-lg-0">
                     <div href="#" class="nav-link dropdown ddn-ctg p-0 bg-transparent border-0">
                       <div class="ddn  select d-flex align-items-center gap-2">
-                        <span class="selected">Categories</span>
+                        <span class="selected">Kategori</span>
                         <div class="caret bx bx-chevron-down"></div>
                       </div>
                       <ul class="menu">
@@ -52,10 +52,10 @@
                     </div>
                   </li>
                   <li class="nav-item mt-3 mt-lg-0">
-                    <a href="{{route('customer.catalog')}}" class="nav-link p-0">Recomendation</a>
+                    <a href="{{route('customer.catalog')}}" class="nav-link p-0">Rekomendasi</a>
                   </li>
                   <li class="nav-item mt-3 mt-lg-0">
-                    <a href="{{route('customer.catalog')}}" class="nav-link p-0">What's New</a>
+                    <a href="{{route('customer.catalog')}}" class="nav-link p-0">Produk Terbaru</a>
                   </li>
                 </ul>
               </div>
@@ -69,12 +69,12 @@
               </form>
                 <a href="{{route('customer.account')}}" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                   <i class='bx bxs-user'></i>
-                  <p class="m-0">Account</p>
+                  <p class="m-0">Akun</p>
                 </a>
                 <div class="dropdown">
                   <div class="select">
                     <i class='bx bx-cart crt cart-icon' ></i>
-                    <span class="selected">Cart</span>
+                    <span class="selected">Keranjang</span>
                     <div class="caret bx bx-chevron-down"></div>
                   </div>
                   <ul class="menu menu-cart">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="btn-cart-wrapper px-lg-3 px-0 pt-1 pb-3  mt-3">
                   <button class="btn-cart text-center">
-                    <p class="btn-text m-0">Add to cart</p>
+                    <p class="btn-text m-0">Masukkan Keranjang</p>
                   </button>
                 </div>  
               </div>
@@ -171,7 +171,7 @@
     <div class="container new-wrapper">
       <div class="row row-1">
         <div class="col-12">
-          <p class="title">What's New</p>
+          <p class="title">Produk Terbaru</p>
         </div>
       </div>
       <div class="row row-2">
@@ -196,7 +196,7 @@
                         </a>
                         <div class="btn-cart-wrapper px-3 pt-1 pb-3">
                           <button class="btn-cart text-center">
-                            <p class="btn-text m-0">Add to cart</p>
+                            <p class="btn-text m-0">Masukkan Keranjang</p>
                           </button>
                         </div>
                 </div>

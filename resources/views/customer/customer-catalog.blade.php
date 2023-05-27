@@ -29,6 +29,7 @@
 
 </head>
 <body>
+    @include('sweetalert::alert')
 
     <!-- Navbar Start -->
     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light ">
@@ -45,7 +46,7 @@
                 <li class="nav-item mt-3 mt-lg-0">
                   <div class="nav-link dropdown ddn-ctg p-0 bg-transparent border-0">
                     <div class="ddn  select d-flex align-items-center gap-2">
-                      <span class="selected">Categories</span>
+                      <span class="selected">Kategori</span>
                       <div class="caret bx bx-chevron-down"></div>
                     </div>
                     <ul class="menu">
@@ -55,10 +56,10 @@
                   </div>
                 </li>
                 <li class="nav-item mt-3 mt-lg-0">
-                  <a href="#recomendation" class="nav-link p-0">Recomendation</a>
+                  <a href="#recomendation" class="nav-link p-0">Rekomendasi</a>
                 </li>
                 <li class="nav-item mt-3 mt-lg-0">
-                  <a href="#whatsnew" class="nav-link p-0">What's New</a>
+                  <a href="#whatsnew" class="nav-link p-0">Produk Terbaru</a>
                 </li>
               </ul>
             </div>
@@ -72,12 +73,12 @@
               </form>
               <a href="{{route('customer.account')}}" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                 <i class='bx bxs-user'></i>
-                <p class="m-0">Account</p>
+                <p class="m-0">Akun</p>
               </a>
               <div class="dropdown">
                 <div class="select">
                   <i class='bx bx-cart crt cart-icon' ></i>
-                  <span class="selected">Cart</span>
+                  <span class="selected">Keranjang</span>
                   <div class="caret bx bx-chevron-down"></div>
                 </div>
                 <ul class="menu menu-cart">
@@ -167,35 +168,41 @@
     <div class="container recomendation-wrapper">
       <div class="row row-1">
         <div class="col-12">
-          <p class="title">Recomendation For You</p>
+          <p class="title">Rekomendasi untuk Anda</p>
         </div>
       </div>
-      <div class="row row-2 row-cols-2 row-cols-lg-4 gy-3"> 
+      @if(count($products) > 0)
+      <div class="row row-2 row-cols-2 row-cols-lg-4 gy-3">
         @foreach ($products as $product)
-        <div class=" product  p-2">
-            <div class="box">
-                <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
-                    <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
-                </a>
-                <a href="" class="text-decoration-none">
-                    <div class="product-desc px-3 py-3">
-                    <input type="hidden" class="id-product" value="{{$product->id}}">
-                        <div class="title">{{$product->nama_produk}}</div>
-                        <div class="footer d-flex justify-content-between pt-2">
-                            <div class="price">Rp.{{$product->harga}}</div>
-                            <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
+          <div class=" product  p-2">
+              <div class="box">
+                  <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
+                      <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
+                  </a>
+                  <a href="" class="text-decoration-none">
+                      <div class="product-desc px-3 py-3">
+                      <input type="hidden" class="id-product" value="{{$product->id}}">
+                          <div class="title">{{$product->nama_produk}}</div>
+                          <div class="footer d-flex justify-content-between pt-2">
+                              <div class="price">Rp.{{$product->harga}}</div>
+                              <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
+                          </div>
                         </div>
+                      </a>
+                      <div class="btn-cart-wrapper px-3 pt-1 pb-3">
+                        <button class="btn-cart text-center">
+                          <p class="btn-text m-0">Masukkan Keranjang</p>
+                        </button>
                       </div>
-                    </a>
-                    <div class="btn-cart-wrapper px-3 pt-1 pb-3">
-                      <button class="btn-cart text-center">
-                        <p class="btn-text m-0">Add to cart</p>
-                      </button>
-                    </div>
-            </div>
-        </div>
+              </div>
+          </div>
         @endforeach
       </div>
+      @else
+      <div class="row justify-content-center">
+        <h5 class="text-center">Maaf Produk Tidak Ditemukan</h5>
+      </div>
+      @endif
     </div>
   </section>
   <!-- Recomendation End -->
@@ -207,7 +214,7 @@
     <div class="container new-wrapper">
       <div class="row row-1">
         <div class="col-12">
-          <p class="title">What's New</p>
+          <p class="title">Produk Terbaru</p>
         </div>
       </div>
       <div class="row row-2">
@@ -232,7 +239,7 @@
                         </a>
                         <div class="btn-cart-wrapper px-3 pt-1 pb-3">
                           <button class="btn-cart text-center">
-                            <p class="btn-text m-0">Add to cart</p>
+                            <p class="btn-text m-0">Masukkan Keranjang</p>
                           </button>
                         </div>
                 </div>
@@ -310,6 +317,7 @@
   <!-- Bottom End -->
 
 </body>
+
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 

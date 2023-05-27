@@ -175,3 +175,61 @@ statusField.forEach((e) => {
     e.innerHTML = `No. Resi : <strong class="d-block">${e.textContent}</strong>`;
   }
 });
+
+const btnUpdate = document.querySelector('.btn-update');
+btnUpdate.addEventListener('click', (e)=>{
+  document.querySelector('.default-wrapper').classList.add('d-none');
+  document.querySelector('.update-wrapper').classList.remove('d-none');
+  let formInput = document.querySelectorAll('.profile-form');
+  formInput.forEach((element)=>{
+    element.removeAttribute('disabled');
+  });
+  // console.log(formInput[0]);
+  formInput[0].focus();
+});
+
+let nameUser = document.querySelector('#nama').value;
+let emailUser = document.querySelector('#email').value;
+let alamatUser = document.querySelector('#alamat').value;
+let noHpUser = document.querySelector('#noHp').value;
+
+
+const btnBatal = document.querySelector('.btn-batal');
+btnBatal.addEventListener('click', (e)=>{
+  document.querySelector('.default-wrapper').classList.remove('d-none');
+  document.querySelector('.update-wrapper').classList.add('d-none');
+
+  let nameVal = document.querySelector('#nama').value = nameUser;
+  let emailVal = document.querySelector('#email').value = emailUser;
+  let alamatVal = document.querySelector('#alamat').value = alamatUser;
+  let noHpVal = document.querySelector('#noHp').value = noHpUser;
+
+  let profileForm = document.querySelectorAll('.profile-form');
+  profileForm.forEach((element)=>{
+    element.setAttribute('disabled', null);
+  });
+});
+
+const btnSimpan = document.querySelector('.btn-simpan');
+btnSimpan.addEventListener('click', (e)=>{
+  let nameVal = document.querySelector('#nama');
+  let alamatVal = document.querySelector('#alamat');
+  let noHpVal = document.querySelector('#noHp');
+  let form = document.querySelector('.update-form');
+  e.preventDefault();
+  if(nameVal.value === '' || noHpVal.value === '' || alamatVal.value === ''){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Harap lengkapi kolom yang ada',
+    });
+  }else if(noHpVal.value.length < 12 ){
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Maaf Kolom No Handphone minimal 12 karakter',
+    });
+  }else{
+    form.submit();
+  };
+});

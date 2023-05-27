@@ -62,6 +62,8 @@ use App\Http\Livewire\VisualisasiData;
       
       Route::get('/account', [accountController::class, 'index'])->name('customer.account')->middleware('cust.auth');
       
+      Route::post('/account/update', [accountController::class, 'updateDataUser'])->name('customer.account.update')->middleware('cust.auth');
+      
       Route::post('/subcribe', [subscribeController::class, 'index'])->name('customer.subscribe')->middleware('cust.auth');
       
       Route::post('/checkout', [checkoutController::class, 'index'])->name('customer.checkout')->middleware('cust.auth');

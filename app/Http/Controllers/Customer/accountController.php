@@ -5,13 +5,17 @@ namespace App\Http\Controllers\customer;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
+
+
 
 class accountController extends Controller
 {
     public function index(){
 
         // dd('test');
-        $user = auth() ->user();
+        $user = auth()->user();
         $historys =  $this->getTransaksi($user->id);
         return view('customer.customer-account',['user'=> $user, 'historys'=> $historys ]);
     }
@@ -60,4 +64,20 @@ class accountController extends Controller
 
         return $history;
     }
+
+    public function updateDataUser(Request $request){
+        $data = $request->except("_token");
+        
+        // dd($data);
+        // dd(auth()->user()->id);
+        // dd($data['alamat']);
+
+        $user = User::where('id', auth()->user()->id)
+        ->update(['nama' => $data['nama'], 'alamat' => $data['alamat'], 'no_telp' => $data['noHp']]);
+
+        // Alert::success('Success', 'Profil Diperbarui!');
+
+        // dd($user);
+        return redirect()->route('customer.account')->with('toast_success', 'Profil Diperbarui!');
     }
+}

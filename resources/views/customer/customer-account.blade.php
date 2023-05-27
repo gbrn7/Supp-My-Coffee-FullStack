@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Account | Supp My Coffee</title>
+  <title>Akun | Supp My Coffee</title>
 
   <!-- Icon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('Assets/img/Logo.png')}}">
@@ -29,7 +29,6 @@
 
 </head-wrap>
 <body>
-
     <!-- Navbar Start -->
     <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light ">
       <div class="container py-1 d-lg-flex align-items-lg-center">
@@ -45,7 +44,7 @@
                 <li class="nav-item mt-3 mt-lg-0">
                   <div href="#" class="nav-link dropdown ddn-ctg p-0 bg-transparent border-0">
                     <div class="ddn  select d-flex align-items-center gap-2">
-                      <span class="selected">Categories</span>
+                      <span class="selected">Kategori</span>
                       <div class="caret bx bx-chevron-down"></div>
                     </div>
                     <ul class="menu">
@@ -56,10 +55,10 @@
                   </div>
                 </li>
                 <li class="nav-item mt-3 mt-lg-0">
-                  <a href="{{route('customer.catalog')}}" class="nav-link p-0">Recomendation</a>
+                  <a href="{{route('customer.catalog')}}" class="nav-link p-0">Rekomendasi</a>
                 </li>
                 <li class="nav-item mt-3 mt-lg-0">
-                  <a href="{{route('customer.catalog')}}" class="nav-link p-0">What's New</a>
+                  <a href="{{route('customer.catalog')}}" class="nav-link p-0">Produk Terbaru</a>
                 </li>
               </ul>
             </div>
@@ -73,12 +72,12 @@
               </form>
               <a href="#" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                 <i class='bx bxs-user'></i>
-                <p class="m-0">Account</p>
+                <p class="m-0">Akun</p>
               </a>
               <div class="dropdown">
                 <div class="select">
                   <i class='bx bx-cart crt cart-icon' ></i>
-                  <span class="selected">Cart</span>
+                  <span class="selected">Keranjang</span>
                   <div class="caret bx bx-chevron-down"></div>
                 </div>
                 <ul class="menu menu-cart">
@@ -139,7 +138,7 @@
         <div class="row row-1 justify-content-center">
           <div class="col-4 d-flex justify-content-center gap-lg-4 gap-2  align-items-center title-wrapper">
               <i class='bx bx-user-circle'></i>
-              <p class="title m-0">Account</p>
+              <p class="title m-0">Akun</p>
           </div>
         </div>
         <div class="row row-2 justify-content-center">
@@ -150,8 +149,8 @@
                 <div class="slider"></div>
               </div>
                 <div class="text-wrapper w-100 d-flex justify-content-between">
-                  <p class="m-0 profile col-6">Profile</p>
-                  <p class="m-0 history col-6">History</p>
+                  <p class="m-0 profile col-6">Profil</p>
+                  <p class="m-0 history col-6">Riwayat</p>
                 </div>
             </label>
           </div>
@@ -162,51 +161,63 @@
 
     <!-- Profile Start -->
     <section class="profile" id="profile">
-      <div class="container profile-wrapper d-flex flex-column gap-4">
-        <div class="row row-1 justify-content-center">
-          <div class="col-lg-6 col-12">
-            <div class="title-wrapper">
-              <p class="name m-0 mb-2">Name</p>
+      <form action="{{route('customer.account.update')}}" method="post" class="update-form">
+        @csrf
+        <div class="container profile-wrapper d-flex flex-column gap-4">
+          <div class="row row-1 justify-content-center">
+            <div class="col-lg-6 col-12">
+              <div class="title-wrapper">
+                <p class="name m-0 mb-2">Nama</p>
+              </div>
+              <input type="text" disabled value="{{$user->nama}}" name="nama" id="nama" class="col-12 profile-form">
             </div>
-            <input type="text" disabled value="{{$user->nama}}" name="name" id="name" class="col-12">
           </div>
-        </div>
-        <div class="row row-2 justify-content-center">
-          <div class="col-lg-6 col-12">
-            <div class="title-wrapper">
-              <p class="name m-0 mb-2">Email</p>
+          <div class="row row-2 justify-content-center">
+            <div class="col-lg-6 col-12">
+              <div class="title-wrapper">
+                <p class="name m-0 mb-2">Email</p>
+              </div>
+              <input type="text" disabled value="{{$user->email}}" name="email" id="email" class="col-12">
             </div>
-            <input type="text" disabled value="{{$user->email}}" name="email" id="email" class="col-12">
           </div>
-        </div>
-        <div class="row row-3 justify-content-center">
-          <div class="col-lg-6 col-12">
-            <div class="title-wrapper">
-              <p class="name m-0 mb-2">Address</p>
+          <div class="row row-3 justify-content-center">
+            <div class="col-lg-6 col-12">
+              <div class="title-wrapper">
+                <p class="name m-0 mb-2">Alamat</p>
+              </div>
+              <input type="text" disabled value="{{$user->alamat}}" name="alamat" id="alamat" class="col-12 profile-form">
             </div>
-            <input type="text" disabled value="{{$user->alamat}}" name="address" id="address" class="col-12">
           </div>
-        </div>
-        <div class="row row-4 justify-content-center">
-          <div class="col-lg-6 col-12">
-            <div class="title-wrapper">
-              <p class="name m-0 mb-2">Phone</p>
+          <div class="row row-4 justify-content-center">
+            <div class="col-lg-6 col-12">
+              <div class="title-wrapper">
+                <p class="name m-0 mb-2">No HandPhone</p>
+              </div>
+              <input type="text" onkeypress="return event.charCode >= 48 && event.charCode <= 57" disabled value="{{$user->no_telp}}" name="noHp" id="noHp" class="col-12 profile-form">
             </div>
-            <input type="text" disabled value="{{$user->no_telp}}" name="phone" id="phone" class="col-12">
           </div>
-        </div>
-        <div class="row row-5 justify-content-center">
+          <div class="row row-5 justify-content-center">
           <div class="col-lg-6 col-12">
-            <a href="{{route('customer.logout')}}" class="text-decoration-none text-black">
-              <div class="row justify-content-end">
-                  <div class="btn-wrapper text-center p-2 col-3 ">
-                    <p class="name m-0">Logout</p>
-                  </div>
+              <div class="row justify-content-between default-wrapper">
+                <div class="text-decoration-none btn-wrapper btn-update text-center text-black p-2 col-3">
+                    <p class="update-text m-0">Update</p>
                 </div>
-            </a>
+                <a href="{{route('customer.logout')}}" class="text-decoration-none text-black btn-wrapper text-center p-2 col-3">
+                    <p class="logout m-0">Logout</p>
+                </a>
+              </div>
+              <div class="row justify-content-between update-wrapper d-none">
+                <button type="submit" class="text-decoration-none btn-wrapper btn-update btn-simpan text-center text-black p-2 col-3">
+                    <p class="update-text m-0">Simpan</p>
+                </button>
+                <div  class="text-decoration-none text-black btn-wrapper btn-batal text-center p-2 col-3">
+                    <p class="logout m-0">Batal</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </form>
     </section>
     <!-- Profile End -->
 
@@ -215,7 +226,7 @@
       <div class="container history-wrapper">
       <div class="row row-1 p-3 p-md-0">
           <div class="col-md-3 col-6 col-lg-2 justify-content-center text-wrapper d-flex ">
-            <p class="t-history-1  t-history bb m-0">History</p>
+            <p class="t-history-1  t-history bb m-0">Riwayat</p>
           </div>
         </div>
       <div class="row row-2 p-3 p-md-0 op-wrapper">
@@ -309,13 +320,18 @@
     </section>
     <!-- Footer End -->
 
-
+    <!-- Sweet Alert -->
+  @include('sweetalert::alert')
+  
 </body>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 
   <!-- Bootstrap js -->
   <script src="{{ asset('Assets/Vendor/bootstrap-5.2/js/bootstrap.bundle.min.js')}}"></script>
+
+  <!-- Sweet Alert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Main Js -->
   <script src="{{ asset('Assets/Js/Account Script/script.js')}}"></script>
