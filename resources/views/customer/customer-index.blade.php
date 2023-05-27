@@ -69,11 +69,11 @@
             </li>
             <li class="nav-item mt-3 mt-lg-0">
               <a class="nav-link nav-link-3" href="#BestProduct"
-                >Best Product</a
+                >Produk Terbaik</a
               >
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link nav-link-4" href="#Contact">Contact</a>
+              <a class="nav-link nav-link-4" href="#Contact">Kontak</a>
             </li>
             <li class="nav-item mt-3 d-lg-none mt-lg-0">
               <div class="btn btn-login"><a href="{{route('customer.login')}}" class="text-decoration-none text-white">Login</a></div>
@@ -144,7 +144,7 @@
                 <img loading="lazy" src="{{ asset('Assets/img/CoffeeBeans.svg')}}" class="img-fluid" />
               </div>
               <div class="col-12 text">
-                <div class="title">Select Product</div>
+                <div class="title">Pilih Produk</div>
                 <div class="desc mt-3">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim
                   vitae consequuntur recusandae possimus soluta corporis harum
@@ -162,7 +162,7 @@
                 <img loading="lazy" src="{{ asset('Assets/img/Money.svg')}}" class="img-fluid" />
               </div>
               <div class="col-12 text">
-                <div class="title">Make Payment</div>
+                <div class="title">Lakukan Pembayaran</div>
                 <div class="desc mt-3">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim
                   vitae consequuntur recusandae possimus soluta corporis harum
@@ -180,7 +180,7 @@
                 <img loading="lazy" src="{{ asset('Assets/img/Packet.svg')}}" class="img-fluid" />
               </div>
               <div class="col-12 text">
-                <div class="title">Receive Product</div>
+                <div class="title">Terima Produk</div>
                 <div class="desc mt-3">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim
                   vitae consequuntur recusandae possimus soluta corporis harum
@@ -228,17 +228,14 @@
     </section>
     <!-- Banner End -->
 
-    <!-- Best Product Start -->
+    <!-- Produk Terbaik Start -->
     <section class="bestproduct mt-5" id="BestProduct">
       <div class="container bestproduct-wrapper">
         <div
           class="row justify-content-center"
-          data-aos="zoom-in"
-          data-aos-duration="500"
-          data-aos-delay="50"
         >
           <div class="col-6 col-md-3 col-lg-2 text-center head">
-            Best Product
+            Produk Terbaik
           </div>
         </div>
         <div
@@ -439,7 +436,7 @@
           data-aos="zoom-in"
           data-aos-duration="500"
         >
-          <div class="col-6 col-md-3 col-lg-2 text-center head">Contact</div>
+          <div class="col-6 col-md-3 col-lg-2 text-center head">Kontak</div>
         </div>
         <div class="row row-2 text-center justify-content-center">
           <form action="#" method="post">
@@ -495,7 +492,7 @@
               data-aos-duration="700"
               data-aos-delay="300"
             >
-              <button type="submit" class="col-6 button">SEND</button>
+              <button type="submit" class="col-6 button">SUBMIT</button>
             </div>
           </form>
         </div>
