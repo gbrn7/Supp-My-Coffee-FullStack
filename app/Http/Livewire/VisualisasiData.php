@@ -34,7 +34,7 @@ class VisualisasiData extends Component
         $data = \DB::select("SELECT sum(dp.qty * prod.harga) as amount, DAYNAME(t.updated_at) as day
         from transaksi as t inner join pengiriman as p on t.id = p.id_transaksi
         inner join detail_produk as dp on dp.id_pengiriman = p.id inner join produk as prod on prod.id = dp.id_produk
-        where t.status_pembayaran = 'success' and  t.updated_at >= (now() - INTERVAL 1 week)
+        where t.status_pembayaran = 'success' and  t.updated_at >= (now() - INTERVAL 6 day)
         GROUP by day order by t.updated_at asc" );
 
         // dd($data);
