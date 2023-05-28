@@ -160,7 +160,7 @@
                     <td class="">
                     <div class="btn-wrapper d-md-flex d-block gap-2">
                         <a href="{{route('admin.produk.edit',  $product->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
-                        <form action="{{route('admin.produk.destroy', $product->id)}}" method="post" onsubmit="return confirm('Yakin hapus data?')">
+                        <form action="{{route('admin.produk.destroy', $product->id)}}" method="post">
                             @method('delete')
                             @csrf
                             <input type="hidden" name="_method">
@@ -200,7 +200,37 @@
   <!-- Pure Counter JS -->
   <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
 
+  {{-- Sweetalert JS --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Main Js -->
   <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
+
+  {{-- Delete script --}}
+  <script type="text/javascript"> 
+      let form = document.querySelectorAll('form');
+      form.forEach(element => {
+        element.addEventListener('click', function(e){
+            var btn = element.querySelector('.show_confirm');
+
+            e.preventDefault();
+
+            Swal.fire({
+              title: 'Apakah Anda Yakin?',
+              text: "Data yang sudah dihapus tidak akan tertampil!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yakin!',
+              cancelButtonText: 'Batal'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                element.submit();
+              }
+            })
+        });
+      });
+  </script>
 
 </html>
