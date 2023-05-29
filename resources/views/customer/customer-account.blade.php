@@ -241,7 +241,7 @@
               <div class="product col-8 col-lg-6 left-content d-flex flex-column gap-2">
                 @foreach($history->products as $product) 
                 <div class="d-flex gap-4 bg-white p-2 rounded-3 ">
-                  <div class="col-2 img-wrapper"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid rounded-3"></div>
+                  <div class="col-2 img-wrapper"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                   <div class="col-9 d-flex justify-content-between flex-column">
                     <div class="col-12 title">{{$product->nama_produk}}</div>
                     <div class="col-7 col-lg-5 title">{{$product->qty}} x Rp.{{$product->harga}}</div>

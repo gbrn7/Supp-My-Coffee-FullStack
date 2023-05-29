@@ -24,7 +24,7 @@
             <div class="col-10 col-md-6 d-flex gap-3 flex-column align-items-center justify-content-center">
               <div class="col-lg-3 col-5 "><img src="{{ asset('Assets/img/Logo.png')}}" class="img-fluid rounded-5"></div>
               <div class="col-12 text-center text-wrapper">Thank You for<br>Your Order</div>
-              <div class="col-5 col-lg-2 p-2 btn-wrapper text-center bg-white rounded-3"><a href="{{route('customer.account')}}" class="text-decoration-none text-black">Back To History</a></div>
+              <div class="col-5 col-lg-2 p-2 btn-wrapper text-center bg-white rounded-3"><a href="{{route('customer.account')}}" class="text-decoration-none text-black">Riwayat Transaksi</a></div>
             </div>
           </div>
         </div>
