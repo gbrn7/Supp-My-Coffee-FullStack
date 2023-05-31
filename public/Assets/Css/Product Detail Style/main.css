@@ -194,7 +194,7 @@ body::-webkit-scrollbar {
   display: none;
   transition: 0.2s;
   z-index: 1;
-  width: 700%;
+  width: 500%;
   cursor: auto;
 }
 @media (max-width: 991.98px) {

@@ -211,7 +211,7 @@ $dot-color: rgba(0, 0, 0, 0.466);
                         display: none;
                         transition: 0.2s;
                         z-index: 1;
-                        width: 700%;
+                        width: 500%;
                         cursor: auto;
 
                         @include media-breakpoint-down(lg){

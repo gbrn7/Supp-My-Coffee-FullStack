@@ -52,7 +52,7 @@ class transactionController extends Controller
         // dd($transaksi, $pengiriman, $totalTagihan);
 
         $midtransRedirectUrl = $this->midtransTransaction($transaksi, $totalTagihan, $customer);
-        // $sendMail = $this->sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $biayaPengirimanSekali, $subs, $checkoutObj->biayaTransaksi, $totalTagihan);
+        $sendMail = $this->sendMail($customer, $midtransRedirectUrl, $products, $biayaPengiriman, $biayaPengirimanSekali, $subs, $checkoutObj->biayaTransaksi, $totalTagihan);
         return redirect($midtransRedirectUrl);
     }
 
