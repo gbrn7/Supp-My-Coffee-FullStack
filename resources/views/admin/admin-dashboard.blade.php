@@ -207,8 +207,8 @@
                         <tr class="text-text-capitalize">
                             <td>{{$transaction->id}}</td>
                             <td>{{$transaction->user_id}}</td>
-                            <td>Rp.{{$transaction->amount}}</td>
-                            <td>{{$transaction->status_pembayaran}}</td>
+                            <td>Rp.{{$transaction->total}}</td>
+                            <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
                         </tr>
                         @endforeach
                     </tbody>

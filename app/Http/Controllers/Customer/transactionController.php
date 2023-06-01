@@ -45,7 +45,7 @@ class transactionController extends Controller
 
         // dd($totalTagihan, $ekpedisiDetail, $totalHarga, $biayaPengiriman, $request->except('_token'));
         
-        $transaksi = $this->createTransaksi($alamatLengkap, $ekpedisiDetail);
+        $transaksi = $this->createTransaksi($alamatLengkap, $ekpedisiDetail, $totalHarga);
         $pengiriman = $this->createPengiriman($subs, $subsDate, $request);
         $totalTagihan = $totalTagihan;
         
@@ -56,12 +56,13 @@ class transactionController extends Controller
         return redirect($midtransRedirectUrl);
     }
 
-    public function createTransaksi($alamatLengkap, $ekpedisiDetail){
+    public function createTransaksi($alamatLengkap, $ekpedisiDetail, $totalHarga){
         $user = auth()->user();
 
         $transaksi = Transaksi::create([
             'user_id' => $user->id,
             'alamat' => $alamatLengkap,
+            'total' => $totalHarga,
             'ekspedisi' => $ekpedisiDetail,
             'transaction_code' => strtoupper(Str::random(10)),
             'status_pembayaran' => 'PENDING'

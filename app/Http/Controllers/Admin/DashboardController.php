@@ -35,10 +35,7 @@ class DashboardController extends Controller
 
     public function getRevenue(){
         $revenue = DB::table('transaksi as t')
-        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
-        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
-        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-        ->select(DB::raw('sum(dp.qty * prod.harga) as revenue'))
+        ->select(DB::raw('sum(t.total) as revenue'))
         ->where('t.status_pembayaran', '=', 'SUCCESS')
         ->first();
         
@@ -74,15 +71,7 @@ class DashboardController extends Controller
 
     public function getTransactions(){
         $transactions = DB::table('transaksi as t')
-                        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
-                        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
-                        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-                        ->select('t.id', 't.user_id', DB::raw('sum(dp.qty * prod.harga) as amount'), 't.alamat', 't.transaction_code', 't.status_pembayaran')
-                        ->groupBy('t.id')
-                        ->groupBy('t.user_id')
-                        ->groupBy('t.alamat')
-                        ->groupBy('t.transaction_code')
-                        ->groupBy('t.status_pembayaran')
+                        ->select('t.id', 't.user_id', 't.total', 't.alamat', 't.transaction_code', 't.status_pembayaran')
                         ->orderBy('t.id', 'desc')
                         ->limit(5)
                         ->get(); 
