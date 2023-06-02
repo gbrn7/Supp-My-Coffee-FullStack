@@ -15,20 +15,24 @@ class DashboardController extends Controller
         $revenue = $this->getRevenue();
         $totalOrder = $this->getTotalOrder();
         $newOrder = $this->getNewOrder();
-        $products = $this->getProducts();
-        $transactions = $this->getTransactions();
+        // $products = $this->getProducts();
+        // $transactions = $this->getTransactions();
         $schedules = $this->getSchedules();
+        $highSales = $this->getHighestSalesProduct();
+        $lowSales = $this->getLowestSalesProduct();
         
 
-        // dd($revenue, $totalOrder, $newOrder, $products, $transactions, $schedules);
+        // dd($revenue, $totalOrder, $newOrder, $schedules, $highSales, $lowSales);
         // dd($newOrder);
         return view('admin.admin-dashboard', 
         ['revenue' => $revenue, 
         'totalOrder' => $totalOrder,
         'newOrder' => $newOrder,    
-        'products' => $products,
-        'transactions' => $transactions,
-        'schedules' => $schedules]);
+        // 'products' => $products,
+        // 'transactions' => $transactions,
+        'schedules' => $schedules,
+        'highSales' => $highSales,
+        'lowSales' => $lowSales,]);
 
         // return view('admin.admin-dashboard', ['revenue' => $revenue]);
     }
@@ -75,6 +79,7 @@ class DashboardController extends Controller
                         ->orderBy('t.id', 'desc')
                         ->limit(5)
                         ->get(); 
+
         return $transactions;
     }
 
@@ -133,5 +138,39 @@ class DashboardController extends Controller
         //     $schedules[$key]->details =  $detailProduk;
         // }
         return $schedules;
+    }
+
+    public function getHighestSalesProduct(){
+       $highSales = DB::table('transaksi as t')
+        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
+        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
+        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
+        ->select('prod.id', 'prod.nama_produk', 'prod.status', DB::raw('sum(dp.qty) as qtySales'))
+        ->where('t.status_pembayaran', '=', 'SUCCESS')
+        ->groupBy('prod.id')
+        ->groupBy('prod.nama_produk')
+        ->groupBy('prod.status')
+        ->orderBy('qtySales', 'desc')
+        ->limit(5)
+        ->get();
+
+        return $highSales;
+    }
+
+    public function getLowestSalesProduct(){
+       $lowSales = DB::table('transaksi as t')
+        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
+        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
+        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
+        ->select('prod.id', 'prod.nama_produk', 'prod.status', DB::raw('sum(dp.qty) as qtySales'))
+        ->where('t.status_pembayaran', '=', 'SUCCESS')
+        ->groupBy('prod.id')
+        ->groupBy('prod.nama_produk')
+        ->groupBy('prod.status')
+        ->orderBy('qtySales', 'asc')
+        ->limit(5)
+        ->get();
+
+        return $lowSales;
     }
 }

@@ -162,23 +162,25 @@
               </div>
 
           </div>
-          <div class="row  row-3 mt-2 gap-3">
+          <div class="row  row-3 mt-2 gap-2">
             <div class="col-11 col-lg-5 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
-                  <p class="m-0 pb-1  border-bottom border-dark">Produk Terbaru</p>
+                  <p class="m-0 pb-1  border-bottom border-dark">Penjualan Produk Tertinggi</p>
                   <table id="" class="table table-striped" style="width:100%">
                   <thead>
                       <tr>
                           <th>ID</th>
                           <th>Nama Produk</th>
                           <th>Status</th>
+                          <th>Produk Terjual</th>
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach ($products as $product)
+                      @foreach ($highSales as $highSale)
                       <tr class="text-capitalize">
-                          <td>{{$product->id}}</td>
-                          <td>{{$product->nama_produk}}</td>
-                          <td>{{$product->status}}</td>
+                          <td>{{$highSale->id}}</td>
+                          <td>{{$highSale->nama_produk}}</td>
+                          <td>{{$highSale->status}}</td>
+                          <td>{{$highSale->qtySales}}</td>
                       </tr>
                       @endforeach
                   </tbody>
@@ -187,41 +189,42 @@
                           <th>ID</th>
                           <th>Nama Produk</th>
                           <th>Status</th>
+                          <th>Produk Terjual</th>
                       </tr>
                   </tfoot>
                   </table>
-                </div>
-            <div class="col-11 col-lg-4 bg-white mt-2 table-wrapper  p-2 border-dark rounded-3">
-                  <p class="m-0 pb-1 border-bottom border-dark">Transaksi Terbaru</p>
+            </div>
+            <div class="col-11 col-lg-5 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">
+                  <p class="m-0 pb-1  border-bottom border-dark">Penjualan Produk Terendah</p>
                   <table id="" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>ID User</th>
-                            <th>Total</th>
-                            <th>Status Pembayaran</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transactions as $transaction)
-                        <tr class="text-text-capitalize">
-                            <td>{{$transaction->id}}</td>
-                            <td>{{$transaction->user_id}}</td>
-                            <td>Rp.{{$transaction->total}}</td>
-                            <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>ID User</th>
-                            <th>Total</th>
-                            <th>Status Pembayaran</th>
-                        </tr>
-                    </tfoot>
-                </table>
-                </div>
+                  <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>Nama Produk</th>
+                          <th>Status</th>
+                          <th>Produk Terjual</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($lowSales as $lowSale)
+                      <tr class="text-capitalize">
+                          <td>{{$lowSale->id}}</td>
+                          <td>{{$lowSale->nama_produk}}</td>
+                          <td>{{$lowSale->status}}</td>
+                          <td>{{$lowSale->qtySales}}</td>
+                      </tr>
+                      @endforeach
+                  </tbody>
+                  <tfoot>
+                      <tr>
+                          <th>ID</th>
+                          <th>Nama Produk</th>
+                          <th>Status</th>
+                          <th>Produk Terjual</th>
+                      </tr>
+                  </tfoot>
+                  </table>
+            </div>
           </div>
           <div class="row  row-4 mt-2 pb-4 gap-3">
             <div class="col-10 bg-white table-wrapper mt-2  p-2 border-dark rounded-3">

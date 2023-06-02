@@ -13,15 +13,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class ProdukController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
         // \DB::enableQueryLog();
-        
         $products = Produk::all();
 
         $title = 'Delete User!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
+
         // dd(\DB::getQueryLog());
 
         return view('admin.admin-data-produk', ['products' => $products]);
@@ -37,8 +35,8 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string',
             'produk_thumbnail' => 'required|image|mimes:png,jpg,jpeg',
             'desc' => 'required|string',
-            'berat' => 'required|numeric|min:-2147483648',
-            'harga' => 'required|numeric|min:-2.22507385850720',
+            'berat' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
         ]);
 
         $thumbnail = $request->produk_thumbnail;
@@ -71,8 +69,8 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string',
             'produk_thumbnail' => 'image|mimes:png,jpg,jpeg',
             'desc' => 'required|string',
-            'berat' => 'required|numeric|min:-2147483648',
-            'harga' => 'required|numeric|min:-2.22507385850720',
+            'berat' => 'required|numeric|min:0',
+            'harga' => 'required|numeric|min:0',
             'status' => 'required|string',
         ]);
 

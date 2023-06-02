@@ -20,6 +20,7 @@
 
 </head>
 <body class="dark">
+  @include('sweetalert::alert')
 
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">

@@ -100,7 +100,7 @@ class VisualisasiData extends Component
 
         // dd($revenue, $totalPenjualan, $totalCustomer);
 
-        return ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth, 'revenue' => number_format($revenue->revenue,2), 
+        return ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth, 'revenue' => number_format($revenue->revenue,0, ".", "."), 
         'totalPenjualan' => (double) $totalPenjualan->totalPenjualan, 'totalCustomer' => (double) $totalCustomer->totalCustomer];
     }
 }
