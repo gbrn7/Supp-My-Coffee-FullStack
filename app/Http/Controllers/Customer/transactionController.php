@@ -161,7 +161,7 @@ class transactionController extends Controller
     
     public function getEkspedisiDetail($package, $paket){
         $paket = $paket['paket'];
-        $namaPaket = $package[0]['code']." ".$package[0]['costs'][$paket]['service']." Rp.".$package[0]['costs'][$paket]['cost'][0]['value'];
+        $namaPaket = $package[0]['code']." ".$package[0]['costs'][$paket]['service']." Rp ".number_format($package[0]['costs'][$paket]['cost'][0]['value'], 0, ".", ".");
         // dd($namaPaket);
         return $namaPaket;
     }

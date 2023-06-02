@@ -140,12 +140,13 @@
     </div>
     @endif
     <div class="Produk mt-2 mb-2 col-10">
-    <table id="example" class="table table-striped mt-3" style="width:100%">
+    <table id="jTable" class="table table-striped mt-3" style="width:100%">
         <thead>
             <tr>
                 <th>ID Produk</th>
                 <th>Foto</th>
                 <th>Nama Produk</th>
+                <th>Harga Produk</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>
@@ -156,6 +157,7 @@
                     <td>{{ $product->id}}</td>
                     <td><img src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-produk"></td>
                     <td>{{ $product->nama_produk}}</td>
+                    <td>Rp {{ number_format($product->harga, 0, ".", ".")}}</td>
                     <td class="text-capitalize">{{ $product->status}}</td>
                     <td class="">
                     <div class="btn-wrapper d-md-flex d-block gap-2">
@@ -178,6 +180,7 @@
                 <th>ID Produk</th>
                 <th>Foto</th>
                 <th>Nama Produk</th>
+                <th>Harga Produk</th>
                 <th>Status</th>
                 <th>Aksi</th>
             </tr>

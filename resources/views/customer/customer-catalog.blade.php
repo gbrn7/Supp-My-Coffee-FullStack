@@ -184,7 +184,7 @@
                       <input type="hidden" class="id-product" value="{{$product->id}}">
                           <div class="title">{{$product->nama_produk}}</div>
                           <div class="footer d-flex justify-content-between pt-2">
-                              <div class="price">Rp.{{number_format($product->harga,0, ".", ".")}}</div>
+                              <div class="price">Rp {{number_format($product->harga,0, ".", ".")}}</div>
                               <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
                           </div>
                         </div>
@@ -232,7 +232,7 @@
                           <input type="hidden" value="{{$product->id}}" class="id-product">
                             <div class="title">{{$product->nama_produk}}</div>
                             <div class="footer d-flex justify-content-between pt-2">
-                                <div class="price">Rp.{{number_format($product->harga,0, ".", ".")}}</div>
+                                <div class="price">Rp {{number_format($product->harga,0, ".", ".")}}</div>
                                 <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
                             </div>
                           </div>

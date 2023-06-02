@@ -133,7 +133,7 @@
     
     <p class="text-black title">Data Transaksi</p>
     <div class="Produk mt-4 col-10">
-      <table id="example" class="table table-striped mt-3" style="width:100%">
+      <table id="jTable" class="table table-striped mt-3" style="width:100%">
         <thead>
             <tr>
                 <th>ID Transaksi</th>
@@ -150,7 +150,7 @@
               <td>{{$transaction->id}}</td>
               <td>{{$transaction->nama}}</td>
               <td>{{$transaction->alamat}}</td>
-              <td>{{$transaction->total}}</td>
+              <td>Rp {{number_format($transaction->total, 0, ".", ".")}}</td>
               <td>{{$transaction->transaction_code}}</td>
               <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
             </tr>

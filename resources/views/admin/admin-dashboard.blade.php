@@ -141,7 +141,7 @@
                   data-purecounter-start="0"
                   data-purecounter-end="{{$revenue->revenue}}"
                   data-purecounter-duration="1"
-                  data-purecounter-currency="Rp."
+                  data-purecounter-currency="Rp "
                   class="text m-0 purecounter">0</p></div>
               </div>
               <div class="card card-2 col-10 col-lg-3 p-1 rounded-3">

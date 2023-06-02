@@ -18,8 +18,6 @@ class ProdukController extends Controller
         // \DB::enableQueryLog();
         $products = Produk::all();
 
-        $title = 'Delete User!';
-
         // dd(\DB::getQueryLog());
 
         return view('admin.admin-data-produk', ['products' => $products]);

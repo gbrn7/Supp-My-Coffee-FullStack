@@ -17,7 +17,7 @@
                     <div class="col-12 text">
                         <div class="title text-center">Total Penjualan</div>
                         <div class="desc mt-1 text-center revenue"
-                        >Rp.{{$revenue}}</div>
+                        >Rp {{$revenue}}</div>
                     </div>
                 </div>
             </div> 
@@ -240,7 +240,7 @@
 
                 // console.log(x,y,z, data);
                 // console.log(data.revenue, data.totalPenjualan, data.totalCustomer);
-                x.innerHTML = "Rp." + data.revenue;
+                x.innerHTML = "Rp " + data.revenue;
                 y.innerHTML = data.totalPenjualan + " Produk";
                 z.innerHTML = data.totalCustomer + " Orang";
             },

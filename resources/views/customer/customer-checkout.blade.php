@@ -62,10 +62,10 @@
                     {{$product->nama_produk}}
                     </p>
                     <p class="qty mb-0">
-                      {{$product->qty}} pcs X Rp.{{number_format($product->harga,0, ".", ".")}}
+                      {{$product->qty}} pcs X Rp {{number_format($product->harga,0, ".", ".")}}
                     </p>
                     <p class="harga mt-3">
-                      Rp.{{number_format($product->subTotal,0, ".", ".")}}
+                      Rp {{number_format($product->subTotal,0, ".", ".")}}
                     </p>
                   </div>
                 </div>
@@ -87,11 +87,11 @@
                         Total Pembelian
                       </p>
                       <p class="detail">
-                        Rp.{{number_format($totalHargaSekali,0, ".", ".")}} X {{$subs}} Pengiriman
+                        Rp {{number_format($totalHargaSekali,0, ".", ".")}} X {{$subs}} Pengiriman
                       </p>
                   </div>
                   <div class="price-detail">
-                    Rp.{{$totalHarga}}
+                    Rp {{$totalHarga}}
                   </div>
                   <hr class="position-absolute w-100 bottom-0">
                 </div>
@@ -102,12 +102,12 @@
                       </p>
                       
                       <p class="detail">
-                        Rp.{{number_format($biayaKirimSekali,0, ".", ".")}} X {{$subs}} Pengiriman
+                        Rp {{number_format($biayaKirimSekali,0, ".", ".")}} X {{$subs}} Pengiriman
                       </p>
                       
                   </div>
                   <div class="price-detail">
-                    Rp.{{number_format($biayaPengiriman,0, ".", ".")}}
+                    Rp {{number_format($biayaPengiriman,0, ".", ".")}}
                   </div>
                   <hr class="position-absolute w-100 bottom-0">
                 </div>
@@ -122,7 +122,7 @@
                       </p>
                   </div>
                   <div class="price-detail">
-                    Rp.{{number_format($biayaTransaksi,0, ".", ".")}}
+                    Rp {{number_format($biayaTransaksi,0, ".", ".")}}
                   </div>
                   <hr class="position-absolute w-100 bottom-0">
     
@@ -132,7 +132,7 @@
                     Total Tagihan
                   </p>
                   <p class="harga-tagihan">
-                    Rp.{{number_format($totalTagihan ,0 , ".", ".")}}
+                    Rp {{number_format($totalTagihan ,0 , ".", ".")}}
                   </p>
                 </div>
                 <button type="submit" class="col-8 button-checkout">
