@@ -39,7 +39,7 @@ dropdowns.forEach(ddn => {
 });
 
 function clickHandler(event) {
-  console.log(event.target);
+  // console.log(event.target);
   var countEl = event.target.parentNode.querySelector(".qty-input");
   if (event.target.classList.contains("plus")) {
     countEl.value = Number(countEl.value) + 1;
