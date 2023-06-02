@@ -498,6 +498,14 @@ $dot-color: rgba(0, 0, 0, 0.466);
                                     font-size: 8px;
                                 }
                             }
+                            .estimate-text{
+                                @include media-breakpoint-down(lg){
+                                    font-size: 12px;
+                                }
+                                @include media-breakpoint-down(md){
+                                    font-size: 8px;
+                                }
+                            }
                             .btn-2{
                                 font-size: 16px;
                                 letter-spacing: -0.05em;

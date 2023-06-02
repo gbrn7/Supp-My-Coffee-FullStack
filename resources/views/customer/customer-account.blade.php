@@ -251,6 +251,9 @@
               </div>
               <div class="col-3 right-content d-flex flex-column justify-content-between">
                 <div class="bg-dark status-field  text-white btn-1 bg-dark text-center py-2 rounded-3">{{$history->status}}</div>
+                <div class="estimate text-center">
+                  <p class="m-0 estimate-text">Estimasi Pengiriman: {{$history->tanggal_pengiriman}}</p>
+                </div>
               </div>
           </div>
         @endforeach
