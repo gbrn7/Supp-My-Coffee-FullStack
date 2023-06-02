@@ -124,7 +124,7 @@
 
   <!-- Footer Start -->
   <div class="footer-wrapper fixed-bottom text-secondary d-none">
-    <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
+    <strong>Copyright © {{ date('Y') }} SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
