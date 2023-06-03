@@ -178,29 +178,29 @@
         <div  class="swiper mySwiper">
           <div class="swiper-wrapper">
             @foreach ($newProducts as $product)
-            <div class="swiper-slide">
-              <div class="product p-2">
-                <div class="box">
+            <div class="swiper-slide h-100">
+              <div class=" product  p-2 h-100">
+                <div class="box d-flex flex-column">
                     <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
-                    <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
+                        <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                     </a>
                     <a href="" class="text-decoration-none">
                         <div class="product-desc px-3 py-3">
-                          <input type="hidden" value="{{$product->id}}" class="id-product">
+                        <input type="hidden" class="id-product" value="{{$product->id}}">
                             <div class="title">{{$product->nama_produk}}</div>
                             <div class="footer d-flex justify-content-between pt-2">
                                 <div class="price">Rp {{number_format($product->harga,0, ".", ".")}}</div>
                                 <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
                             </div>
                           </div>
-                        </a>
-                        <div class="btn-cart-wrapper px-3 pt-1 pb-3">
+                    </a>
+                    <div class="btn-cart-wrapper px-3 pt-1 pb-3 mt-auto">
                           <button class="btn-cart text-center">
                             <p class="btn-text m-0">Masukkan Keranjang</p>
                           </button>
-                        </div>
+                    </div>
                 </div>
-              </div>  
+              </div>
             </div>
             @endforeach
           </div>

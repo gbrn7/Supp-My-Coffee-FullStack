@@ -22,4 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('webhook', [webhookController::class, 'handler']);
 
-Route::get('', [VisualisasiData::class, 'handler'])->name('api.chart');
+Route::get('chart', [VisualisasiData::class, 'handler'])->name('api.chart');

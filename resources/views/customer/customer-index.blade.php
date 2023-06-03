@@ -244,23 +244,21 @@
         @if ($products)
           @foreach ($products as $product)
               <div class="col-6 col-lg-3 product p-2">
-                <div class="box">
-                <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
-                    <div class="product-img">
-                    <img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid">                    </div>
+              <div class="box d-flex flex-column">
+                  <a href="{{route('customer.catalog.detail', $product->id)}}" class="text-decoration-none">
+                      <div class="product-img"><img loading="lazy" src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-fluid"></div>
                   </a>
                   <a href="" class="text-decoration-none">
-                    <div class="product-desc px-3 py-3">
-                      <div class="title">
-                      {{$product->nama_produk}}
-                      </div>
-                      <div class="footer d-flex justify-content-between pt-2">
-                        <div class="price">Rp.{{$product->harga}}</div>
-                        <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
-                      </div>
-                    </div>
+                      <div class="product-desc px-3 py-3">
+                      <input type="hidden" class="id-product" value="{{$product->id}}">
+                          <div class="title">{{$product->nama_produk}}</div>
+                          <div class="footer d-flex justify-content-between pt-2">
+                              <div class="price">Rp {{number_format($product->harga,0, ".", ".")}}</div>
+                              <div class="trans d-flex align-items-end">{{$product->sales}} Terjual</div>
+                          </div>
+                        </div>
                   </a>
-                </div>
+              </div>
             </div>
           @endforeach
         @else          
