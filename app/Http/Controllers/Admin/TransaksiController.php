@@ -18,16 +18,8 @@ class TransaksiController extends Controller
 
     public function getTransactions(){
         $transactions = DB::table('transaksi as t')
-        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
-        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
-        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
         ->join('user', 'user.id', '=', 't.user_id')
-        ->select('t.id', 'user.nama', DB::raw('sum(dp.qty * prod.harga) as amount'), 't.alamat', 't.transaction_code', 't.status_pembayaran')
-        ->groupBy('t.id')
-        ->groupBy('user.nama')
-        ->groupBy('t.alamat')
-        ->groupBy('t.transaction_code')
-        ->groupBy('t.status_pembayaran')
+        ->select('t.id', 'user.nama', 't.total', 't.alamat', 't.transaction_code', 't.status_pembayaran')
         ->orderBy('t.created_at', 'desc')
         ->get();
 

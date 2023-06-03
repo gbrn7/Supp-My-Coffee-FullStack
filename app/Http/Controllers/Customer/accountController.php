@@ -26,11 +26,12 @@ class accountController extends Controller
         ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
         ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
         ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-        ->select('p.status', 'p.id as id_pengiriman')
+        ->select('p.status', 'p.id as id_pengiriman', 'p.tanggal_pengiriman')
         ->where('t.status_pembayaran', '=', 'SUCCESS')
         ->where('user.id', '=', $userId)
         ->groupBy('p.status')
         ->groupBy('p.id')
+        ->groupBy('p.tanggal_pengiriman')
         ->orderBy('status', 'desc')
         ->orderBy('p.tanggal_pengiriman', 'asc')
         ->get();

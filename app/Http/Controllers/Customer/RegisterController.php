@@ -34,7 +34,7 @@ class RegisterController extends Controller
             ])->withInput();
         }
 
-        $data['role'] = 'member'; //adding the array
+        $data['role'] = 'customer'; //adding the array
         $data['password'] = Hash::make($request->password); //hash password and override array
         
         // dd($data);

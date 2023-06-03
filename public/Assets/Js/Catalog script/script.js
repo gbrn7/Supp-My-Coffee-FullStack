@@ -39,7 +39,7 @@ dropdowns.forEach(ddn => {
 });
 
 function clickHandler(event) {
-  console.log(event.target);
+  // console.log(event.target);
   var countEl = event.target.parentNode.querySelector(".qty-input");
   if (event.target.classList.contains("plus")) {
     countEl.value = Number(countEl.value) + 1;
@@ -73,6 +73,7 @@ function addToCart(id, title) {
   for (let i = 0; i < items.length; i++) {
     if (items[i].querySelector('.id').value === id) {
       isDuplicate = true;
+      menuOpen();
       break;
     }
   }

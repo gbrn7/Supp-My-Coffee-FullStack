@@ -5,12 +5,12 @@
 | Nama Tagihan | Harga | Qty | SubTotal |
 | :--------- | :------------- | :------------- | :------------- |
 @foreach ($mailData['products'] as $product)
-| {{$product->nama_produk}} | Rp.{{$product->harga}} | {{$product->qty}} | {{$product->subTotal}} |
+| {{$product->nama_produk}} | Rp {{number_format($product->harga,0, ".", ".")}} | {{$product->qty}} | Rp {{number_format($product->subTotal,0, ".", ".")}} |
 @endforeach
-| Biaya Pengiriman | Rp.{{$mailData['biayaPengirimanSekali']}} | {{$mailData['subs']}} | Rp.{{$mailData['biayaPengiriman']}} |
-| Biaya Transaksi |  |  | Rp.{{$mailData['biayaTransaksi']}} |
+| Biaya Pengiriman | Rp {{number_format($mailData['biayaPengirimanSekali'], 0, ".", ".")}} | {{number_format($mailData['subs'], 0 , ".", ".")}} | Rp {{number_format($mailData['biayaPengiriman'], 0, ".", ".")}} |
+| Biaya Transaksi |  |  | Rp {{number_format($mailData['biayaTransaksi'], 0, ".", ".")}} |
 | | | | |
-| Total Tagihan |  |  | Rp.{{$mailData['totalTagihan']}} |
+| Total Tagihan |  |  | Rp {{number_format($mailData['totalTagihan'], 0, ".", ".")}} |
 @endcomponent
 
 @component('mail::button', ['url' => $midtransRedirectUrl])

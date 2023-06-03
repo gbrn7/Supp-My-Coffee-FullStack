@@ -20,7 +20,7 @@
 
 </head>
 <body class="dark">
-
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -129,7 +129,7 @@
   
   <!-- Footer Start -->
   <div class="footer-wrapper fixed-bottom text-secondary">
-    <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
+    <strong>Copyright © {{ date('Y') }} SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 

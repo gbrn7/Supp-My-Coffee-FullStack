@@ -173,6 +173,8 @@ const statusField = document.querySelectorAll(".status-field");
 statusField.forEach((e) => {
   if (e.textContent !== "On Process") {
     e.innerHTML = `No. Resi : <strong class="d-block">${e.textContent}</strong>`;
+    let estimate = e.parentNode.querySelector('.estimate');
+    e.parentNode.removeChild(estimate);
   }
 });
 

@@ -28,7 +28,7 @@ class userSeeder extends Seeder
         ],
         [
             'nama' => 'Firza',
-            'role' => 'member',
+            'role' => 'customer',
             'email' => 'member123@gmail.com',
             'password' => Hash::make('mantapjiwa'),
             'alamat' => 'Jl.Merpati No.07',

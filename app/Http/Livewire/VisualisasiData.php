@@ -31,10 +31,9 @@ class VisualisasiData extends Component
 
     public function handler(){
 
-        $data = \DB::select("SELECT sum(dp.qty * prod.harga) as amount, DAYNAME(t.updated_at) as day
-        from transaksi as t inner join pengiriman as p on t.id = p.id_transaksi
-        inner join detail_produk as dp on dp.id_pengiriman = p.id inner join produk as prod on prod.id = dp.id_produk
-        where t.status_pembayaran = 'success' and  t.updated_at >= (now() - INTERVAL 6 day)
+        $data = \DB::select("SELECT sum(t.total) as total, DAYNAME(t.updated_at) as day
+        from transaksi as t where t.status_pembayaran = 'success' 
+        and  t.updated_at >= (now() - INTERVAL 6 day)
         GROUP by day order by t.updated_at asc" );
 
         // dd($data);
@@ -45,7 +44,7 @@ class VisualisasiData extends Component
             $date = (String) Carbon::now()->subDays(6 - $i)->dayName;
             if($date === $data[$j]->day){
                 $transactionsPerWeek['label'][] = $data[$j]->day;
-                $transactionsPerWeek['data'][] = (double) $data[$j]->amount;
+                $transactionsPerWeek['data'][] = (double) $data[$j]->total;
                 if($j+1 < count($data)){
                     $j++;
                 }
@@ -57,10 +56,9 @@ class VisualisasiData extends Component
 
         // dd($data, $transactionsPerWeek);
 
-        $data = \DB::select("SELECT sum(dp.qty * prod.harga) as amount, concat(MONTHNAME(t.updated_at), ' ',  Year(t.updated_at)) as month 
-        from transaksi as t inner join pengiriman as p on t.id =  p.id_transaksi inner join detail_produk as dp on dp.id_pengiriman = p.id 
-        inner join produk as prod on prod.id = dp.id_produk 
-        where t.status_pembayaran = 'success' and t.updated_at >= (now() - INTERVAL 12 month)
+        $data = \DB::select("SELECT sum(t.total) as total, concat(MONTHNAME(t.updated_at), ' ',  Year(t.updated_at)) as month 
+        from transaksi as t where t.status_pembayaran = 'success' 
+        and t.updated_at >= (now() - INTERVAL 12 month)
         GROUP by month order by t.updated_at asc");
 
         // dd($data);
@@ -70,7 +68,7 @@ class VisualisasiData extends Component
             $date = (String) Carbon::now()->subMonth(11 - $i)->format('F Y');
             if($date === $data[$j]->month){
                 $transactionsPerMonth['label'][] = $data[$j]->month;
-                $transactionsPerMonth['data'][] = (double) $data[$j]->amount;
+                $transactionsPerMonth['data'][] = (double) $data[$j]->total;
                 if($j+1 < count($data)){
                     $j++;
                 }
@@ -84,10 +82,7 @@ class VisualisasiData extends Component
 
 
         $revenue = DB::table('transaksi as t')
-        ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
-        ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
-        ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-        ->select(DB::raw('sum(dp.qty * prod.harga) as revenue'))
+        ->select(DB::raw('sum(t.total) as revenue'))
         ->where('t.status_pembayaran', '=', 'SUCCESS')
         ->first();
 
@@ -105,7 +100,7 @@ class VisualisasiData extends Component
 
         // dd($revenue, $totalPenjualan, $totalCustomer);
 
-        return ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth, 'revenue' => number_format($revenue->revenue,2), 
+        return ['transactionsPerWeek' => $transactionsPerWeek, 'transactionsPerMonth' => $transactionsPerMonth, 'revenue' => number_format($revenue->revenue,0, ".", "."), 
         'totalPenjualan' => (double) $totalPenjualan->totalPenjualan, 'totalCustomer' => (double) $totalCustomer->totalCustomer];
     }
 }

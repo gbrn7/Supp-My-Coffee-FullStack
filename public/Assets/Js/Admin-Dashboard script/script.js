@@ -24,7 +24,7 @@ modeSwitch.addEventListener("click", () => {
 
 
 $(document).ready(function () {
-  $('#example').DataTable({
+  $('#jTable').DataTable({
     "ordering": false
   });
 });

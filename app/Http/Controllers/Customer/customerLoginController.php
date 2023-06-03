@@ -20,7 +20,7 @@ class customerLoginController extends Controller
             'password' => 'required'
         ]);
 
-        $credentials['role'] = 'member';
+        $credentials['role'] = 'customer';
   
         if (Auth::attempt($credentials)){
             $request->session()->regenerate();
