@@ -73,6 +73,7 @@ function addToCart(id, title) {
   for (let i = 0; i < items.length; i++) {
     if (items[i].querySelector('.id').value === id) {
       isDuplicate = true;
+      menuOpen();
       break;
     }
   }
