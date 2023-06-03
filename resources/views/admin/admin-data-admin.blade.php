@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Data Jadwal</title>
+  <title>Dashboard | Data Admin</title>
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
@@ -14,13 +14,13 @@
   
     <!-- Link BoxIcon -->
     <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
-
+  
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Dashboard style/main.css') }}" />
 
 </head>
 <body class="dark">
-
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -66,7 +66,7 @@
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="nav-link ">
+          <li class="nav-link">
             <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
               <i class='bx bx-coffee-togo' ></i>
               <span class="text nav-text">Data Produk</span>
@@ -78,7 +78,7 @@
               <span class="text nav-text">Data Transaksi</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
               <i class='bx bx-calendar-event' ></i>
               <span class="text nav-text">Data Jadwal</span>
@@ -90,7 +90,7 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
               <i class='bx bxs-user'></i>
               <span class="text nav-text">Data Admin</span>
@@ -126,86 +126,76 @@
   <!-- Header Bg Start -->
   <div class="header-bg position-absolute d-none"></div>
   <!-- Header Bg End -->
-  
+
   <!-- Footer Start -->
-  <div class="footer-wrapper fixed-bottom text-secondary">
+  <div class="footer-wrapper fixed-bottom text-secondary d-none">
     <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
-
   <!-- Content Start-->
-  <section class="content">
-    
-    <p class="text-black title">Data Jadwal</p>
-    <div class="Produk col-10 mt-4 ">
+  <section class="content d-none">
+    <p class="text-black title">Data Admin</p>
+    <div class="btn-wrapper mt-2 mb-4">
+        <div class="btn btn-success"><a href="{{route('admin.dataAdmin.create')}}" class="text-decoration-none text-white">Tambah Admin</a></div>
+    </div>
+
     @if(session()->has('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success font-font-weight-bold">
         {{session('success')}}
     </div>
     @endif
-    <table id="example" class="table table-striped mt-4" style="width: 95%">
-          <thead>
+    <div class="Produk mt-2 mb-2 col-10">
+    <table id="example" class="table table-striped mt-3" style="width:100%">
+        <thead>
             <tr>
-              <th>Id</th>
-              <th>Nama Cust</th>
-              <th>List Produk</th>
+                <th>ID Admin</th>
+                <th>Nama Admin</th>
+                <th>Email</th>
+                <th>Alamat</th>
+                <th>No Telepon</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach ($users as  $user)
+                 <tr>
+                    <td>{{ $user->id}}</td>
+                    <td>{{ $user->nama}}</td>
+                    <td>{{ $user->email}}</td>
+                    <td>{{ $user->alamat}}</td>
+                    <td>{{ $user->no_telp}}</td>
+                    <td class="">
+                    <div class="btn-wrapper d-md-flex d-block gap-2">
+                        <a href="{{route('admin.dataAdmin.edit',  $user->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
+                        <form action="{{route('admin.dataAdmin.destroy', $user->id)}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <input type="hidden" name="_method">
+                            <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                <i class='bx bx-trash text-white' ></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+                 </tr>
+             @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+              <th>ID Admin</th>
+              <th>Nama Admin</th>
+              <th>Email</th>
               <th>Alamat</th>
-              <th>Ekspedisi</th>
-              <th>Jadwal Pengiriman</th>
+              <th>No Telepon</th>
               <th>Aksi</th>
             </tr>
-          </thead>
-          <tbody>
-            @foreach ($schedules as $schedule)
-            <tr>
-              <td>{{$schedule->id}}</td>
-              <td>{{$schedule->nama}}</td>
-              <td>
-                  @foreach ($schedule->details as $detail)
-                    {{$detail->nama_produk}} : {{$detail->qty}} Pcs <br><br>
-                  @endforeach
-              </td>
-              <td>{{$schedule->alamat}}</td>
-              <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
-              <td>{{$schedule->tanggal_pengiriman}}</td>
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                  <form action="{{route('admin.jadwal.update', $schedule->id)}}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <input
-                      class="resi-input rounded-3 form-control-sm mb-3 mb-lg-1"
-                      type="text"
-                      name="resi"
-                      id="resi"
-                      placeholder="Masukkan No Resi"
-                    />
-                    <button type="submit" class="btn btn-success">
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>Id</th>
-              <th>Nama Cust</th>
-              <th>List Produk</th>
-              <th>Alamat</th>
-              <th>Ekspedisi</th>
-              <th>Jadwal Pengiriman</th>
-              <th>Aksi</th>
-            </tr>
-          </tfoot>
-        </table>
+        </tfoot>
+    </table>
     </div>
   </section>
   <!-- Content End -->
+
 </body>
 
   <!-- Bootstrap js -->
@@ -216,9 +206,40 @@
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
+  <!-- Pure Counter JS -->
+  <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
+
+  {{-- Sweetalert JS --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/Admin-dataJadwal script/script.js') }}"></script>
+  <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
 
+  {{-- Delete script --}}
+  <script type="text/javascript"> 
+      let form = document.querySelectorAll('form');
+      form.forEach(element => {
+        element.addEventListener('click', function(e){
+            var btn = element.querySelector('.show_confirm');
+
+            e.preventDefault();
+
+            Swal.fire({
+              title: 'Apakah Anda Yakin?',
+              text: "Data yang sudah dihapus tidak akan tertampil!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yakin!',
+              cancelButtonText: 'Batal'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                element.submit();
+              }
+            })
+        });
+      });
+  </script>
 
 </html>

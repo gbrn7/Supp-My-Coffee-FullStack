@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Data Jadwal</title>
+  <title>Dashboard | Tambah Data Produk</title>
 
-    <!-- Icon -->
-    <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
-  
-    <!-- CSS Bootrap-->
-    <link rel="stylesheet" href="{{ asset('Assets/Vendor/bootstrap-5.2/css/bootstrap.min.css') }}" />
-  
-    <!-- Link BoxIcon -->
-    <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
+  <!-- Icon -->
+  <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Dashboard style/main.css') }}" />
+  <!-- CSS Bootrap-->
+  <link rel="stylesheet" href="{{ asset('Assets/Vendor/bootstrap-5.2/css/bootstrap.min.css') }}" />
+
+  <!-- Link BoxIcon -->
+  <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Tambah Produk style/main.css') }}" />
 
 </head>
 <body class="dark">
@@ -40,7 +40,7 @@
   </div>
   <!-- Pre Load End -->
 
-  <!-- sidebar Start -->
+  <!-- sidebar start -->
   <nav class="sidebar">
     <header class="d-flex gap-2 align-items-center">
       <div class="image-text">
@@ -66,7 +66,7 @@
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="nav-link ">
+          <li class="nav-link">
             <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
               <i class='bx bx-coffee-togo' ></i>
               <span class="text nav-text">Data Produk</span>
@@ -78,7 +78,7 @@
               <span class="text nav-text">Data Transaksi</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.jadwal')}}" class="text-decoration-none text-black">
               <i class='bx bx-calendar-event' ></i>
               <span class="text nav-text">Data Jadwal</span>
@@ -90,7 +90,7 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
               <i class='bx bxs-user'></i>
               <span class="text nav-text">Data Admin</span>
@@ -111,7 +111,6 @@
                 <i class='bx bx-sun icon sun'></i>
               </div>
               <span class="mode-text text">Dark Mode</span>
-
               <div class="toggle-switch">
                 <span class="switch dark"></span>
               </div>
@@ -126,88 +125,76 @@
   <!-- Header Bg Start -->
   <div class="header-bg position-absolute d-none"></div>
   <!-- Header Bg End -->
-  
+
   <!-- Footer Start -->
-  <div class="footer-wrapper fixed-bottom text-secondary">
+  <div class="footer-wrapper fixed-bottom text-secondary d-none">
     <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
 
   <!-- Content Start-->
-  <section class="content">
-    
-    <p class="text-black title">Data Jadwal</p>
-    <div class="Produk col-10 mt-4 ">
-    @if(session()->has('success'))
-    <div class="alert alert-success">
-        {{session('success')}}
-    </div>
-    @endif
-    <table id="example" class="table table-striped mt-4" style="width: 95%">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nama Cust</th>
-              <th>List Produk</th>
-              <th>Alamat</th>
-              <th>Ekspedisi</th>
-              <th>Jadwal Pengiriman</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($schedules as $schedule)
-            <tr>
-              <td>{{$schedule->id}}</td>
-              <td>{{$schedule->nama}}</td>
-              <td>
-                  @foreach ($schedule->details as $detail)
-                    {{$detail->nama_produk}} : {{$detail->qty}} Pcs <br><br>
-                  @endforeach
-              </td>
-              <td>{{$schedule->alamat}}</td>
-              <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
-              <td>{{$schedule->tanggal_pengiriman}}</td>
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                  <form action="{{route('admin.jadwal.update', $schedule->id)}}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <input
-                      class="resi-input rounded-3 form-control-sm mb-3 mb-lg-1"
-                      type="text"
-                      name="resi"
-                      id="resi"
-                      placeholder="Masukkan No Resi"
-                    />
-                    <button type="submit" class="btn btn-success">
-                      Submit
-                    </button>
-                  </form>
+  <section class="content d-none">    
+    <p class="text-black title mb-2">Data Admin</p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10">
+
+        <!-- alert here -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+        </div>
+        @endif
+
+          <div class="card card-primary">
+            <div class="card-header ">
+              <h5 class="card-title m-0">Tambah Data Admin</h5>
+            </div>
+            <form  method="POST" action="{{route('admin.dataAdmin.store')}}" enctype="multipart/form-data">
+              @csrf
+              <div class="card-body">
+                <div class="form-group mb-3">
+                  <label for="nama" class="mb-1">Nama</label>
+                  <input class="form-control" type="text" name="nama" id="nama" placeholder="Nama Admin" value="{{old('nama')}}">
                 </div>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>Id</th>
-              <th>Nama Cust</th>
-              <th>List Produk</th>
-              <th>Alamat</th>
-              <th>Ekspedisi</th>
-              <th>Jadwal Pengiriman</th>
-              <th>Aksi</th>
-            </tr>
-          </tfoot>
-        </table>
+                <div class="form-group mb-3">
+                  <label for="alamat" class="mb-1">Alamat</label>
+                  <input class="form-control" type="text" name="alamat" id="alamat" value="{{old('alamat')}}" placeholder="JL. Mawar No. 12">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="no_telp" class="mb-1">No Telepon</label>
+                  <input class="form-control" type="text" name="no_telp" id="no_telp" placeholder="0812345678" value="{{old('no_telp')}}">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="email" class="mb-1">Email</label>
+                  <input class="form-control" type="email" name="email" id="email" placeholder="admin@gmail.com" value="{{old('email')}}">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="password" class="mb-1">Password</label>
+                  <div class="pass-wrapper position-relative d-flex">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="{{old('password')}}">
+                    <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                  </div>
+                  {{-- <input class="form-control" type="password" name="password" id="password" placeholder="Masukkan password" value="{{old('password')}}"> --}}
+                </div>
+                
+              </div>
+              <div class="card-footer mb-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <!-- Content End -->
 </body>
-
   <!-- Bootstrap js -->
   <script src="{{ asset('Assets/Vendor/bootstrap-5.2/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -218,7 +205,9 @@
 
 
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/Admin-dataJadwal script/script.js') }}"></script>
+  <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
 
+  {{-- Show hide pass JS --}}
+  <script src="{{ asset('Assets/Js/login script/script.js') }}"></script>
 
 </html>

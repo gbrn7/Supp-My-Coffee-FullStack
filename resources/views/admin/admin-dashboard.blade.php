@@ -21,6 +21,7 @@
 </head>
 <body class="vh-100 dark">
 
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -88,6 +89,12 @@
             <a href="{{route('admin.visualisasiData')}}" class="text-decoration-none text-black">
               <i class='bx bx-bar-chart-alt'></i>
               <span class="text nav-text">Visualisasi Data</span>
+            </a>
+          </li> 
+          <li class="nav-link">
+            <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-user'></i>
+              <span class="text nav-text">Data Admin</span>
             </a>
           </li>
         </ul>

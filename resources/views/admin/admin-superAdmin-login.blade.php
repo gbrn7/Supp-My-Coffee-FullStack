@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Assets/Css/Login style/main.css">
-    <title>Login Admin | Supp My Coffee</title>
+    <title>Login Super Admin | Supp My Coffee</title>
 
       <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png')}}" type="image/x-icon">
@@ -60,7 +60,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form action="{{route('admin.login.authenticate')}}" enctype="multipart/form-data" method="post">
+                    <form action="{{route('superAdmin.login.authenticate')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="login-form d-flex flex-column gap-1 gap-lg-2 mt-1 mt-lg-3" >
                             <label for="email">Email</label>
@@ -74,7 +74,6 @@
                                 </div>
                             </div>
                             <button class="login-btn mt-1 mt-lg-2" type="submit">Login</button>
-                            <a href="{{route('superAdmin.login')}}">Login Super Admin</a>
                         </form>
                     </div>
                 </div>
