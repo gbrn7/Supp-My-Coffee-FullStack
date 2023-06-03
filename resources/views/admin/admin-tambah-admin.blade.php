@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Data Transaksi</title>
-  
-    <!-- Icon -->
-    <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
-  
-    <!-- CSS Bootrap-->
-    <link rel="stylesheet" href="{{ asset('Assets/Vendor/bootstrap-5.2/css/bootstrap.min.css') }}" />
-  
-    <!-- Link BoxIcon -->
-    <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
-  
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Dashboard style/main.css') }}" />
+  <title>Dashboard | Tambah Data Produk</title>
+
+  <!-- Icon -->
+  <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
+
+  <!-- CSS Bootrap-->
+  <link rel="stylesheet" href="{{ asset('Assets/Vendor/bootstrap-5.2/css/bootstrap.min.css') }}" />
+
+  <!-- Link BoxIcon -->
+  <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Tambah Produk style/main.css') }}" />
 
 </head>
 <body class="dark">
@@ -72,7 +72,7 @@
               <span class="text nav-text">Data Produk</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.transaksi')}}" class="text-decoration-none text-black">
               <i class='bx bxs-wallet' ></i>
               <span class="text nav-text">Data Transaksi</span>
@@ -90,7 +90,7 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
               <i class='bx bxs-user'></i>
               <span class="text nav-text">Data Admin</span>
@@ -111,7 +111,6 @@
                 <i class='bx bx-sun icon sun'></i>
               </div>
               <span class="mode-text text">Dark Mode</span>
-
               <div class="toggle-switch">
                 <span class="switch dark"></span>
               </div>
@@ -129,55 +128,73 @@
 
   <!-- Footer Start -->
   <div class="footer-wrapper fixed-bottom text-secondary d-none">
-    <strong>Copyright © {{ date('Y') }} SUPP MY COFFEE</strong> All Right Reserved
+    <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
 
   <!-- Content Start-->
-  <section class="content d-none">
-    
-    <p class="text-black title">Data Transaksi</p>
-    <div class="Produk mt-4 col-10">
-      <table id="jTable" class="table table-striped mt-3" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Cust</th>
-                <th>Alamat</th>
-                <th>Total</th>
-                <th>Kode Transaksi</th>
-                <th>Status Pembayaran</th>
-            </tr>
-        </thead>
-        <tbody>
-          @foreach ($transactions as $transaction)
-            <tr>
-              <td>{{$transaction->id}}</td>
-              <td>{{$transaction->nama}}</td>
-              <td>{{$transaction->alamat}}</td>
-              <td>Rp {{number_format($transaction->total, 0, ".", ".")}}</td>
-              <td>{{$transaction->transaction_code}}</td>
-              <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
-            </tr>
-          @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Cust</th>
-                <th>Alamat</th>
-                <th>Total</th>
-                <th>Kode Transaksi</th>
-                <th>Status Pembayaran</th>
-            </tr>
-        </tfoot>
-    </table>
+  <section class="content d-none">    
+    <p class="text-black title mb-2">Data Admin</p>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10">
+
+        <!-- alert here -->
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+        </div>
+        @endif
+
+          <div class="card card-primary">
+            <div class="card-header ">
+              <h5 class="card-title m-0">Tambah Data Admin</h5>
+            </div>
+            <form  method="POST" action="{{route('admin.dataAdmin.store')}}" enctype="multipart/form-data">
+              @csrf
+              <div class="card-body">
+                <div class="form-group mb-3">
+                  <label for="nama" class="mb-1">Nama</label>
+                  <input class="form-control" type="text" name="nama" id="nama" placeholder="Nama Admin" value="{{old('nama')}}">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="alamat" class="mb-1">Alamat</label>
+                  <input class="form-control" type="text" name="alamat" id="alamat" value="{{old('alamat')}}" placeholder="JL. Mawar No. 12">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="no_telp" class="mb-1">No Telepon</label>
+                  <input class="form-control" type="text" name="no_telp" id="no_telp" placeholder="0812345678" value="{{old('no_telp')}}">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="email" class="mb-1">Email</label>
+                  <input class="form-control" type="email" name="email" id="email" placeholder="admin@gmail.com" value="{{old('email')}}">
+                </div>
+                <div class="form-group mb-3">
+                  <label for="password" class="mb-1">Password</label>
+                  <div class="pass-wrapper position-relative d-flex">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="{{old('password')}}">
+                    <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                  </div>
+                  {{-- <input class="form-control" type="password" name="password" id="password" placeholder="Masukkan password" value="{{old('password')}}"> --}}
+                </div>
+                
+              </div>
+              <div class="card-footer mb-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <!-- Content End -->
 </body>
-
   <!-- Bootstrap js -->
   <script src="{{ asset('Assets/Vendor/bootstrap-5.2/js/bootstrap.bundle.min.js') }}"></script>
 
@@ -186,10 +203,11 @@
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-  <!-- Pure Counter JS -->
-  <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
 
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js')}}"></script>
+  <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
+
+  {{-- Show hide pass JS --}}
+  <script src="{{ asset('Assets/Js/login script/script.js') }}"></script>
 
 </html>

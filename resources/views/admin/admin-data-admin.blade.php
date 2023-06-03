@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Data Transaksi</title>
-  
+  <title>Dashboard | Data Admin</title>
+
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
   
@@ -20,7 +20,7 @@
 
 </head>
 <body class="dark">
-
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -40,7 +40,7 @@
   </div>
   <!-- Pre Load End -->
 
-  <!-- sidebar start -->
+  <!-- sidebar Start -->
   <nav class="sidebar">
     <header class="d-flex gap-2 align-items-center">
       <div class="image-text">
@@ -72,7 +72,7 @@
               <span class="text nav-text">Data Produk</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.transaksi')}}" class="text-decoration-none text-black">
               <i class='bx bxs-wallet' ></i>
               <span class="text nav-text">Data Transaksi</span>
@@ -90,7 +90,7 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
               <i class='bx bxs-user'></i>
               <span class="text nav-text">Data Admin</span>
@@ -129,53 +129,73 @@
 
   <!-- Footer Start -->
   <div class="footer-wrapper fixed-bottom text-secondary d-none">
-    <strong>Copyright © {{ date('Y') }} SUPP MY COFFEE</strong> All Right Reserved
+    <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
-
   <!-- Content Start-->
   <section class="content d-none">
-    
-    <p class="text-black title">Data Transaksi</p>
-    <div class="Produk mt-4 col-10">
-      <table id="jTable" class="table table-striped mt-3" style="width:100%">
+    <p class="text-black title">Data Admin</p>
+    <div class="btn-wrapper mt-2 mb-4">
+        <div class="btn btn-success"><a href="{{route('admin.dataAdmin.create')}}" class="text-decoration-none text-white">Tambah Admin</a></div>
+    </div>
+
+    @if(session()->has('success'))
+    <div class="alert alert-success font-font-weight-bold">
+        {{session('success')}}
+    </div>
+    @endif
+    <div class="Produk mt-2 mb-2 col-10">
+    <table id="example" class="table table-striped mt-3" style="width:100%">
         <thead>
             <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Cust</th>
+                <th>ID Admin</th>
+                <th>Nama Admin</th>
+                <th>Email</th>
                 <th>Alamat</th>
-                <th>Total</th>
-                <th>Kode Transaksi</th>
-                <th>Status Pembayaran</th>
+                <th>No Telepon</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-          @foreach ($transactions as $transaction)
-            <tr>
-              <td>{{$transaction->id}}</td>
-              <td>{{$transaction->nama}}</td>
-              <td>{{$transaction->alamat}}</td>
-              <td>Rp {{number_format($transaction->total, 0, ".", ".")}}</td>
-              <td>{{$transaction->transaction_code}}</td>
-              <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
-            </tr>
-          @endforeach
+             @foreach ($users as  $user)
+                 <tr>
+                    <td>{{ $user->id}}</td>
+                    <td>{{ $user->nama}}</td>
+                    <td>{{ $user->email}}</td>
+                    <td>{{ $user->alamat}}</td>
+                    <td>{{ $user->no_telp}}</td>
+                    <td class="">
+                    <div class="btn-wrapper d-md-flex d-block gap-2">
+                        <a href="{{route('admin.dataAdmin.edit',  $user->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
+                        <form action="{{route('admin.dataAdmin.destroy', $user->id)}}" method="post">
+                            @method('delete')
+                            @csrf
+                            <input type="hidden" name="_method">
+                            <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                <i class='bx bx-trash text-white' ></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+                 </tr>
+             @endforeach
         </tbody>
         <tfoot>
             <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Cust</th>
-                <th>Alamat</th>
-                <th>Total</th>
-                <th>Kode Transaksi</th>
-                <th>Status Pembayaran</th>
+              <th>ID Admin</th>
+              <th>Nama Admin</th>
+              <th>Email</th>
+              <th>Alamat</th>
+              <th>No Telepon</th>
+              <th>Aksi</th>
             </tr>
         </tfoot>
     </table>
     </div>
   </section>
   <!-- Content End -->
+
 </body>
 
   <!-- Bootstrap js -->
@@ -189,7 +209,37 @@
   <!-- Pure Counter JS -->
   <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
 
+  {{-- Sweetalert JS --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js')}}"></script>
+  <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
+
+  {{-- Delete script --}}
+  <script type="text/javascript"> 
+      let form = document.querySelectorAll('form');
+      form.forEach(element => {
+        element.addEventListener('click', function(e){
+            var btn = element.querySelector('.show_confirm');
+
+            e.preventDefault();
+
+            Swal.fire({
+              title: 'Apakah Anda Yakin?',
+              text: "Data yang sudah dihapus tidak akan tertampil!",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yakin!',
+              cancelButtonText: 'Batal'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                element.submit();
+              }
+            })
+        });
+      });
+  </script>
 
 </html>

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\JadwalController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DataAdminController;
 use App\Http\Controllers\Customer\indexController;
 use App\Http\Controllers\Customer\catalogController;
 use App\Http\Controllers\Customer\detailProdukController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\Customer\RegisterController;
 use App\Http\Controllers\Customer\dateController;
 use App\Http\Controllers\Customer\transactionController as customerTransaksiController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
+use App\Http\Controllers\Admin\SuperAdminLoginController;
 use App\Http\Livewire\VisualisasiData;
 
 /*
@@ -44,6 +46,11 @@ use App\Http\Livewire\VisualisasiData;
    Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
    Route::post('admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.authenticate');
    Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
+
+   // Login Route (super admin)
+   Route::get('superAdmin/login', [SuperAdminLoginController::class, 'index'])->name('superAdmin.login');
+   Route::post('superAdmin/login', [SuperAdminLoginController::class, 'authenticate'])->name('superAdmin.login.authenticate');
+   Route::get('superAdmin/logout', [SuperAdminLoginController::class, 'logout'])->name('superAdmin.logout');
    
    //Register Route
    Route::get('/register', [RegisterController::class, 'index'])->name('regisPage');
@@ -84,6 +91,16 @@ use App\Http\Livewire\VisualisasiData;
          Route::POST('/destroy/{id}', [ProdukController::class, 'destroy'])->name('admin.produk.destroy');
       });
 
+      // Data Admin Route
+      Route::group(['prefix' => 'dataAdmin'], function(){
+         Route::get('/', [DataAdminController::class, 'index'])->name('admin.dataAdmin');
+         Route::get('/create', [DataAdminController::class, 'create'])->name('admin.dataAdmin.create');
+         Route::post('/store', [DataAdminController::class, 'store'])->name('admin.dataAdmin.store');
+         Route::get('/edit/{id}', [DataAdminController::class, 'edit'])->name('admin.dataAdmin.edit');
+         Route::put('/update/{id}', [DataAdminController::class, 'update'])->name('admin.dataAdmin.update');
+         Route::POST('/destroy/{id}', [DataAdminController::class, 'destroy'])->name('admin.dataAdmin.destroy');
+      });
+
       // Transaksi Route
       Route::get('/transaksi', [TransaksiController::class, 'index'])->name('admin.transaksi');
 
@@ -93,9 +110,21 @@ use App\Http\Livewire\VisualisasiData;
          Route::put('/update/{id}', [JadwalController::class, 'update'])->name('admin.jadwal.update');
       });
 
-      //Visualisasi Dara Route
+      //Visualisasi Data Route
       Route::get('/visualisasiData', VisualisasiData::class, 'render')->name('admin.visualisasiData');
    });
+
+   // Route::group(['prefix' => 'superAdmin'], function (){
+   //    // Data Admin Route
+   //    Route::group(['prefix' => 'dataAdmin'], function(){
+   //       Route::get('/', [DataAdminController::class, 'index'])->name('admin.dataAdmin');
+   //       Route::get('/create', [DataAdminController::class, 'create'])->name('admin.dataAdmin.create');
+   //       Route::post('/store', [DataAdminController::class, 'store'])->name('admin.dataAdmin.store');
+   //       Route::get('/edit/{id}', [DataAdminController::class, 'edit'])->name('admin.dataAdmin.edit');
+   //       Route::put('/update/{id}', [DataAdminController::class, 'update'])->name('admin.dataAdmin.update');
+   //       Route::POST('/destroy/{id}', [DataAdminController::class, 'destroy'])->name('admin.dataAdmin.destroy');
+   //    });
+   // });
 
    // Get Region Data
    Route::get('/provinsi/{idProvinsi}/kota', [rajaOngkirController::class, 'getKabKot'])->name('getKabKota');

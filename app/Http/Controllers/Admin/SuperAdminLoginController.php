@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
 
-
-class LoginController extends Controller
+class SuperAdminLoginController extends Controller
 {
     public function index()
     {
-        return view('admin.admin-login');
+        return view('admin.admin-superAdmin-login');
     }
 
     public function authenticate(Request $request)
@@ -24,7 +23,7 @@ class LoginController extends Controller
         ]);
 
         $user = user::where('email', $credentials['email'])
-                ->where('role', 'admin') ->first();    
+                ->where('role', 'superAdmin') ->first();    
    
         $pw = Crypt::decryptString($user->password);
         if ($pw=$credentials['password']){
@@ -44,6 +43,6 @@ class LoginController extends Controller
     
         $request->session()->regenerateToken();
     
-        return redirect()->route('admin.login');
+        return redirect()->route('superAdmin.login');
     }
 }
