@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Crypt;
 class DataAdminController extends Controller
 {
     public function index(){
+
+        // dd(auth()->user());
         if(auth()->user()->role!='superAdmin'){
             return redirect()->route('admin.dashboard')->with('error', 'Anda tidak dapat mengakses halaman Data Admin.');
         }

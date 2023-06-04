@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 
 
 class LoginController extends Controller
@@ -23,12 +26,17 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
 
-        $user = user::where('email', $credentials['email'])
-                ->where('role', 'admin') ->first();    
-   
+        $user = DB::table('user')
+                ->where('email', $credentials['email']) 
+                ->where(function (Builder $query) {
+                    $query->where('role', 'admin')
+                          ->orWhere('role', 'superAdmin');
+                })
+                ->first();    
         $pw = Crypt::decryptString($user->password);
-        if ($pw=$credentials['password']){
-            Auth::login($user, false);
+
+        if ($pw == $credentials['password']){
+            Auth::loginUsingId($user->id, $remember = false);
 
             return redirect()->intended(route('admin.dashboard'));
         }

@@ -46,11 +46,6 @@ use App\Http\Livewire\VisualisasiData;
    Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
    Route::post('admin/login', [AdminLoginController::class, 'authenticate'])->name('admin.login.authenticate');
    Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
-
-   // Login Route (super admin)
-   Route::get('superAdmin/login', [SuperAdminLoginController::class, 'index'])->name('superAdmin.login');
-   Route::post('superAdmin/login', [SuperAdminLoginController::class, 'authenticate'])->name('superAdmin.login.authenticate');
-   Route::get('superAdmin/logout', [SuperAdminLoginController::class, 'logout'])->name('superAdmin.logout');
    
    //Register Route
    Route::get('/register', [RegisterController::class, 'index'])->name('regisPage');

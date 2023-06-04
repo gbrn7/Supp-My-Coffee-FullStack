@@ -74,7 +74,6 @@
                                 </div>
                             </div>
                             <button class="login-btn mt-1 mt-lg-2" type="submit">Login</button>
-                            <a href="{{route('superAdmin.login')}}">Login Super Admin</a>
                         </form>
                     </div>
                 </div>
