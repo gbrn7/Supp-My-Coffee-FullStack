@@ -67,7 +67,7 @@
                             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" autofocus required value="{{old('email')}}">
                             <div class="password-container">
                                 <label for="password">Password</label>
-                                <div class="pass-wrapper position-relative d-flex">
+                                <div class="pass-wrapper position-relative d-flex mt-1">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
                                     <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
                                     <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
