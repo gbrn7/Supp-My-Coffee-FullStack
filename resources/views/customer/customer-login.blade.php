@@ -67,7 +67,7 @@
                             <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" autofocus required value="{{old('email')}}">
                             <div class="password-container">
                                 <label for="password">Password</label>
-                                <div class="pass-wrapper position-relative d-flex">
+                                <div class="pass-wrapper position-relative d-flex mt-1">
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
                                     <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
                                     <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
@@ -79,6 +79,15 @@
                             </div>
                             <button class="login-btn mt-1 mt-lg-2" type="submit">Login</button>
                         </form>
+                        <hr class="m-0 my-1">
+                        <a href="{{route('customer.login.google')}}" class="text-center text-decoration-none">
+                            <div class="google-btn d-flex p-2 justify-content-center align-items-center gap-2 bg-white border border-2">
+                                <img src="Assets/img/g-logo 1.png">
+                                <div class="text-wrapper">
+                                    Masuk / Daftar
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,7 @@ use App\Http\Controllers\Customer\customerLoginController;
 use App\Http\Controllers\Customer\rajaOngkirController;
 use App\Http\Controllers\Customer\checkoutController;
 use App\Http\Controllers\Customer\RegisterController;
+use App\Http\Controllers\Customer\socialAuthController;
 use App\Http\Controllers\Customer\dateController;
 use App\Http\Controllers\Customer\transactionController as customerTransaksiController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
@@ -41,6 +42,8 @@ use App\Http\Livewire\VisualisasiData;
    Route::post('/login', [customerLoginController::class, 'authenticate'])->name('customer.login.authenticate');
    Route::get('/logout', [customerLoginController::class, 'logout'])->name('customer.logout');
    Route::get('/payment-finish', [customerTransaksiController::class, 'paymentFinish'])->name('customer.payment-finish');
+   Route::get('/login-google', [socialAuthController::class, 'redirectToProvider'])->name('customer.login.google');
+   Route::get('/auth/google/callback', [socialAuthController::class, 'handlerCallBack'])->name('customer.login.callBack');
    
    // Login Route (admin)
    Route::get('admin/login', [AdminLoginController::class, 'index'])->name('admin.login');
