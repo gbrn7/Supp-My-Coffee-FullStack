@@ -76,7 +76,7 @@ body.dark .content .card .card-body textarea {
 body.dark .content .card .card-body select {
   color: var(--text-color);
 }
-body.dark .content .card .card-body .status {
+body.dark .content .card .card-body .role {
   color: white !important;
 }
 body.dark .content .card .card-body .status-state {
@@ -474,8 +474,19 @@ body.dark .content .card .card-body .status-state {
   left: 240px;
 }
 
-.form-select {
+.password-container {
+  position: relative;
+}
+
+.pass-wrapper {
+  position: relative;
+}
+
+.pass-wrapper i {
   color: var(--text-color);
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .select-wrapper {
@@ -489,6 +500,6 @@ body.dark .content .card .card-body .status-state {
   font-size: 20px;
 }
 
-.status {
+.role {
   background-image: none;
 }/*# sourceMappingURL=main.css.map */

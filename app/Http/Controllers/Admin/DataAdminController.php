@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Crypt;
 
 
@@ -30,7 +31,10 @@ class DataAdminController extends Controller
     public function getUser(){
         $users = DB::table('user')
             ->select('*')
-            ->where('role', '=', 'admin')
+            ->where(function (Builder $query) {
+                $query->where('role', 'admin')
+                      ->orWhere('role', 'superAdmin');
+            })
             ->limit(16)
             ->get();
 
@@ -47,7 +51,8 @@ class DataAdminController extends Controller
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
             'email' => 'required|unique:user',
-            'password' => 'required|min:5'
+            'password' => 'required|min:5',
+            'role' => 'required|string'
         ]);
 
         $isEmailExist = User::where('email', $request->email)->exists();
@@ -57,7 +62,6 @@ class DataAdminController extends Controller
             ])->withInput();
         }
 
-        $data['role'] = 'admin'; //adding the array
         $data['password'] = Crypt::encryptString($request->password); //hash password and override array
         
         // dd($data);
@@ -83,11 +87,12 @@ class DataAdminController extends Controller
             'nama' => 'required',
             'alamat' => 'required',
             'no_telp' => 'required|numeric',
-            'password' => 'required|min:5'
+            'password' => 'required|min:5',
+            'role' => 'required|string'
         ]);
 
         $user = User::where('id', auth()->user()->id)
-        ->update(['nama' => $data['nama'], 'alamat' => $data['alamat'], 'no_telp' => $data['no_telp'], 'password' => $data['password']]);
+        ->update(['nama' => $data['nama'], 'alamat' => $data['alamat'], 'no_telp' => $data['no_telp'], 'password' => $data['password'], 'role' => $data['role']]);
 
         return redirect()->route('admin.dataAdmin')->with('success', 'Data Admin Diedit!');
     }

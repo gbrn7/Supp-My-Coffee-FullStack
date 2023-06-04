@@ -106,7 +106,7 @@ body.dark{
                 select{
                     color: var(--text-color);
                 }
-                .status{
+                .role{
                     color: white !important;
                 }
 
@@ -590,8 +590,19 @@ $dot-color: rgba(0, 0, 0, 0.466);
     left: 240px;
 }
 
-.form-select{
+.password-container{
+    position: relative;
+}
+
+.pass-wrapper{
+    position: relative;
+}
+
+.pass-wrapper i{
     color: var(--text-color);
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 .select-wrapper{
@@ -605,6 +616,6 @@ $dot-color: rgba(0, 0, 0, 0.466);
     font-size: 20px;
 }
 
-.status{
+.role{
     background-image: none;
 }

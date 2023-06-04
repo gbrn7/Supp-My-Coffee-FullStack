@@ -90,12 +90,14 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
+          @if (auth()->user()->role == 'superAdmin')
           <li class="nav-link active">
             <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
               <i class='bx bxs-user'></i>
               <span class="text nav-text">Data Admin</span>
             </a>
           </li>
+          @endif
         </ul>
         <div class="bottom-content ">
           <ul>
@@ -146,7 +148,7 @@
     </div>
     @endif
     <div class="Produk mt-2 mb-2 col-10">
-    <table id="example" class="table table-striped mt-3" style="width:100%">
+    <table id="jTable" class="table table-striped mt-3" style="width:100%">
         <thead>
             <tr>
                 <th>ID Admin</th>

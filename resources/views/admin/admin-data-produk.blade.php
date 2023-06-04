@@ -90,12 +90,14 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
+          @if (auth()->user()->role == 'superAdmin')
           <li class="nav-link">
             <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
               <i class='bx bxs-user'></i>
               <span class="text nav-text">Data Admin</span>
             </a>
           </li>
+          @endif
         </ul>
         <div class="bottom-content ">
           <ul>

@@ -16,7 +16,10 @@
   <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Tambah Produk style/main.css') }}" />
+  <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-TambahAdmin style/main.css') }}" />
+
+  <!-- Link Remixicon -->
+  <link rel="stylesheet" href="{{ asset('Assets/Vendor/RemixIcon-master/fonts/remixicon.css')}}" />
 
 </head>
 <body class="dark">
@@ -90,12 +93,14 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link active">
-            <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
-              <i class='bx bxs-user'></i>
-              <span class="text nav-text">Data Admin</span>
-            </a>
-          </li>
+          @if (auth()->user()->role == 'superAdmin')
+            <li class="nav-link active">
+              <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
+                <i class='bx bxs-user'></i>
+                <span class="text nav-text">Data Admin</span>
+              </a>
+            </li>
+          @endif
         </ul>
         <div class="bottom-content ">
           <ul>
@@ -174,15 +179,23 @@
                   <label for="email" class="mb-1">Email</label>
                   <input class="form-control" type="email" name="email" id="email" placeholder="admin@gmail.com" value="{{old('email')}}">
                 </div>
-                <div class="form-group mb-3">
+                <div class="password-container form-group mb-3">
                   <label for="password" class="mb-1">Password</label>
-                  <div class="pass-wrapper position-relative d-flex">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="{{old('password')}}">
-                    <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                  <div class="pass-wrapper position-relative d-flex align-items-center">
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="{{ old('password') }}">
+                      <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
                   </div>
-                  {{-- <input class="form-control" type="password" name="password" id="password" placeholder="Masukkan password" value="{{old('password')}}"> --}}
-                </div>
-                
+                  <div class="form-group mt-3 position-relative">
+                    <label for="Role" class="mb-1">Role</label>
+                    <div class="select-wrapper d-flex align-items-center">
+                      <select class="form-select role " aria-label="Default select example"  name="role">
+                        <option value="publish" class="status-state"  {{old('role') === '1' ? "selected" : ""}}>Admin</option>
+                        <option value="draft" class="status-state"  {{old('role') === '0' ? "selected" : ""}} >SuperAdmin</option>
+                      </select>
+                      <i class="ri-arrow-down-s-line position-absolute"></i>
+                    </div>
+                  </div>
+               </div> 
               </div>
               <div class="card-footer mb-2">
                 <button type="submit" class="btn btn-primary">Submit</button>

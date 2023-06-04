@@ -18,6 +18,9 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Tambah Produk style/main.css') }}" />
 
+    <!-- Link Remixicon -->
+    <link rel="stylesheet" href="{{ asset('Assets/Vendor/RemixIcon-master/fonts/remixicon.css')}}" />
+
 </head>
 <body class="dark">
   @include('sweetalert::alert')
@@ -91,12 +94,14 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link">
-            <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
-              <i class='bx bxs-user'></i>
-              <span class="text nav-text">Data Admin</span>
-            </a>
-          </li>
+          @if (auth()->user()->role == 'superAdmin')
+            <li class="nav-link">
+              <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
+                <i class='bx bxs-user'></i>
+                <span class="text nav-text">Data Admin</span>
+              </a>
+            </li>
+          @endif
         </ul>
         <div class="bottom-content ">
           <ul>
@@ -185,10 +190,13 @@
                 </div>
                 <div class="form-group mb-3">
                   <label for="Status" class="mb-1">Status</label>
-                  <select class="form-select status text-secondary" name="status" aria-label="Default select example">
-                    <option value="publish" class="text-secondary" {{$product->status == "publish" ? "selected" : ""}}>Publish</option>
-                    <option value="draft" class="text-secondary" {{$product->status == "draft" ? "selected" : ""}}>Draft</option>
-                  </select>
+                  <div class="select-wrapper d-flex align-items-center">
+                    <select class="form-select status text-secondary" name="status" aria-label="Default select example">
+                      <option value="publish" class="text-secondary" {{$product->status == "publish" ? "selected" : ""}}>Publish</option>
+                      <option value="draft" class="text-secondary" {{$product->status == "draft" ? "selected" : ""}}>Draft</option>
+                    </select>
+                    <i class="ri-arrow-down-s-line position-absolute"></i>
+                  </div>
                 </div>
 
               </div>

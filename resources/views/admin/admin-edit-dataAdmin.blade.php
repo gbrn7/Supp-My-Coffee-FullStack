@@ -16,7 +16,10 @@
     <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
   
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Tambah Produk style/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-TambahAdmin style/main.css') }}" />
+
+    <!-- Link Remixicon -->
+    <link rel="stylesheet" href="{{ asset('Assets/Vendor/RemixIcon-master/fonts/remixicon.css')}}" />
 
 </head>
 <body class="dark">
@@ -90,12 +93,14 @@
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
-          <li class="nav-link active">
-            <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
-              <i class='bx bxs-user'></i>
-              <span class="text nav-text">Data Admin</span>
-            </a>
-          </li>
+          @if (auth()->user()->role == 'superAdmin')
+            <li class="nav-link active">
+              <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
+                <i class='bx bxs-user'></i>
+                <span class="text nav-text">Data Admin</span>
+              </a>
+            </li>
+          @endif
         </ul>
         <div class="bottom-content ">
           <ul>
@@ -176,12 +181,24 @@
                     <label for="email" class="mb-1">Email</label>
                     <input class="form-control" type="email" name="email" id="email" placeholder="admin@gmail.com" value="{{ $user->email }}">
                   </div>
-                  <div class="form-group mb-3">
-                    <label for="email" class="mb-1">Password</label>
-                    <input class="form-control" type="text" name="password" id="password" placeholder="" value="{{ $user->password }}">
+                  <div class="password-container form-group">
+                    <label for="password" class="mb-1">Password</label>
+                    <div class="pass-wrapper position-relative d-flex align-items-center">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="{{ $user->email }}">
+                        <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
+                        <!-- <img src="{{ asset('Assets/img/eye_slash.png') }}" onclick="pass()" class="pass-icon position-absolute" id="pass-icon"> -->
+                    </div>
                   </div>
-                </div>
-
+                  <div class="form-group mt-3">
+                    <label for="Role" class="mb-1">Role</label>
+                    <div class="select-wrapper d-flex align-items-center">
+                      <select class="form-select role " aria-label="Default select example"  name="role">
+                        <option value="admin" class="text-secondary status-state"  {{$user->role == "Admin" ? "selected" : ""}}>Admin</option>
+                        <option value="superAdmin" class="text-secondary status-state" {{$user->role == "SuperAdmin" ? "selected" : ""}}>SuperAdmin</option>
+                      </select>
+                      <i class="ri-arrow-down-s-line position-absolute"></i>
+                    </div>
+                  </div>
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -206,5 +223,6 @@
 
   <!-- Main Js -->
   <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
+  <script src="{{ asset('Assets/Js/Admin-data-admin-script/script.js') }}"></script>
 
 </html>
