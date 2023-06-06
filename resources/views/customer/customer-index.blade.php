@@ -73,7 +73,7 @@
               >
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link nav-link-4" href="#Contact">Kontak</a>
+              <a class="nav-link nav-link-4" href="#Contact">About</a>
             </li>
             <li class="nav-item mt-3 d-lg-none mt-lg-0">
               <div class="btn btn-login"><a href="{{route('customer.login')}}" class="text-decoration-none text-white">Login</a></div>
@@ -434,65 +434,14 @@
           data-aos="zoom-in"
           data-aos-duration="500"
         >
-          <div class="col-6 col-md-3 col-lg-2 text-center head">Kontak</div>
+          <div class="col-6 col-md-3 col-lg-2 text-center head">About</div>
         </div>
         <div class="row row-2 text-center justify-content-center">
-          <form action="#" method="post">
-            <div
-              class="input-wrap mt-lg-5 mt-4 d-flex flex-column gap-3"
-              data-aos="fade-up"
-              data-aos-duration="500"
-              data-aos-delay="300"
-            >
-              <div
-                class="col-lg-12"
-                data-aos="fade-up"
-                data-aos-duration="500"
-                data-aos-delay="300"
-              >
-                <input
-                  type="text"
-                  class="col-6 input-text name"
-                  name=""
-                  placeholder="Fullname"
-                />
-              </div>
-              <div
-                class="col-lg-12"
-                data-aos="fade-up"
-                data-aos-duration="600"
-                data-aos-delay="300"
-              >
-                <input
-                  type="email"
-                  class="col-6 input-text email"
-                  name=""
-                  placeholder="Email"
-                />
-              </div>
-              <div
-                class="col-lg-12"
-                data-aos="fade-up"
-                data-aos-duration="650"
-                data-aos-delay="300"
-              >
-                <textarea
-                  class="col-6"
-                  placeholder="Your Massage"
-                  cols="30"
-                  rows="10"
-                ></textarea>
-              </div>
-            </div>
-            <div
-              class="col-lg-12 mt-4 btn-wrap"
-              data-aos="fade-up"
-              data-aos-duration="700"
-              data-aos-delay="300"
-            >
-              <button type="submit" class="col-6 button">SUBMIT</button>
-            </div>
-          </form>
+          <div class="col-12 col-lg-8 mb-5">
+            <p class="m-0 my-5 text-tujuan text-white">Omah Bakoel Kopi merupakan produsen dan warung kopi yang terletak kecamatan Ngantang, kabupaten malang, Kecamatan ngantang merupakan daerah yang menghasilkan kopi robusta, banyak warga Ngantang yang memiliki mata 
+              pencaharian sebagai petani kopi, oleh karena itu kami ada untuk mendukung produk lokal yaitu Kopi khas Ngantang.
+            </p>
+          </div>
         </div>
       </div>
     </section>
