@@ -20,6 +20,7 @@ use App\Http\Controllers\Customer\dateController;
 use App\Http\Controllers\Customer\transactionController as customerTransaksiController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\SuperAdminLoginController;
+use App\Http\Controllers\Admin\laporanController;
 use App\Http\Livewire\VisualisasiData;
 
 /*
@@ -133,10 +134,6 @@ use App\Http\Livewire\VisualisasiData;
    // Get Date
    Route::get('/getDate/{subs}/date/{subsdate}', [dateController::class, 'index'])->name('getDate');
    
-   //Livewire
-   // Route::get('/tutorial', VisualisasiData::class, 'render')->name('admin.visualisasiData');
-
    
-      
-      // Route::get('/register', [RegisterController::class, 'index'])->name('regisPage')->middleware('guest');
-      
+   
+   Route::get('/laporan', [laporanController::class, 'index'])->name('laporan');

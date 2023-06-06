@@ -14,6 +14,7 @@
     --switch-bg: #e0e0e0;
     --switch-bfr-bg : white;
     --name-color:black;
+    --card-border-color: rgba(0, 0, 0, 0.175);
 }
 body::-webkit-scrollbar {
     display: none;
@@ -41,6 +42,7 @@ body.dark{
     --switch-bg: #53565a;
     --switch-bfr-bg : #EAEAEA;
     --text-color:#ccc;
+    --card-border-color: rgba(219, 219, 219, 0.175);
 
     .sidebar{
         .menu-bar{
@@ -76,6 +78,16 @@ body.dark{
     }
 
     .content{
+
+        .card{
+
+            .card-header{
+                background-color: rgba(33,37,41, 1 );
+            }
+
+
+        }
+
         // width: 1380px;
         .title{
             color: white !important;
@@ -541,6 +553,23 @@ $dot-color: rgba(0, 0, 0, 0.466);
     padding-bottom: 40px;
     padding-left: 30px;
 
+    .card{
+        border-color: var(--card-border-color);
+        .card-header{
+            border-color: var(--card-border-color);
+        }
+
+        .card-body{
+            hr{
+                height: 1px !important;
+                color: var(--card-border-color) !important;
+                background-color: var(--card-border-color) !important;
+                border: none !important;
+                opacity: 1;
+            }
+        }
+    }
+
     .dataTables_filter{
         text-align: center;
         padding-right: 25px;
@@ -631,3 +660,14 @@ $dot-color: rgba(0, 0, 0, 0.466);
     left: 240px;
 }
 
+
+.card{
+    .form-group{
+        .label-rentang{
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            font-weight: map-get($fonts_weights, semiBold);
+            color: var(--text-color);
+        }
+    }
+}

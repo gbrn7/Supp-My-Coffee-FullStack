@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Edit Data Admin</title>
+  <title>Dashboard | Laporan Penjualan</title>
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
@@ -16,14 +16,11 @@
     <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
   
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-TambahAdmin style/main.css') }}" />
-
-    <!-- Link Remixicon -->
-    <link rel="stylesheet" href="{{ asset('Assets/Vendor/RemixIcon-master/fonts/remixicon.css')}}" />
+    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Dashboard style/main.css') }}" />
 
 </head>
-<body class="dark">
-  
+<body class="">
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -43,7 +40,7 @@
   </div>
   <!-- Pre Load End -->
 
-  <!-- sidebar start -->
+  <!-- sidebar Start -->
   <nav class="sidebar">
     <header class="d-flex gap-2 align-items-center">
       <div class="image-text">
@@ -69,7 +66,7 @@
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
               <i class='bx bx-coffee-togo' ></i>
               <span class="text nav-text">Data Produk</span>
@@ -94,12 +91,12 @@
             </a>
           </li>
           @if (auth()->user()->role == 'superAdmin')
-            <li class="nav-link active">
-              <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
-                <i class='bx bxs-user'></i>
-                <span class="text nav-text">Data Admin</span>
-              </a>
-            </li>
+          <li class="nav-link">
+            <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-user'></i>
+              <span class="text nav-text">Data Admin</span>
+            </a>
+          </li>
           @endif
         </ul>
         <div class="bottom-content ">
@@ -134,81 +131,114 @@
 
   <!-- Footer Start -->
   <div class="footer-wrapper fixed-bottom text-secondary d-none">
-    <strong>Copyright © 2023 SUPP MY COFFEE</strong> All Right Reserved
+    <strong>Copyright © {{ date('Y') }} SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
-
   <!-- Content Start-->
-  <section class="content d-none">    
-    <p class="text-black title mb-2">Data Admin</p>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-10">
-
-        <!-- alert here -->
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-        </div>
-        @endif
-
-          <div class="card card-primary">
-            <div class="card-header ">
-              <h5 class="card-title m-0">Edit Data Admin</h5>
-            </div>
-            <form action="{{ route('admin.dataAdmin.update', $user->id) }}" method="post" enctype="multipart/form-data">
-              @csrf
-              @method('PUT')
-              <div class="card-body">
-                <div class="form-group mb-3">
-                  <label for="nama" class="mb-1">Nama</label>
-                  <input class="form-control" type="text" name="nama" id="nama" value="{{ $user->nama }}" placeholder="Nama Admin">
+  <section class="content d-none">
+    <div class="card col-10 bg-transparent">
+        <p class="text-black title card-header">Laporan Penjualan</p>
+        <div class="card-body">
+          <form action="#" method="post">
+            <div class="row head">
+              <div class="d-flex flex-column flex-lg-row  justify-content-start gap-2 align-items-end col-12">
+                <div class="form-group col-lg-2 col-12">
+                  <label for="exampleFormControlInput1" class="form-label label-rentang">Rentang Awal</label>
+                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
                 </div>
-                <div class="form-group mb-3">
-                    <label for="alamat" class="mb-1">Alamat</label>
-                    <input class="form-control" type="text" name="alamat" id="alamat" value="{{ $user->alamat }}" placeholder="JL. Mawar No. 12">
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="no_telp" class="mb-1">No Telepon</label>
-                    <input class="form-control" type="text" name="no_telp" id="no_telp" placeholder="0812345678" value="{{ $user->no_telp}}">
-                  </div>
-                  <div class="form-group mb-3">
-                    <label for="email" class="mb-1">Email</label>
-                    <input class="form-control" type="email" name="email" id="email" placeholder="admin@gmail.com" value="{{ $user->email }}">
-                  </div>
-                  <div class="password-container form-group">
-                    <label for="password" class="mb-1">Password</label>
-                    <div class="pass-wrapper position-relative d-flex align-items-center">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password" value="{{ $user->password }}">
-                        <i class="ri-eye-close-fill position-absolute pass-icon " onclick="pass()" id="pass-icon"></i>
-                    </div>
-                  </div>
-                  <div class="form-group mt-3">
-                    <label for="Role" class="mb-1">Role</label>
-                    <div class="select-wrapper d-flex align-items-center">
-                      <select class="form-select role " aria-label="Default select example"  name="role">
-                        <option value="admin" class="text-secondary status-state"  {{$user->role == "Admin" ? "selected" : ""}}>Admin</option>
-                        <option value="superAdmin" class="text-secondary status-state" {{$user->role == "superAdmin" ? "selected" : ""}}>SuperAdmin</option>
-                      </select>
-                      <i class="ri-arrow-down-s-line position-absolute"></i>
-                    </div>
-                  </div>
+                <div class="form-group col-lg-2 col-12">
+                  <label for="exampleFormControlInput1" class="form-label label-rentang">Rentang Akhir</label>
+                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                </div>
+                <div class="col-lg-2 col-12 mt-4 mt-lg-0">
+                  <div class="btn btn-success col-12"><a href="{{route('admin.produk.create')}}" class="text-decoration-none text-white">Terapkan</a></div>
+                </div>              
               </div>
-              <div class="card-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+          @if(session()->has('success'))
+            <div class="alert alert-success font-font-weight-bold">
+              {{session('success')}}
+            </div>
+          @endif
+          <hr class="my-3">
+          <div class="produk">
+            <div class="row row-1 justify-content-start">
+              <div class="col-lg-2 col-12 mr-lg-3 mb-3">
+                <form action="#" method="post">
+                  <input type="hidden" name="tglAwal">
+                  <input type="hidden" name="tglAkhir">
+                  <button type="submit" class="col-12 btn btn-primary">Download Pdf</button>
+                </form>
               </div>
-            </form>
+            </div>
+            <div class="row row-2">
+              <table id="jTable" class="table table-striped mt-3" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>Banyak Transaksi</th>
+                    <th>Jumlah Produk Terjual</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td class="text-capitalize">4 Transaksi</td>
+                    <td class="text-capitalize">5 Produk</td>
+                    <td>Rp.400000</td>
+                  </tr>
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td class="text-capitalize">4 Transaksi</td>
+                    <td class="text-capitalize">5 Produk</td>
+                    <td>Rp.400000</td>
+                  </tr>
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td class="text-capitalize">4 Transaksi</td>
+                    <td class="text-capitalize">5 Produk</td>
+                    <td>Rp.400000</td>
+                  </tr>
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td class="text-capitalize">4 Transaksi</td>
+                    <td class="text-capitalize">5 Produk</td>
+                    <td>Rp.400000</td>
+                  </tr>
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td class="text-capitalize">4 Transaksi</td>
+                    <td class="text-capitalize">5 Produk</td>
+                    <td>Rp.400000</td>
+                  </tr>
+                  <tr>
+                    <td>02-05-2023</td>
+                    <td class="text-capitalize">4 Transaksi</td>
+                    <td class="text-capitalize">5 Produk</td>
+                    <td>Rp.400000</td>
+                  </tr>
+                </tbody>
+                <tfoot >
+                  <tr>
+                    <th></th>
+                    <th>Total Penjualan</th>
+                    <th>Rp.89000000</th>
+                    <th>150 Produk</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
+          <hr class="mt-3">
         </div>
-      </div>
     </div>
+
   </section>
   <!-- Content End -->
+
 </body>
 
   <!-- Bootstrap js -->
@@ -219,9 +249,14 @@
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
+  <!-- Pure Counter JS -->
+  <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
+
+  {{-- Sweetalert JS --}}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Main Js -->
   <script src="{{ asset('Assets/Js/Admin-Dashboard script/script.js') }}"></script>
-  <script src="{{ asset('Assets/Js/Admin-data-admin-script/script.js') }}"></script>
+
 
 </html>

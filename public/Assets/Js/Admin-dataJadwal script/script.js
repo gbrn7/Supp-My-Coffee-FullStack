@@ -64,7 +64,7 @@ onload = () => {
 
 $(document).ready(function () {
 
-  $("#example").dataTable({
+  $("#jTable").dataTable({
     "sPaginationType": "full_numbers",
     "bJQueryUI": true,
     "ordering": false,

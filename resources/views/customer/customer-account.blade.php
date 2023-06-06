@@ -72,9 +72,13 @@
               </form>
               <a href="#" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                 <i class='bx bxs-user'></i>
-                <p class="m-0">Akun</p>
+                @if (auth()->user())
+                  <p class="m-0">{{auth()->user()->email}}</p>
+                @else
+                  <p class="m-0">Akun</p>
+                @endif
               </a>
-              <div class="dropdown">
+              {{-- <div class="dropdown">
                 <div class="select">
                   <i class='bx bx-cart crt cart-icon' ></i>
                   <span class="selected">Keranjang</span>
@@ -126,7 +130,7 @@
                   </li>
                   </form>
                 </ul>
-              </div>
+              </div> --}}
           </div>
         </div>
     </nav>

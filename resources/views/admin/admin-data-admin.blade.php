@@ -137,63 +137,67 @@
 
   <!-- Content Start-->
   <section class="content d-none">
-    <p class="text-black title">Data Admin</p>
-    <div class="btn-wrapper mt-2 mb-4">
-        <div class="btn btn-success"><a href="{{route('admin.dataAdmin.create')}}" class="text-decoration-none text-white">Tambah Admin</a></div>
-    </div>
-
-    @if(session()->has('success'))
-    <div class="alert alert-success font-font-weight-bold">
-        {{session('success')}}
-    </div>
-    @endif
-    <div class="Produk mt-2 mb-2 col-10">
-    <table id="jTable" class="table table-striped mt-3" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID Admin</th>
-                <th>Nama Admin</th>
-                <th>Email</th>
-                <th>Alamat</th>
-                <th>No Telepon</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-             @foreach ($users as  $user)
-                 <tr>
-                    <td>{{ $user->id}}</td>
-                    <td>{{ $user->nama}}</td>
-                    <td>{{ $user->email}}</td>
-                    <td>{{ $user->alamat}}</td>
-                    <td>{{ $user->no_telp}}</td>
-                    <td class="">
-                    <div class="btn-wrapper d-md-flex d-block gap-2">
-                        <a href="{{route('admin.dataAdmin.edit',  $user->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
-                        <form action="{{route('admin.dataAdmin.destroy', $user->id)}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <input type="hidden" name="_method">
-                            <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                <i class='bx bx-trash text-white' ></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-                 </tr>
-             @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-              <th>ID Admin</th>
-              <th>Nama Admin</th>
-              <th>Email</th>
-              <th>Alamat</th>
-              <th>No Telepon</th>
-              <th>Aksi</th>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="card col-10 bg-transparent">
+      <p class="text-black title card-header">Data Admin</p>
+      <div class="card-body">
+          <div class="btn-wrapper mt-2 mb-3">
+              <div class="btn btn-success"><a href="{{route('admin.dataAdmin.create')}}" class="text-decoration-none text-white">Tambah Admin</a></div>
+          </div>        
+            @if(session()->has('success'))
+            <div class="alert alert-success font-font-weight-bold">
+                {{session('success')}}
+            </div>
+            @endif
+          <hr class="m-1">
+            <div class="Produk mt-2 mb-2 col-12">
+            <table id="jTable" class="table table-striped mt-3" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID Admin</th>
+                        <th>Nama Admin</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
+                        <th>No Telepon</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     @foreach ($users as  $user)
+                         <tr>
+                            <td>{{ $user->id}}</td>
+                            <td>{{ $user->nama}}</td>
+                            <td>{{ $user->email}}</td>
+                            <td>{{ $user->alamat}}</td>
+                            <td>{{ $user->no_telp}}</td>
+                            <td class="">
+                            <div class="btn-wrapper d-md-flex d-block gap-2">
+                                <a href="{{route('admin.dataAdmin.edit',  $user->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
+                                <form action="{{route('admin.dataAdmin.destroy', $user->id)}}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <input type="hidden" name="_method">
+                                    <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                        <i class='bx bx-trash text-white' ></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                         </tr>
+                     @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                      <th>ID Admin</th>
+                      <th>Nama Admin</th>
+                      <th>Email</th>
+                      <th>Alamat</th>
+                      <th>No Telepon</th>
+                      <th>Aksi</th>
+                    </tr>
+                </tfoot>
+            </table>
+      </div>
+    </div>  
     </div>
   </section>
   <!-- Content End -->

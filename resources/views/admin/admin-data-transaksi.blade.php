@@ -138,43 +138,44 @@
 
   <!-- Content Start-->
   <section class="content d-none">
-    
-    <p class="text-black title">Data Transaksi</p>
-    <div class="Produk mt-4 col-10">
-      <table id="jTable" class="table table-striped mt-3" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Cust</th>
-                <th>Alamat</th>
-                <th>Total</th>
-                <th>Kode Transaksi</th>
-                <th>Status Pembayaran</th>
-            </tr>
-        </thead>
-        <tbody>
-          @foreach ($transactions as $transaction)
-            <tr>
-              <td>{{$transaction->id}}</td>
-              <td>{{$transaction->nama}}</td>
-              <td>{{$transaction->alamat}}</td>
-              <td>Rp {{number_format($transaction->total, 0, ".", ".")}}</td>
-              <td>{{$transaction->transaction_code}}</td>
-              <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
-            </tr>
-          @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>ID Transaksi</th>
-                <th>Nama Cust</th>
-                <th>Alamat</th>
-                <th>Total</th>
-                <th>Kode Transaksi</th>
-                <th>Status Pembayaran</th>
-            </tr>
-        </tfoot>
-    </table>
+    <div class="card bg-transparent col-10">
+      <p class="text-black title card-header">Data Transaksi</p>
+      <div class="Produk mt-2 mb-2 col-12 card-body">
+        <table id="jTable" class="table table-striped mt-3" style="width:100%">
+          <thead>
+              <tr>
+                  <th>ID Transaksi</th>
+                  <th>Nama Cust</th>
+                  <th>Alamat</th>
+                  <th>Total</th>
+                  <th>Kode Transaksi</th>
+                  <th>Status Pembayaran</th>
+              </tr>
+          </thead>
+          <tbody>
+            @foreach ($transactions as $transaction)
+              <tr>
+                <td>{{$transaction->id}}</td>
+                <td>{{$transaction->nama}}</td>
+                <td>{{$transaction->alamat}}</td>
+                <td>Rp {{number_format($transaction->total, 0, ".", ".")}}</td>
+                <td>{{$transaction->transaction_code}}</td>
+                <td class="text-uppercase">{{$transaction->status_pembayaran}}</td>
+              </tr>
+            @endforeach
+          </tbody>
+          <tfoot>
+              <tr>
+                  <th>ID Transaksi</th>
+                  <th>Nama Cust</th>
+                  <th>Alamat</th>
+                  <th>Total</th>
+                  <th>Kode Transaksi</th>
+                  <th>Status Pembayaran</th>
+              </tr>
+          </tfoot>
+      </table>
+    </div>
     </div>
   </section>
   <!-- Content End -->

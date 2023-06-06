@@ -19,7 +19,7 @@ class DataAdminController extends Controller
     public function index(){
 
         // dd(auth()->user());
-        if(auth()->user()->role!='superAdmin'){
+        if(auth()->user()->role!=='superAdmin'){
             return redirect()->route('admin.dashboard')->with('error', 'Anda tidak dapat mengakses halaman Data Admin.');
         }
 
@@ -64,7 +64,7 @@ class DataAdminController extends Controller
 
         $data['password'] = Crypt::encryptString($request->password); //hash password and override array
         
-        // dd($data);
+        dd($data);
         User::create($data);
 
         return redirect()->route('admin.dataAdmin')->with('success', 'Admin Ditambahkan!');;
@@ -91,7 +91,11 @@ class DataAdminController extends Controller
             'role' => 'required|string'
         ]);
 
-        $user = User::where('id', auth()->user()->id)
+        // dd($data);
+
+        $data['password'] = Crypt::encryptString($request->password); //hash password and override array
+
+        $user = User::where('id', $id)
         ->update(['nama' => $data['nama'], 'alamat' => $data['alamat'], 'no_telp' => $data['no_telp'], 'password' => $data['password'], 'role' => $data['role']]);
 
         return redirect()->route('admin.dataAdmin')->with('success', 'Data Admin Diedit!');

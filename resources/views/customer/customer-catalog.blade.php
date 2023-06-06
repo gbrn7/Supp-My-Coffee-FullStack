@@ -73,7 +73,11 @@
               </form>
               <a href="{{route('customer.account')}}" class="text-decoration-none text-black account d-flex align-items-center gap-2">
                 <i class='bx bxs-user'></i>
-                <p class="m-0">Akun</p>
+                @if (auth()->user())
+                  <p class="m-0">{{auth()->user()->email}}</p>
+                @else
+                  <p class="m-0">Akun</p>
+                @endif
               </a>
               <div class="dropdown">
                 <div class="select">

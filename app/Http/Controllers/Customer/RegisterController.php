@@ -40,7 +40,7 @@ class RegisterController extends Controller
         // dd($data);
         User::create($data);
 
-        return redirect()->route('customer.login');
+        return redirect()->route('customer.login')->with('success', 'Pendaftaran Berhasil');;
     }
 }
 ?>

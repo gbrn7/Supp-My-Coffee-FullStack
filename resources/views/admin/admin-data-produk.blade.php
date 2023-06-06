@@ -137,63 +137,67 @@
 
   <!-- Content Start-->
   <section class="content d-none">
-    <p class="text-black title">Data Produk</p>
-    <div class="btn-wrapper mt-2 mb-4">
-        <div class="btn btn-success"><a href="{{route('admin.produk.create')}}" class="text-decoration-none text-white">Tambah Produk</a></div>
+    <div class="card col-10 bg-transparent">
+      <p class="text-black title card-header ">Data Produk</p>
+      <div class="card-body">
+        <div class="btn-wrapper mt-2 mb-3">
+            <div class="btn btn-success"><a href="{{route('admin.produk.create')}}" class="text-decoration-none text-white">Tambah Produk</a></div>
+        </div>
+        @if(session()->has('success'))
+        <div class="alert alert-success font-font-weight-bold">
+            {{session('success')}}
+        </div>
+        @endif
+        <hr class="m-1">
+        <div class="Produk mt-2 mb-2 col-12">
+          <table id="jTable" class="table table-striped mt-3" style="width:100%">
+              <thead>
+                  <tr>
+                      <th>ID Produk</th>
+                      <th>Foto</th>
+                      <th>Nama Produk</th>
+                      <th>Harga Produk</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach ($products as  $product)
+                      <tr>
+                          <td>{{ $product->id}}</td>
+                          <td><img src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-produk"></td>
+                          <td>{{ $product->nama_produk}}</td>
+                          <td>Rp {{ number_format($product->harga, 0, ".", ".")}}</td>
+                          <td class="text-capitalize">{{ $product->status}}</td>
+                          <td class="">
+                          <div class="btn-wrapper d-md-flex d-block gap-2">
+                              <a href="{{route('admin.produk.edit',  $product->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
+                              <form action="{{route('admin.produk.destroy', $product->id)}}" method="post">
+                                  @method('delete')
+                                  @csrf
+                                  <input type="hidden" name="_method">
+                                  <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
+                                      <i class='bx bx-trash text-white' ></i>
+                                  </button>
+                              </form>
+                          </div>
+                      </td>
+                      </tr>
+                  @endforeach
+              </tbody>
+              <tfoot>
+                  <tr>
+                      <th>ID Produk</th>
+                      <th>Foto</th>
+                      <th>Nama Produk</th>
+                      <th>Harga Produk</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                  </tr>
+              </tfoot>
+          </table>
+        </div>
     </div>
-
-    @if(session()->has('success'))
-    <div class="alert alert-success font-font-weight-bold">
-        {{session('success')}}
-    </div>
-    @endif
-    <div class="Produk mt-2 mb-2 col-10">
-    <table id="jTable" class="table table-striped mt-3" style="width:100%">
-        <thead>
-            <tr>
-                <th>ID Produk</th>
-                <th>Foto</th>
-                <th>Nama Produk</th>
-                <th>Harga Produk</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-             @foreach ($products as  $product)
-                 <tr>
-                    <td>{{ $product->id}}</td>
-                    <td><img src="{{ asset('storage/thumbnail/'.$product->produk_thumbnail)}}" class="img-produk"></td>
-                    <td>{{ $product->nama_produk}}</td>
-                    <td>Rp {{ number_format($product->harga, 0, ".", ".")}}</td>
-                    <td class="text-capitalize">{{ $product->status}}</td>
-                    <td class="">
-                    <div class="btn-wrapper d-md-flex d-block gap-2">
-                        <a href="{{route('admin.produk.edit',  $product->id)}}" class="btn btn-secondary text-white"><i class='bx bx-edit'></i></a>
-                        <form action="{{route('admin.produk.destroy', $product->id)}}" method="post">
-                            @method('delete')
-                            @csrf
-                            <input type="hidden" name="_method">
-                            <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip" title='Delete'>
-                                <i class='bx bx-trash text-white' ></i>
-                            </button>
-                        </form>
-                    </div>
-                </td>
-                 </tr>
-             @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>ID Produk</th>
-                <th>Foto</th>
-                <th>Nama Produk</th>
-                <th>Harga Produk</th>
-                <th>Status</th>
-                <th>Aksi</th>
-            </tr>
-        </tfoot>
-    </table>
     </div>
   </section>
   <!-- Content End -->

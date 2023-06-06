@@ -138,73 +138,75 @@
 
   <!-- Content Start-->
   <section class="content">
-    
-    <p class="text-black title">Data Jadwal</p>
-    <div class="Produk col-10 mt-4 ">
-    @if(session()->has('success'))
-    <div class="alert alert-success">
-        {{session('success')}}
-    </div>
-    @endif
-    <table id="example" class="table table-striped mt-4" style="width: 95%">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Nama Cust</th>
-              <th>List Produk</th>
-              <th>Alamat</th>
-              <th>Ekspedisi</th>
-              <th>Jadwal Pengiriman</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($schedules as $schedule)
-            <tr>
-              <td>{{$schedule->id}}</td>
-              <td>{{$schedule->nama}}</td>
-              <td>
-                  @foreach ($schedule->details as $detail)
-                    {{$detail->nama_produk}} : {{$detail->qty}} Pcs <br><br>
-                  @endforeach
-              </td>
-              <td>{{$schedule->alamat}}</td>
-              <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
-              <td>{{$schedule->tanggal_pengiriman}}</td>
-              <td>
-                <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
-                <div class="form-group flex-wrap d-none">
-                  <form action="{{route('admin.jadwal.update', $schedule->id)}}" method="post">
-                    @csrf
-                    @method('PUT')
-                    <input
-                      class="resi-input rounded-3 form-control-sm mb-3 mb-lg-1"
-                      type="text"
-                      name="resi"
-                      id="resi"
-                      placeholder="Masukkan No Resi"
-                    />
-                    <button type="submit" class="btn btn-success">
-                      Submit
-                    </button>
-                  </form>
-                </div>
-              </td>
-            </tr>
-            @endforeach
-          </tbody>
-          <tfoot>
-            <tr>
-              <th>Id</th>
-              <th>Nama Cust</th>
-              <th>List Produk</th>
-              <th>Alamat</th>
-              <th>Ekspedisi</th>
-              <th>Jadwal Pengiriman</th>
-              <th>Aksi</th>
-            </tr>
-          </tfoot>
-        </table>
+    <div class="card col-10 bg-transparent">
+      <p class="text-black title card-header">Data Jadwal</p>
+      <div class="Produk col-12 mt-2 mb-2 card-body ">
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
+        <table id="jTable" class="table table-striped mt-4" style="width: 100%">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nama Cust</th>
+                  <th>List Produk</th>
+                  <th>Alamat</th>
+                  <th>Ekspedisi</th>
+                  <th>Jadwal Pengiriman</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($schedules as $schedule)
+                <tr>
+                  <td>{{$schedule->id}}</td>
+                  <td>{{$schedule->nama}}</td>
+                  <td>
+                      @foreach ($schedule->details as $detail)
+                        {{$detail->nama_produk}} : {{$detail->qty}} Pcs <br><br>
+                      @endforeach
+                  </td>
+                  <td>{{$schedule->alamat}}</td>
+                  <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
+                  <td>{{$schedule->tanggal_pengiriman}}</td>
+                  <td>
+                    <div class="btn btn-primary btn-atur mb-1">Atur Pengiriman</div>
+                    <div class="form-group flex-wrap d-none">
+                      <form action="{{route('admin.jadwal.update', $schedule->id)}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input
+                          class="resi-input rounded-3 form-control-sm mb-3 mb-lg-1"
+                          type="text"
+                          name="resi"
+                          id="resi"
+                          placeholder="Masukkan No Resi"
+                        />
+                        <button type="submit" class="btn btn-success">
+                          Submit
+                        </button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+                @endforeach
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Nama Cust</th>
+                  <th>List Produk</th>
+                  <th>Alamat</th>
+                  <th>Ekspedisi</th>
+                  <th>Jadwal Pengiriman</th>
+                  <th>Aksi</th>
+                </tr>
+              </tfoot>
+            </table>
+      </div>
+      
     </div>
   </section>
   <!-- Content End -->

@@ -30,6 +30,7 @@
 </head>
 
 <body>
+  @include('sweetalert::alert')
     <section class="login d-flex justify-content-center justify-content-lg-between">
         <div class="login-left w-50 h-100 d-none d-lg-block">
             <div class="row justify-content-center align-items-center h-100">

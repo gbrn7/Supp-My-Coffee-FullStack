@@ -12,6 +12,7 @@
   --switch-bg: #e0e0e0;
   --switch-bfr-bg: white;
   --name-color:black;
+  --card-border-color: rgba(0, 0, 0, 0.175);
 }
 
 body::-webkit-scrollbar {
@@ -36,6 +37,7 @@ body.dark {
   --switch-bg: #53565a;
   --switch-bfr-bg: #EAEAEA;
   --text-color:#ccc;
+  --card-border-color: rgba(219, 219, 219, 0.175);
 }
 body.dark .switch::before {
   left: 25px;
@@ -51,6 +53,9 @@ body.dark .sidebar .menu-bar .mode .moon-sun .sun {
 }
 body.dark .sidebar .menu-bar .mode .moon-sun .moon {
   display: none;
+}
+body.dark .content .card .card-header {
+  background-color: rgb(33, 37, 41);
 }
 body.dark .content .title {
   color: white !important;
@@ -435,6 +440,19 @@ body.dark .content .table {
   padding-bottom: 40px;
   padding-left: 30px;
 }
+.content .card {
+  border-color: var(--card-border-color);
+}
+.content .card .card-header {
+  border-color: var(--card-border-color);
+}
+.content .card .card-body hr {
+  height: 1px !important;
+  color: var(--card-border-color) !important;
+  background-color: var(--card-border-color) !important;
+  border: none !important;
+  opacity: 1;
+}
 .content .dataTables_filter {
   text-align: center;
   padding-right: 25px;
@@ -505,4 +523,11 @@ body.dark .content .table {
   top: 0;
   right: 0;
   left: 240px;
+}
+
+.card .form-group .label-rentang {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
 }/*# sourceMappingURL=main.css.map */

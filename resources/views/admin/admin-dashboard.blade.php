@@ -141,9 +141,9 @@
   <section class="content h-100 w-100 d-none main">
     <div class="container-fluid  m-0">
           <div class="row row-1 ">
-            <div class="col-12 title">Dashboard</div>
+            <div class="col-10 text-center title">Dashboard</div>
           </div>
-          <div class="row row-2 d-flex gap-2  mt-2">
+          <div class="row row-2 d-flex gap-2  mt-2 mt-lg-4">
               <div class="card card-1 col-10 col-lg-3 p-1 rounded-3">
                   <div class="head p-2 d-flex align-items-center gap-2 letter"><i class='text-danger bx bx-money-withdraw p-2 rounded-circle' ></i> <span>Total Pendapatan</span></div>
                   <div class="content-text px-2 mt-3"><p 

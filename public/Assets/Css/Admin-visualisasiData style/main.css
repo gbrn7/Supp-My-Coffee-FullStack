@@ -12,6 +12,7 @@
   --switch-bg: #e0e0e0;
   --switch-bfr-bg: white;
   --name-color:black;
+  --card-border-color: rgba(0, 0, 0, 0.175);
 }
 
 body::-webkit-scrollbar {
@@ -20,10 +21,11 @@ body::-webkit-scrollbar {
 
 body {
   font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease-out;
   box-sizing: border-box;
   scroll-behavior: smooth;
   background: var(--body-color);
-  overflow-x: hidden;
+  transition: var(--tran-02);
 }
 
 body.dark {
@@ -35,6 +37,7 @@ body.dark {
   --switch-bg: #53565a;
   --switch-bfr-bg: #EAEAEA;
   --text-color:#ccc;
+  --card-border-color: rgba(219, 219, 219, 0.175);
 }
 body.dark .switch::before {
   left: 25px;
@@ -51,48 +54,25 @@ body.dark .sidebar .menu-bar .mode .moon-sun .sun {
 body.dark .sidebar .menu-bar .mode .moon-sun .moon {
   display: none;
 }
+body.dark .content .card .card-header {
+  background-color: rgb(33, 37, 41);
+}
 body.dark .content .title {
   color: white !important;
+}
+body.dark .content .dataTables_length label {
+  color: white;
+}
+body.dark .content .dataTables_filter label {
+  color: white;
+}
+body.dark .content .dataTables_info {
+  color: white;
 }
 body.dark .content .table {
   --bs-table-color: white;
   --bs-table-striped-color: white ;
   --bs-table-accent-bg:#383838;
-}
-body.dark .content .row .card .head {
-  color: white;
-}
-body.dark .content .row .card .content-text {
-  color: white;
-}
-body.dark .content .row .card-1 {
-  background: url("../../img/layer-1-dark.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-body.dark .content .row .card-2 {
-  background: url("../../img/layer-2-dark.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-body.dark .content .row .card-3 {
-  background: url("../../img/layer-3-dark.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-body.dark .content .row-3 .table-wrapper {
-  background-color: #242526 !important;
-}
-body.dark .content .row-3 .table-wrapper p {
-  color: white;
-  border-color: white;
-}
-body.dark .content .row-4 .table-wrapper {
-  background-color: #242526 !important;
-}
-body.dark .content .row-4 .table-wrapper p {
-  border-color: white;
-  color: white;
 }
 
 .sidebar {
@@ -180,15 +160,13 @@ body.dark .content .row-4 .table-wrapper p {
 .sidebar .menu-bar .menu ul li a i {
   font-size: 20px;
   color: var(--text-color);
+  transition: var(--tran-02);
 }
 .sidebar .menu-bar .menu ul li a .text {
   color: var(--text-color);
   white-space: nowrap;
   font-size: 15px;
   letter-spacing: -0.03em;
-}
-.sidebar .menu-bar .menu ul .nav-link {
-  transition: var(--tran-04) !important;
 }
 .sidebar .menu-bar .menu ul .active {
   background: #EAEAEA;
@@ -304,9 +282,6 @@ body.dark .content .row-4 .table-wrapper p {
 .sidebar.close .menu-bar .menu .bottom-content ul li a .text {
   display: none;
 }
-.sidebar.close .menu-bar .menu .bottom-content ul .nav-link {
-  transition: var(--tran-04) !important;
-}
 .sidebar.close .menu-bar .menu .bottom-content ul li:hover .text {
   display: block;
   position: absolute;
@@ -352,6 +327,19 @@ body.dark .content .row-4 .table-wrapper p {
   height: 20px;
   width: 20px;
   font-size: 20px;
+}
+
+.sidebar.close ~ .content {
+  width: calc(100% - 78px);
+  left: 78px;
+}
+
+.sidebar.close ~ .footer-wrapper {
+  left: 78px;
+}
+
+.sidebar.close ~ .header-bg {
+  left: 78px;
 }
 
 .loading-wrapper {
@@ -435,19 +423,6 @@ body.dark .content .row-4 .table-wrapper p {
   clip-path: circle(0% at 50% 50%);
 }
 
-.sidebar.close ~ .content {
-  width: calc(100% - 78px);
-  left: 78px;
-}
-
-.sidebar.close ~ .footer-wrapper {
-  left: 78px;
-}
-
-.sidebar.close ~ .header-bg {
-  left: 78px;
-}
-
 .footer-wrapper {
   left: 240px;
   background-color: var(--sidebar-color);
@@ -465,131 +440,78 @@ body.dark .content .row-4 .table-wrapper p {
   padding-bottom: 40px;
   padding-left: 30px;
 }
-.content .row-1 .title {
+.content .card {
+  border-color: var(--card-border-color);
+}
+.content .card .card-header {
+  border-color: var(--card-border-color);
+}
+.content .card .card-body hr {
+  height: 1px !important;
+  color: var(--card-border-color) !important;
+  background-color: var(--card-border-color) !important;
+  border: none !important;
+  opacity: 1;
+}
+.content .dataTables_filter {
+  text-align: center;
+  padding-right: 25px;
+}
+.content .dataTables_filter label {
+  text-align: left;
+  display: inline-block;
+  white-space: nowrap;
+}
+.content .dataTables_filter input {
+  margin-left: 0.5rem;
+  display: inline-block;
+}
+.content .dataTables_length label {
+  text-align: left;
+  white-space: nowrap;
+}
+.content .dataTables_length label select {
+  display: inline-block;
+}
+.content .title {
   font-weight: 700;
   font-size: 40px;
   letter-spacing: -0.055em;
 }
-@media (max-width: 991.98px) {
-  .content .row-1 .title {
-    font-size: 30px;
-  }
+.content .table {
+  font-family: "Poppins", sans-serif;
+  table-layout: fixed;
+  word-wrap: break-word;
 }
-@media (max-width: 991.98px) {
-  .content .table {
-    font-size: 12px;
-  }
-}
-.content .row-2 .card-1 {
-  background: url(../../img/layer-1.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.content .row-2 .card-1 .head i {
-  background-color: rgb(255, 240, 240) !important;
-}
-.content .row-2 .card-1 .head span {
-  letter-spacing: -0.04em;
+.content .table tbody tr td {
   font-size: 15px;
 }
-@media (max-width: 991.98px) {
-  .content .row-2 .card-1 .head {
-    font-size: 12px;
+.content .table tbody tr td img {
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  max-width: 100px;
+}
+@media (max-width: 575.98px) {
+  .content .table tbody tr td img {
+    width: 30px;
   }
 }
-@media (max-width: 767.98px) {
-  .content .row-2 .card-1 .head {
-    font-size: 10px;
-  }
+.content .pagination {
+  --bs-pagination-focus-box-shadow:0 0 0 0.25rem rgb(0 0 0 / 25%);
+  justify-content: center;
 }
-.content .row-2 .card-1 .content-text p {
-  font-size: 28px;
-  letter-spacing: -0.04em;
-  font-weight: 600;
+.content .pagination .paginate_button {
+  border-color: white;
 }
-@media (max-width: 991.98px) {
-  .content .row-2 .card-1 .content-text p {
-    font-size: 20px;
-  }
+.content .pagination .paginate_button a {
+  color: black;
 }
-@media (max-width: 767.98px) {
-  .content .row-2 .card-1 .content-text p {
-    font-size: 17px;
-  }
-}
-.content .row-2 .card-2 {
-  background: url(../../img/layer-2.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.content .row-2 .card-2 .head i {
-  background-color: #EDF1D6 !important;
-}
-.content .row-2 .card-2 .head span {
-  letter-spacing: -0.04em;
-  font-size: 15px;
-}
-@media (max-width: 991.98px) {
-  .content .row-2 .card-2 .head span {
-    font-size: 12px;
-  }
-}
-@media (max-width: 767.98px) {
-  .content .row-2 .card-2 .head span {
-    font-size: 10px;
-  }
-}
-.content .row-2 .card-2 .content-text p {
-  font-size: 28px;
-  letter-spacing: -0.04em;
-  font-weight: 600;
-}
-@media (max-width: 991.98px) {
-  .content .row-2 .card-2 .content-text p {
-    font-size: 20px;
-  }
-}
-@media (max-width: 767.98px) {
-  .content .row-2 .card-2 .content-text p {
-    font-size: 17px;
-  }
-}
-.content .row-2 .card-3 {
-  background: url(../../img/layer-3.svg);
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.content .row-2 .card-3 .head i {
-  background-color: rgb(182, 231, 253);
-}
-.content .row-2 .card-3 .head span {
-  letter-spacing: -0.04em;
-  font-size: 15px;
-}
-@media (max-width: 991.98px) {
-  .content .row-2 .card-3 .head span {
-    font-size: 12px;
-  }
-}
-@media (max-width: 767.98px) {
-  .content .row-2 .card-3 .head span {
-    font-size: 10px;
-  }
-}
-.content .row-2 .card-3 .content-text p {
-  font-size: 28px;
-  letter-spacing: -0.04em;
-  font-weight: 600;
-}
-@media (max-width: 991.98px) {
-  .content .row-2 .card-3 .content-text p {
-    font-size: 20px;
-  }
-}
-@media (max-width: 767.98px) {
-  .content .row-2 .card-3 .content-text p {
-    font-size: 17px;
-  }
+.content .pagination .paginate_button.active a {
+  background-color: black;
+  color: white;
+  z-index: 1;
+  border-color: white;
 }
 
 .header-bg {
@@ -601,7 +523,7 @@ body.dark .content .row-4 .table-wrapper p {
   top: 0;
   right: 0;
   left: 240px;
-}
+}/*# sourceMappingURL=main.css.map */
 
 .row .chart-wrapper{
   height: 40vh;
@@ -687,5 +609,14 @@ body.dark .content .row-4 .table-wrapper p {
   }
   
 }
+
+
+.card .title{
+    font-weight: 700;
+    font-size: 40px;
+    letter-spacing: -0.055em;
+
+}
+
 
 /*# sourceMappingURL=main.css.map */

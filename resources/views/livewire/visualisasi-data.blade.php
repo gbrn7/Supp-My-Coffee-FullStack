@@ -1,49 +1,54 @@
 <div class="row">
-    <div class="col-10 p-3 rounded rounded-3 mt-2 chart-wrapper">
-        {{-- content --}}
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="bottom-wrapper col-10 d-lg-flex">
-        <div class="col-12 split-content p-3 rounded rounded-3 mt-2 chart-wrapper">
-            {{-- content --}}
-            <canvas id="myChart2"></canvas>
-        </div>
-        <div class="col-12 split-content d-flex justify-content-between col-lg-6 p-3 rounded rounded-3 mt-2 info-wrapper">
-            <div class="box ">
-                <div class="col-12 gap-3 content-wrapper">
-                    <div class="col-2 col-lg-4  text-center logo-wrapper">
-                        <img loading="lazy" src="{{ asset('Assets/img/Money.svg')}}" class="img-fluid" />
-                    </div>
-                    <div class="col-12 text">
-                        <div class="title text-center">Total Penjualan</div>
-                        <div class="desc mt-1 text-center revenue"
-                        >Rp {{$revenue}}</div>
-                    </div>
-                </div>
-            </div> 
-            <div class="box ">
-                <div class="col-12 gap-3 content-wrapper">
-                    <div class="col-2 col-lg-4  text-center logo-wrapper">
-                        <img loading="lazy" src="{{ asset('Assets/img/CoffeeBeans.svg')}}" class="img-fluid" />
-                    </div>
-                    <div class="col-12 text">
-                        <div class="title text-center">Total Produk Terjual</div>
-                        <div class="desc mt-1 text-center totalPenjualan">{{$totalPenjualan}} Produk</div>
-                    </div>
-                </div>
-            </div> 
-            <div class="box ">
-                <div class="col-12 gap-3 content-wrapper">
-                    <div class="col-4 col-lg-4  text-center logo-wrapper">
-                        <img loading="lazy" src="{{ asset('Assets/img/user-solid-24.png')}}" class="img-fluid" />
-                    </div>
-                    <div class="col-12 text">
-                        <div class="title text-center">Jumlah Customer</div>
-                        <div class="desc mt-1 text-center totalCustomer">{{$totalCustomer}} Orang</div>
-                    </div>
-                </div>
-            </div> 
-        </div>
+    <div class="card bg-transparent col-10 p-0">
+      <p class="text-black title card-header">Visualisasi Data</p>
+      <div class="card-body">
+          <div class="col-12 p-3 rounded rounded-3 mt-2 chart-wrapper">
+              {{-- content --}}
+              <canvas id="myChart"></canvas>
+          </div>
+          <div class="bottom-wrapper col-12 d-lg-flex">
+              <div class="col-12 split-content p-3 rounded rounded-3 mt-2 mb-5 chart-wrapper">
+                  {{-- content --}}
+                  <canvas id="myChart2"></canvas>
+              </div>
+              <div class="col-12 split-content d-flex justify-content-between col-lg-6 p-3 rounded rounded-3 mt-2 info-wrapper">
+                  <div class="box ">
+                      <div class="col-12 gap-3 content-wrapper">
+                          <div class="col-2 col-lg-4  text-center logo-wrapper">
+                              <img loading="lazy" src="{{ asset('Assets/img/Money.svg')}}" class="img-fluid" />
+                          </div>
+                          <div class="col-12 text">
+                              <div class="title text-center">Total Penjualan</div>
+                              <div class="desc mt-1 text-center revenue"
+                              >Rp {{$revenue}}</div>
+                          </div>
+                      </div>
+                  </div> 
+                  <div class="box ">
+                      <div class="col-12 gap-3 content-wrapper">
+                          <div class="col-2 col-lg-4  text-center logo-wrapper">
+                              <img loading="lazy" src="{{ asset('Assets/img/CoffeeBeans.svg')}}" class="img-fluid" />
+                          </div>
+                          <div class="col-12 text">
+                              <div class="title text-center">Total Produk Terjual</div>
+                              <div class="desc mt-1 text-center totalPenjualan">{{$totalPenjualan}} Produk</div>
+                          </div>
+                      </div>
+                  </div> 
+                  <div class="box ">
+                      <div class="col-12 gap-3 content-wrapper">
+                          <div class="col-4 col-lg-4  text-center logo-wrapper">
+                              <img loading="lazy" src="{{ asset('Assets/img/user-solid-24.png')}}" class="img-fluid" />
+                          </div>
+                          <div class="col-12 text">
+                              <div class="title text-center">Jumlah Customer</div>
+                              <div class="desc mt-1 text-center totalCustomer">{{$totalCustomer}} Orang</div>
+                          </div>
+                      </div>
+                  </div> 
+              </div>
+          </div>
+      </div>
     </div>
 </div>
 
