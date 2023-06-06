@@ -73,7 +73,7 @@
               >
             </li>
             <li class="nav-item mt-3 mt-lg-0">
-              <a class="nav-link nav-link-4" href="#Contact">About</a>
+              <a class="nav-link nav-link-4" href="#About">About</a>
             </li>
             <li class="nav-item mt-3 d-lg-none mt-lg-0">
               <div class="btn btn-login"><a href="{{route('customer.login')}}" class="text-decoration-none text-white">Login</a></div>
@@ -424,7 +424,7 @@
     <!-- Best Product End -->
 
     <!-- Contact Start -->
-    <section class="contact" id="Contact">
+    <section class="contact" id="About">
       <div class="wave-3">
         <img loading="lazy" src="{{ asset('Assets/img/wave-3.svg')}}" alt="" srcset="" />
       </div>

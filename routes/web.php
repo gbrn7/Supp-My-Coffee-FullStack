@@ -109,21 +109,15 @@ use App\Http\Livewire\VisualisasiData;
          Route::put('/update/{id}', [JadwalController::class, 'update'])->name('admin.jadwal.update');
       });
 
+      Route::get('/laporanPenjualan', [laporanController::class, 'index'])->name('admin.laporanPenjualan');
+      
+      Route::Post('/laporanPenjualan', [laporanController::class, 'getData'])->name('admin.laporanPenjualan.filter');
+      
+      Route::Post('/printPdf', [laporanController::class, 'printPdf'])->name('admin.laporanPenjualan.printPdf');
+
       //Visualisasi Data Route
       Route::get('/visualisasiData', VisualisasiData::class, 'render')->name('admin.visualisasiData');
    });
-
-   // Route::group(['prefix' => 'superAdmin'], function (){
-   //    // Data Admin Route
-   //    Route::group(['prefix' => 'dataAdmin'], function(){
-   //       Route::get('/', [DataAdminController::class, 'index'])->name('admin.dataAdmin');
-   //       Route::get('/create', [DataAdminController::class, 'create'])->name('admin.dataAdmin.create');
-   //       Route::post('/store', [DataAdminController::class, 'store'])->name('admin.dataAdmin.store');
-   //       Route::get('/edit/{id}', [DataAdminController::class, 'edit'])->name('admin.dataAdmin.edit');
-   //       Route::put('/update/{id}', [DataAdminController::class, 'update'])->name('admin.dataAdmin.update');
-   //       Route::POST('/destroy/{id}', [DataAdminController::class, 'destroy'])->name('admin.dataAdmin.destroy');
-   //    });
-   // });
 
    // Get Region Data
    Route::get('/provinsi/{idProvinsi}/kota', [rajaOngkirController::class, 'getKabKot'])->name('getKabKota');
@@ -133,7 +127,7 @@ use App\Http\Livewire\VisualisasiData;
 
    // Get Date
    Route::get('/getDate/{subs}/date/{subsdate}', [dateController::class, 'index'])->name('getDate');
+
    
    
    
-   Route::get('/laporan', [laporanController::class, 'index'])->name('laporan');

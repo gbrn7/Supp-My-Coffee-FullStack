@@ -98,6 +98,12 @@
             </a>
           </li>
           @endif
+          <li class="nav-link">
+            <a href="{{route('admin.laporanPenjualan')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-file'></i>
+              <span class="text nav-text">Laporan Penjualan</span>
+            </a>
+          </li>
         </ul>
         <div class="bottom-content ">
           <ul>

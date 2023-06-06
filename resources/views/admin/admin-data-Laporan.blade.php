@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Dashboard style/main.css') }}" />
 
 </head>
-<body class="">
+<body class="dark">
   @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
@@ -66,7 +66,7 @@
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
               <i class='bx bx-coffee-togo' ></i>
               <span class="text nav-text">Data Produk</span>
@@ -98,6 +98,12 @@
             </a>
           </li>
           @endif
+          <li class="nav-link active">
+            <a href="{{route('admin.laporanPenjualan')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-file'></i>
+              <span class="text nav-text">Laporan Penjualan</span>
+            </a>
+          </li>
         </ul>
         <div class="bottom-content ">
           <ul>
@@ -140,93 +146,78 @@
     <div class="card col-10 bg-transparent">
         <p class="text-black title card-header">Laporan Penjualan</p>
         <div class="card-body">
-          <form action="#" method="post">
+          <form action="{{route('admin.laporanPenjualan.filter')}}" method="post">
+            @csrf
             <div class="row head">
               <div class="d-flex flex-column flex-lg-row  justify-content-start gap-2 align-items-end col-12">
                 <div class="form-group col-lg-2 col-12">
                   <label for="exampleFormControlInput1" class="form-label label-rentang">Rentang Awal</label>
-                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                  <input type="date" class="form-control" name="tglAwal" id="exampleFormControlInput1" placeholder="name@example.com" value="{{$tglAwal}}">
                 </div>
                 <div class="form-group col-lg-2 col-12">
                   <label for="exampleFormControlInput1" class="form-label label-rentang">Rentang Akhir</label>
-                  <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                  <input type="date" class="form-control" name="tglAkhir" id="exampleFormControlInput1" placeholder="name@example.com" value="{{$tglAkhir}}">
                 </div>
                 <div class="col-lg-2 col-12 mt-4 mt-lg-0">
-                  <div class="btn btn-success col-12"><a href="{{route('admin.produk.create')}}" class="text-decoration-none text-white">Terapkan</a></div>
+                  <button type="submit" class="col-12 btn btn-success">Terapkan</button>
                 </div>              
               </div>
             </div>
           </form>
-          @if(session()->has('success'))
-            <div class="alert alert-success font-font-weight-bold">
-              {{session('success')}}
-            </div>
-          @endif
+        <!-- alert here -->
+        @if ($errors->any())
+          <div class="alert alert-danger mt-3">
+              <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{$error}}</li>
+                @endforeach
+              </ul>
+          </div>
+        @endif
+
           <hr class="my-3">
           <div class="produk">
             <div class="row row-1 justify-content-start">
-              <div class="col-lg-2 col-12 mr-lg-3 mb-3">
-                <form action="#" method="post">
-                  <input type="hidden" name="tglAwal">
-                  <input type="hidden" name="tglAkhir">
-                  <button type="submit" class="col-12 btn btn-primary">Download Pdf</button>
-                </form>
-              </div>
+              @if (count($transactions) > 0)
+                <div class="col-lg-2 col-12 mr-lg-3 mb-3">
+                  <form action="{{route('admin.laporanPenjualan.printPdf')}}" method="post" target="_blank">
+                    @csrf
+                    <input type="hidden" name="tglAwal" value="{{$tglAwal}}">
+                    <input type="hidden" name="tglAkhir" value="{{$tglAkhir}}">
+                    <button type="submit" class="col-12 btn btn-primary">Download Pdf</button>
+                  </form>
+                </div>
+              @endif
             </div>
             <div class="row row-2">
               <table id="jTable" class="table table-striped mt-3" style="width: 100%">
                 <thead>
                   <tr>
                     <th>Tanggal</th>
-                    <th>Banyak Transaksi</th>
-                    <th>Jumlah Produk Terjual</th>
-                    <th>Total</th>
+                    <th>Qty Transaksi</th>
+                    <th>Qty Pengiriman</th>
+                    <th>Qty Produk Terjual</th>
+                    <th>Sub Total </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>02-05-2023</td>
-                    <td class="text-capitalize">4 Transaksi</td>
-                    <td class="text-capitalize">5 Produk</td>
-                    <td>Rp.400000</td>
-                  </tr>
-                  <tr>
-                    <td>02-05-2023</td>
-                    <td class="text-capitalize">4 Transaksi</td>
-                    <td class="text-capitalize">5 Produk</td>
-                    <td>Rp.400000</td>
-                  </tr>
-                  <tr>
-                    <td>02-05-2023</td>
-                    <td class="text-capitalize">4 Transaksi</td>
-                    <td class="text-capitalize">5 Produk</td>
-                    <td>Rp.400000</td>
-                  </tr>
-                  <tr>
-                    <td>02-05-2023</td>
-                    <td class="text-capitalize">4 Transaksi</td>
-                    <td class="text-capitalize">5 Produk</td>
-                    <td>Rp.400000</td>
-                  </tr>
-                  <tr>
-                    <td>02-05-2023</td>
-                    <td class="text-capitalize">4 Transaksi</td>
-                    <td class="text-capitalize">5 Produk</td>
-                    <td>Rp.400000</td>
-                  </tr>
-                  <tr>
-                    <td>02-05-2023</td>
-                    <td class="text-capitalize">4 Transaksi</td>
-                    <td class="text-capitalize">5 Produk</td>
-                    <td>Rp.400000</td>
-                  </tr>
+                  @foreach ($transactions as $transaction)
+                    <tr>
+                      <td>{{$transaction->tanggal}}</td>
+                      <td class="text-capitalize">{{$transaction->banyakTransaksi}} Transaksi</td>
+                      <td class="text-capitalize">{{$transaction->banyakPengiriman}} Pengiriman</td>
+                      <td class="text-capitalize">{{$transaction->banyakProduk}} Produk</td>
+                      <td>Rp {{number_format($transaction->subTotal,0, ".", ".")}}</td>
+                    </tr>                    
+                  @endforeach
                 </tbody>
                 <tfoot >
                   <tr>
-                    <th></th>
-                    <th>Total Penjualan</th>
-                    <th>Rp.89000000</th>
-                    <th>150 Produk</th>
+                    <th>Total</th>
+                    <th>{{$totalTransaksi}} Transaksi</th>
+                    <th>{{$totalPengiriman}} Pengiriman</th>
+                    <th>{{$totalProdukTerjual}} Produk Terjual</th>
+                    <th>Rp {{number_format($revenue,0, ".", ".")}}</th>
                   </tr>
                 </tfoot>
               </table>
