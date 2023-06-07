@@ -95,7 +95,7 @@ class VisualisasiData extends Component
 
         $totalCustomer = DB::table('user')
         ->select(DB::raw('count(user.id) as totalCustomer'))
-        ->where('user.role', '=', 'member')
+        ->where('user.role', '=', 'customer')
         ->first();
 
         // dd($revenue, $totalPenjualan, $totalCustomer);
