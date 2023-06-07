@@ -46,9 +46,8 @@ onload = () => {
       new PureCounter();
     }
   }, 500);
-
-  setTimeout(() => {
-    body.removeChild(load);
-  }, 1000);
 };
 
+$( document ).ready(function() {
+  body.removeChild(load);
+});

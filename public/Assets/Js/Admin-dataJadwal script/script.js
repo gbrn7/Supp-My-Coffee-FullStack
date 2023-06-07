@@ -56,10 +56,6 @@ onload = () => {
     load.classList.add("close");
     // new PureCounter();
   }, 1000);
-
-  setTimeout(() => {
-    body.removeChild(load);
-  }, 2000);
 };
 
 $(document).ready(function () {
@@ -79,4 +75,8 @@ $(document).ready(function () {
       { "width": "15%" }
     ]
   });
+});
+
+$( document ).ready(function() {
+  body.removeChild(load);
 });
