@@ -64,7 +64,7 @@ class DataAdminController extends Controller
 
         $data['password'] = Crypt::encryptString($request->password); //hash password and override array
         
-        dd($data);
+        // dd($data);
         User::create($data);
 
         return redirect()->route('admin.dataAdmin')->with('success', 'Admin Ditambahkan!');;
