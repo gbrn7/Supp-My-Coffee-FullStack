@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Rekap Penjualan</title>
+  <title>Dashboard | Rekap Harian</title>
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
@@ -151,7 +151,7 @@
   <!-- Content Start-->
   <section class="content">
     <div class="card col-10 bg-transparent">
-      <p class="text-black title card-header">Rekap Penjualan</p>
+      <p class="text-black title card-header">Rekap Harian</p>
       <div class="Produk col-12 mt-2 mb-2 card-body ">
         <form action="{{route('admin.rekap.filter')}}" method="post">
           @csrf
