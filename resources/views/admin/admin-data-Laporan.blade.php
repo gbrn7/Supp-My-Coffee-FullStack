@@ -104,6 +104,12 @@
               <span class="text nav-text">Laporan Penjualan</span>
             </a>
           </li>
+          <li class="nav-link">
+            <a href="{{route('admin.rekap')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-report'></i>
+              <span class="text nav-text">Rekap Harian</span>
+            </a>
+          </li>
         </ul>
         <div class="bottom-content ">
           <ul>
@@ -184,7 +190,7 @@
                     @csrf
                     <input type="hidden" name="tglAwal" value="{{$tglAwal}}">
                     <input type="hidden" name="tglAkhir" value="{{$tglAkhir}}">
-                    <button type="submit" class="col-12 btn btn-primary">Download Pdf</button>
+                    <button type="submit" class="col-12 btn btn-primary">Download PDF</button>
                   </form>
                 </div>
               @endif

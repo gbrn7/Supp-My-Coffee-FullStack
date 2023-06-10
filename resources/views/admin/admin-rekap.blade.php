@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Supp My Coffee</title>
+  <title>Dashboard | Rekap Penjualan</title>
 
     <!-- Icon -->
     <link rel="shortcut icon" href="{{ asset('Assets/img/Logo.png') }}" type="image/x-icon">
@@ -14,14 +14,13 @@
   
     <!-- Link BoxIcon -->
     <link rel="stylesheet" href="{{ asset('Assets/Vendor/boxicons-master/css/boxicons.min.css') }}" />
-  
-    <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-visualisasiData style/main.css') }}" />
-    @livewireStyles
-    @stack('css')
-</head>
-<body class="vh-100 dark">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ asset('Assets/Css/Admin-Dashboard style/main.css') }}" />
+
+</head>
+<body class="dark">
+  @include('sweetalert::alert')
   <!-- Pre Load Start -->
   <div class="loading-wrapper h-100 w-100 position-absolute bg-black d-flex justify-content-center align-items-center top-0 ">
     <div class="jelly-triangle">
@@ -61,13 +60,13 @@
     <div class="menu-bar h-100 d-flex justify-content-between flex-column">
       <div class="menu d-flex flex-column h-100 justify-content-between"> 
         <ul class="menu-links d-flex flex-column gap-2">
-          <li class="nav-link">
+          <li class="nav-link ">
             <a href="{{route('admin.dashboard')}}" class="text-decoration-none text-black">
               <i class='bx bx-home' ></i>
               <span class="text nav-text">Dashboard</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link ">
             <a href="{{route('admin.produk')}}" class="text-decoration-none text-black">
               <i class='bx bx-coffee-togo' ></i>
               <span class="text nav-text">Data Produk</span>
@@ -85,19 +84,19 @@
               <span class="text nav-text">Data Jadwal</span>
             </a>
           </li>
-          <li class="nav-link active">
+          <li class="nav-link">
             <a href="{{route('admin.visualisasiData')}}" class="text-decoration-none text-black">
               <i class='bx bx-bar-chart-alt'></i>
               <span class="text nav-text">Visualisasi Data</span>
             </a>
           </li>
           @if (auth()->user()->role == 'superAdmin')
-            <li class="nav-link">
-              <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
-                <i class='bx bxs-user'></i>
-                <span class="text nav-text">Data Admin</span>
-              </a>
-            </li>
+          <li class="nav-link">
+            <a href="{{route('admin.dataAdmin')}}" class="text-decoration-none text-black">
+              <i class='bx bxs-user'></i>
+              <span class="text nav-text">Data Admin</span>
+            </a>
+          </li>
           @endif
           <li class="nav-link">
             <a href="{{route('admin.laporanPenjualan')}}" class="text-decoration-none text-black">
@@ -105,7 +104,7 @@
               <span class="text nav-text">Laporan Penjualan</span>
             </a>
           </li>
-          <li class="nav-link">
+          <li class="nav-link active">
             <a href="{{route('admin.rekap')}}" class="text-decoration-none text-black">
               <i class='bx bxs-report'></i>
               <span class="text nav-text">Rekap Harian</span>
@@ -141,22 +140,88 @@
   <!-- Header Bg Start -->
   <div class="header-bg position-absolute d-none"></div>
   <!-- Header Bg End -->
-
+  
   <!-- Footer Start -->
-  <div class="footer-wrapper fixed-bottom text-secondary d-none">
+  <div class="footer-wrapper fixed-bottom text-secondary">
     <strong>Copyright © {{ date('Y') }} SUPP MY COFFEE</strong> All Right Reserved
   </div>
   <!-- Footer End -->
 
 
   <!-- Content Start-->
-  <section class="content h-100 w-100 d-none main">
-    <div class="container-fluid m-0">
-        @yield('content')
+  <section class="content">
+    <div class="card col-10 bg-transparent">
+      <p class="text-black title card-header">Rekap Penjualan</p>
+      <div class="Produk col-12 mt-2 mb-2 card-body ">
+        <form action="{{route('admin.rekap.filter')}}" method="post">
+          @csrf
+            <div class="row head">
+              <div class="d-flex flex-column flex-lg-row  justify-content-start gap-2 align-items-end col-12">
+                <div class="form-group col-lg-2 col-12">
+                  <label for="exampleFormControlInput1" class="form-label label-rentang">Tanggal</label>
+                  <input type="date" class="form-control" name="tglAkhir" id="exampleFormControlInput1" placeholder="name@example.com" value="{{$tglAkhir}}">
+                </div>
+                <div class="col-lg-2 col-12 mt-4 mt-lg-0">
+                  <button type="submit" class="col-12 btn btn-success">Terapkan</button>
+                </div>              
+              </div>
+            </div>
+        </form>
+
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{session('success')}}
+        </div>
+        @endif
+        <hr class="my-3">
+        <div class="row row-2">
+        <table id="jTable" class="table table-striped mt-4" style="width: 100%">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nama Cust</th>
+                  <th>List Produk</th>
+                  <th>Alamat</th>
+                  <th>Ekspedisi</th>
+                  <th>Jadwal Pengiriman</th>
+                  <th>Tanggal Dikirim</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($schedules as $schedule)
+                <tr>
+                  <td>{{$schedule->id}}</td>
+                  <td>{{$schedule->nama}}</td>
+                  <td>
+                      @foreach ($schedule->details as $detail)
+                        {{$detail->nama_produk}} : {{$detail->qty}} Pcs <br><br>
+                      @endforeach
+                  </td>
+                  <td>{{$schedule->alamat}}</td>
+                  <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
+                  <td>{{$schedule->tanggal_pengiriman}}</td>
+                  <td>{{$schedule->updated_at}}</td>
+                </tr>
+                @endforeach
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>Id</th>
+                  <th>Nama Cust</th>
+                  <th>List Produk</th>
+                  <th>Alamat</th>
+                  <th>Ekspedisi</th>
+                  <th>Jadwal Pengiriman</th>
+                  <th>Tanggal Dikirim</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div> 
+      </div>
+      
     </div>
   </section>
   <!-- Content End -->
-
 </body>
 
   <!-- Bootstrap js -->
@@ -167,12 +232,9 @@
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-  <!-- Pure Counter JS -->
-  <script src="{{ asset('Assets/Vendor/purecounterjs-main/dist/purecounter_vanilla.js') }}"></script>
 
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/admin-visualisasiData script/script.js') }}"></script>
+  <script src="{{ asset('Assets/Js/Admin-dataJadwal script/script.js') }}"></script>
 
-  @livewireScripts
-  @stack('js')
+
 </html>

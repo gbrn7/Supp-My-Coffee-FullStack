@@ -21,6 +21,7 @@ use App\Http\Controllers\Customer\transactionController as customerTransaksiCont
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
 use App\Http\Controllers\Admin\SuperAdminLoginController;
 use App\Http\Controllers\Admin\laporanController;
+use App\Http\Controllers\Admin\RekapController;
 use App\Http\Livewire\VisualisasiData;
 
 /*
@@ -109,14 +110,19 @@ use App\Http\Livewire\VisualisasiData;
          Route::put('/update/{id}', [JadwalController::class, 'update'])->name('admin.jadwal.update');
       });
 
+      //Laporan Penjualan Route
       Route::get('/laporanPenjualan', [laporanController::class, 'index'])->name('admin.laporanPenjualan');
       
       Route::Post('/laporanPenjualan', [laporanController::class, 'getData'])->name('admin.laporanPenjualan.filter');
       
       Route::Post('/printPdf', [laporanController::class, 'printPdf'])->name('admin.laporanPenjualan.printPdf');
-
+      
       //Visualisasi Data Route
       Route::get('/visualisasiData', VisualisasiData::class, 'render')->name('admin.visualisasiData');
+      
+      //Rekap Penjualan Route
+      Route::get('/rekap', [RekapController::class, 'index'])->name('admin.rekap');
+      Route::Post('/rekap', [RekapController::class, 'getData'])->name('admin.rekap.filter');
    });
 
    // Get Region Data
