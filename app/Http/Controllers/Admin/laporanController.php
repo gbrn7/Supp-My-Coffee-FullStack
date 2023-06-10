@@ -78,13 +78,19 @@ class laporanController extends Controller
     }
 
     public function getData(Request $request){
-
             $tgl = $request->validate([
                 'tglAwal' => 'required',
                 'tglAkhir' => 'required'
             ]);
+
+            $tglAkhir = Carbon::now()->format('Y-m-d');
+
+            //Cheking if the tglAkhir is now
+            if($request->tglAkhir == $tglAkhir){
+                $tglAkhir = Carbon::now()->format('Y-m-d h-i-s');
+            }
             
-            $dataTransactions = $this->getDataTransactions($request->tglAwal, $request->tglAkhir);
+            $dataTransactions = $this->getDataTransactions($request->tglAwal, $tglAkhir);
 
             return view('admin.admin-data-Laporan', ['transactions' => $dataTransactions['transactions'], 'revenue' => $dataTransactions['revenue']
             , 'tglAwal' => $request->tglAwal, 'tglAkhir' => $request->tglAkhir, 'totalPengiriman' => $dataTransactions['totalPengiriman'], 
