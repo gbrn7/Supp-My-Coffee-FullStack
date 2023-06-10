@@ -11,12 +11,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class laporanController extends Controller
 {
     public function index(){
-        $tglAwal = Carbon::create(date('Y'), date('m'), 1)->format('Y-m-d');
-        $tglAkhir = Carbon::now()->format('Y-m-d');
+        $tglAwal = Carbon::create(date('Y'), date('m'), 1)->format('Y-m-d 00-00-00');
+        $tglAkhir = Carbon::now()->format('Y-m-d h-i-s');
 
         $dataTransactions = $this->getDataTransactions($tglAwal, $tglAkhir);
         
-        // dd($dataTransactions);
+        $tglAwal = Carbon::create(date('Y'), date('m'), 1)->format('Y-m-d');
+        $tglAkhir = Carbon::now()->format('Y-m-d');
 
         return view('admin.admin-data-Laporan', ['transactions' => $dataTransactions['transactions'], 'revenue' => $dataTransactions['revenue']
                     , 'tglAwal' => $tglAwal, 'tglAkhir' => $tglAkhir, 'totalPengiriman' => $dataTransactions['totalPengiriman'], 
@@ -34,6 +35,8 @@ class laporanController extends Controller
         ->groupBy("tanggal")
         ->orderBy('t.updated_at', 'asc')
         ->get();
+
+        // dd($transactions, $tglAwal, $tglAkhir);
 
         $transactionsQty = DB::table('transaksi as t')
         ->selectRaw("DATE_FORMAT(t.updated_at, '%Y-%m-%d') AS tanggal, sum(t.total) as subTotal, count(t.id) as banyakTransaksi")
