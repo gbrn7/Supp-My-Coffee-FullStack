@@ -195,8 +195,8 @@
                     <label for="Role" class="mb-1">Role</label>
                     <div class="select-wrapper d-flex align-items-center">
                       <select class="form-select role " aria-label="Default select example"  name="role">
-                        <option value="publish" class="status-state"  {{old('role') === '1' ? "selected" : ""}}>Admin</option>
-                        <option value="draft" class="status-state"  {{old('role') === '0' ? "selected" : ""}} >SuperAdmin</option>
+                        <option value="Admin" class="status-state"  {{old('role') === '1' ? "selected" : ""}}>Admin</option>
+                        <option value="SuperAdmin" class="status-state"  {{old('role') === '0' ? "selected" : ""}} >SuperAdmin</option>
                       </select>
                       <i class="ri-arrow-down-s-line position-absolute"></i>
                     </div>
