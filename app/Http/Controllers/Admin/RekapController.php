@@ -94,7 +94,7 @@ class RekapController extends Controller
         $affectedRows = Pengiriman::where("id", $id)->update(["status" => $resi]);
         
         // dd($jadwalNew);
-        return redirect()->route('admin.rekap')->with('success', 'Jadwal Telah Diupdate');
+        return redirect()->route('admin.rekap')->with('success', 'Resi Telah Diupdate');
     }
 
 }
