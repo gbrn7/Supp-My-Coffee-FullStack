@@ -172,7 +172,7 @@
           </form>
         <!-- alert here -->
         @if ($errors->any())
-          <div class="alert alert-danger mt-3">
+          <div class="alert alert-danger mt-5">
               <ul>
                 @foreach ($errors->all() as $error)
                   <li>{{$error}}</li>

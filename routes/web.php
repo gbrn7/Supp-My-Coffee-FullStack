@@ -121,8 +121,11 @@ use App\Http\Livewire\VisualisasiData;
       Route::get('/visualisasiData', VisualisasiData::class, 'render')->name('admin.visualisasiData');
       
       //Rekap Penjualan Route
-      Route::get('/rekap', [RekapController::class, 'index'])->name('admin.rekap');
-      Route::Post('/rekap', [RekapController::class, 'getData'])->name('admin.rekap.filter');
+      Route::group(['prefix' => 'rekap'], function(){
+         Route::get('/', [RekapController::class, 'index'])->name('admin.rekap');
+         Route::Post('/', [RekapController::class, 'getData'])->name('admin.rekap.filter');
+         Route::put('/update/{id}', [RekapController::class, 'updateResi'])->name('admin.rekap.updateResi');
+      });
    });
 
    // Get Region Data

@@ -5,6 +5,8 @@ const modeSwitch = body.querySelector(".toggle-switch");
 const modeText = document.querySelector(".mode-text");
 const switchh = document.querySelector(".switch");
 const produk = document.querySelector(".Produk");
+const load = document.querySelector(".loading-wrapper");
+
 
 
 toggle.addEventListener("click", () => {
@@ -22,11 +24,5 @@ modeSwitch.addEventListener("click", () => {
   }
 });
 
-
-$(document).ready(function () {
-  $('#example').DataTable({
-    "ordering": false
-  });
-});
 
 

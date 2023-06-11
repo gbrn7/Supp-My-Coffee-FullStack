@@ -83,14 +83,9 @@ class laporanController extends Controller
                 'tglAkhir' => 'required'
             ]);
 
-            $tglAkhir = Carbon::now()->format('Y-m-d');
-
-            //Cheking if the tglAkhir is now
-            if($request->tglAkhir == $tglAkhir){
-                $tglAkhir = Carbon::now()->format('Y-m-d h-i-s');
-            }
+            $tglAkhir = Carbon::createFromFormat('Y-m-d', $request->tglAkhir)->format('Y-m-d 23:59:59');
             
-            $dataTransactions = $this->getDataTransactions($request->tglAwal, $tglAkhir);
+            $dataTransactions = $this->getDataTransactions($request->tglAwal,  $tglAkhir);
 
             return view('admin.admin-data-Laporan', ['transactions' => $dataTransactions['transactions'], 'revenue' => $dataTransactions['revenue']
             , 'tglAwal' => $request->tglAwal, 'tglAkhir' => $request->tglAkhir, 'totalPengiriman' => $dataTransactions['totalPengiriman'], 

@@ -27,6 +27,8 @@ $(document).ready(function () {
   $('#jTable').DataTable({
     "ordering": false
   });
+
+  body.removeChild(load);
 });
 
 
@@ -36,7 +38,6 @@ onload = () => {
   let z = document.querySelector(".content");
   let headBg = document.querySelector(".header-bg");
   let load = document.querySelector(".loading-wrapper");
-  setTimeout(() => {
     x.classList.remove("d-none");
     y.classList.remove("d-none");
     z.classList.remove("d-none");
@@ -45,9 +46,4 @@ onload = () => {
     if (z.classList.contains("main")) {
       new PureCounter();
     }
-  }, 500);
 };
-
-$( document ).ready(function() {
-  body.removeChild(load);
-});

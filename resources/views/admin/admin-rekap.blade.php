@@ -169,10 +169,12 @@
         </form>
 
         @if(session()->has('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success mt-2">
             {{session('success')}}
         </div>
         @endif
+
+
         <hr class="my-3">
         <div class="row row-2">
         <table id="jTable" class="table table-striped mt-4" style="width: 100%">
@@ -185,6 +187,8 @@
                   <th>Ekspedisi</th>
                   <th>Jadwal Pengiriman</th>
                   <th>Tanggal Dikirim</th>
+                  <th>Status Pengiriman</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
@@ -201,6 +205,26 @@
                   <td class="text-capitalize">{{$schedule->ekspedisi}}</td>
                   <td>{{$schedule->tanggal_pengiriman}}</td>
                   <td>{{$schedule->updated_at}}</td>
+                  <td>{{$schedule->status}}</td>
+                  <td>
+                    <div class="btn btn-primary btn-atur mb-1">Edit Resi</div>
+                    <div class="form-group flex-wrap d-none">
+                      <form action="{{route('admin.rekap.updateResi', $schedule->id)}}" method="post">
+                        @csrf
+                        @method('PUT')
+                        <input
+                          class="resi-input rounded-3 form-control-sm mb-3 mb-lg-1"
+                          type="text"
+                          name="resi"
+                          id="resi"
+                          placeholder="Masukkan No Resi"
+                        />
+                        <button type="submit" class="btn btn-success">
+                          Submit
+                        </button>
+                      </form>
+                    </div>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -213,6 +237,8 @@
                   <th>Ekspedisi</th>
                   <th>Jadwal Pengiriman</th>
                   <th>Tanggal Dikirim</th>
+                  <th>Status Pengiriman</th>
+                  <th>Aksi</th>
                 </tr>
               </tfoot>
             </table>
@@ -234,7 +260,7 @@
 
 
   <!-- Main Js -->
-  <script src="{{ asset('Assets/Js/Admin-dataJadwal script/script.js') }}"></script>
+  <script src="{{ asset('Assets/Js/Admin-rekap script/script.js') }}"></script>
 
 
 </html>

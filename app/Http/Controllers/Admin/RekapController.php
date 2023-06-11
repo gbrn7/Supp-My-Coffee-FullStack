@@ -26,34 +26,36 @@ class RekapController extends Controller
         ->join('pengiriman as p', 'p.id_transaksi', '=', 't.id')
         ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
         ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-        ->select('p.id', 'user.nama', 't.alamat', 'p.status', 'p.tanggal_pengiriman', 't.ekspedisi', 't.updated_at')
+        ->selectRaw("p.id, user.nama, t.alamat, p.status, DATE_FORMAT(p.tanggal_pengiriman, '%Y-%m-%d') AS tanggal_pengiriman, t.ekspedisi, DATE_FORMAT(p.updated_at, '%Y-%m-%d') AS updated_at")
         ->where('p.status', '!=', 'On Process')
         ->where('t.status_pembayaran', '=', 'SUCCESS')
-        ->where("p.tanggal_pengiriman", '=', [$tglAkhir])  
+        ->whereRaw("DATE_FORMAT(p.updated_at, '%Y-%m-%d') = '$tglAkhir'")  
         ->groupBy('p.id')
         ->groupBy('user.nama')
         ->groupBy('t.alamat')
         ->groupBy('p.status')
         ->groupBy('p.tanggal_pengiriman')
         ->groupBy('t.ekspedisi')
-        ->groupBy('t.updated_at')
-        ->orderBy('p.tanggal_pengiriman', 'asc')
+        ->groupBy('p.updated_at')
+        ->orderBy('p.updated_at', 'asc')
         ->get();
+
+        // dd($schedules, $tglAkhir);
 
         $details = DB::table('pengiriman as p')
         ->join('detail_produk as dp', 'dp.id_pengiriman', '=', 'p.id')
         ->join('transaksi as t', 'p.id_transaksi', '=', 't.id')
         ->join('produk as prod', 'prod.id', '=', 'dp.id_produk')
-        ->select('t.id as id_transaksi','p.id as id_pengiriman', 'prod.nama_produk', 'dp.qty','t.updated_at')
+        ->selectRaw('t.id as id_transaksi,p.id as id_pengiriman, prod.nama_produk, dp.qty,t.updated_at')
         ->where('p.status', '!=', 'On Process')
         ->where('t.status_pembayaran', '=', 'SUCCESS')
-        ->where("p.tanggal_pengiriman",'=', [$tglAkhir])  
+        ->whereRaw("DATE_FORMAT(p.updated_at, '%Y-%m-%d') = '$tglAkhir'")  
         ->groupBy('t.id')
         ->groupBy('p.id')
         ->groupBy('prod.nama_produk')
         ->groupBy('dp.qty')
         ->groupBy('t.updated_at')
-        ->orderBy('p.tanggal_pengiriman', 'asc')
+        ->orderBy('p.updated_at', 'asc')
         ->get();
         
         // dd($schedules, $details);
@@ -71,6 +73,7 @@ class RekapController extends Controller
             $schedules[$key]->details =  $detailProduk;
         }
 
+        // dd($data);
         return $data;
     }
 
@@ -83,6 +86,15 @@ class RekapController extends Controller
         $dataSchedules = $this->getSchedule($request->tglAkhir);
         
         return view('admin.admin-rekap', ['schedules' => $dataSchedules['schedules'], 'tglAkhir' => $request->tglAkhir]);
+    }
+
+    public function updateResi(Request $request, $id){
+        $resi = $request->resi;
+        
+        $affectedRows = Pengiriman::where("id", $id)->update(["status" => $resi]);
+        
+        // dd($jadwalNew);
+        return redirect()->route('admin.rekap')->with('success', 'Jadwal Telah Diupdate');
     }
 
 }
