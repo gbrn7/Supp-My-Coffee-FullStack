@@ -48,7 +48,7 @@ class ProdukController extends Controller
 
         // Alert::success('Success', 'Produk Telah Ditambahkan');
 
-        return redirect()->route('admin.produk')->with('success', 'Produk Ditambahkan!');;
+        return redirect()->route('admin.produk')->with('success', 'Produk Ditambahkan!');
         // dd($data);
         
     }
@@ -97,7 +97,6 @@ class ProdukController extends Controller
     public function destroy($id){
 
         // example:
-
         Produk::find($id)->delete();
         return redirect()->route('admin.produk')->with('success', 'Product Dihapus!');
     }
