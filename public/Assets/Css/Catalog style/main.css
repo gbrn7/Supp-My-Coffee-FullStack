@@ -375,11 +375,14 @@ body::-webkit-scrollbar {
   }
 }
 .recomendation .recomendation-wrapper .row-2 .product .box .btn-cart {
-  padding: 10px 0;
+  padding: 12px 4px;
   border-radius: 10px;
   border: 1px solid #000000;
   width: 100%;
   background-color: white;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .recomendation .recomendation-wrapper .row-2 .product .box .btn-cart p {
   font-size: 16px;

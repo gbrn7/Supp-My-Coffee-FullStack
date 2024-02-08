@@ -19,7 +19,6 @@ use App\Http\Controllers\Customer\socialAuthController;
 use App\Http\Controllers\Customer\dateController;
 use App\Http\Controllers\Customer\transactionController as customerTransaksiController;
 use App\Http\Controllers\Admin\LoginController as AdminLoginController;
-use App\Http\Controllers\Admin\SuperAdminLoginController;
 use App\Http\Controllers\Admin\laporanController;
 use App\Http\Controllers\Admin\RekapController;
 use App\Http\Livewire\VisualisasiData;

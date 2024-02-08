@@ -66,8 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cust.auth' => \App\Http\Middleware\CustomerAuthenticate::class,
         'admin.auth' => \App\Http\Middleware\AdminAuthenticate::class,
-        // SweetAlert
-        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         
     ];
 }

@@ -19,116 +19,116 @@ console.log(subsInput.value);
 iteminit();
 dateInit();
 
-$(document).ready(function(){
+$(document).ready(function () {
   // Get Data Kabupaten/kota
-  $('select[name="provinsi"]').on('change', function(){
+  $('select[name="provinsi"]').on('change', function () {
     let provinsiId = $(this).val();
-    if(provinsiId){
+    if (provinsiId) {
       jQuery.ajax({
-        url:`/provinsi/${provinsiId}/kota`,
-        type:"Get",
-        dataType:"json",
-        success:function(data){
+        url: `/provinsi/${provinsiId}/kota`,
+        type: "Get",
+        dataType: "json",
+        success: function (data) {
           $('select[name="kabupaten/kota"]').empty();
-          $.each(data, function(key, value){
+          $.each(data, function (key, value) {
             // console.log(data);
             $('select[name="kabupaten/kota"]').append(`<option value= ${value.city_id} >${value.type} ${value.city_name}</option>`);
           });
         },
       });
-    }else{
+    } else {
       $('select[name="kabupaten/kota"]').empty();
       $('select[name="kabupaten/kota"]').append('<option selected value=x>-- Pilih Kabupaten/Kota --</option>');
     }
   })
-  
+
   //Get Data Biaya Ekspedisi
-  $('select[name="ekspedisi"]').on('change', function(){
+  $('select[name="ekspedisi"]').on('change', function () {
     let kabKotVal = ($('select[name="kabupaten/kota"]').val());
     let beratVal = document.querySelector('#berat').value;
-    let ekpedisiVal =($('select[name="ekspedisi"]').val());
+    let ekpedisiVal = ($('select[name="ekspedisi"]').val());
     // console.log(kabKotVal, beratVal, ekpedisiVal);
-    if(ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x'){
+    if (ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x') {
       jQuery.ajax({
-        url:`/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
-        type:"Get",
-        dataType:"json",
-        success:function(data){
+        url: `/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
+        type: "Get",
+        dataType: "json",
+        success: function (data) {
           $('select[name="paket"]').empty();
           // console.log(data);
-          $.each(data, function(key, value){
+          $.each(data, function (key, value) {
             // console.log(value.code, value.costs[0].service, value.costs[0].cost[0].value);
-            value.costs.forEach( (e, key) => {
+            value.costs.forEach((e, key) => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${key}>${value.code}-${e.service} Rp ${e.cost[0].value.toLocaleString('de-DE')} Estimasi ${e.cost[0].etd} hari </option>`);
             });
-            if(alamat.value != ''){
+            if (alamat.value != '') {
               btnCheckout.classList.remove('disabled');
             }
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
       });
-    }else{
+    } else {
       $('select[name="paket"]').empty();
       $('select[name="paket"]').append('<option selected value="x">-- Pilih Paket --</option>');
     }
   })
-  $('select[name="kabupaten/kota"]').on('change', function(){
+  $('select[name="kabupaten/kota"]').on('change', function () {
     let kabKotVal = ($('select[name="kabupaten/kota"]').val());
     let beratVal = document.querySelector('#berat').value;
-    let ekpedisiVal =($('select[name="ekspedisi"]').val());
+    let ekpedisiVal = ($('select[name="ekspedisi"]').val());
     // console.log(kabKotVal, beratVal, ekpedisiVal);
-    if(ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x'){
+    if (ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x') {
       jQuery.ajax({
-        url:`/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
-        type:"Get",
-        dataType:"json",
-        success:function(data){
+        url: `/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
+        type: "Get",
+        dataType: "json",
+        success: function (data) {
           $('select[name="paket"]').empty();
           // console.log(data);
-          $.each(data, function(key, value){
+          $.each(data, function (key, value) {
             // console.log(value.code, value.costs[0].service, value.costs[0].cost[0].value);
-            value.costs.forEach( (e, key) => {
+            value.costs.forEach((e, key) => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${key}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
-            if(alamat.value != ''){
+            if (alamat.value != '') {
               btnCheckout.classList.remove('disabled');
             }
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
       });
-    }else{
+    } else {
       $('select[name="paket"]').empty();
       $('select[name="paket"]').append('<option selected value="x">-- Pilih Paket --</option>');
     }
   })
-  $('select[name="provinsi"]').on('change', function(){
+  $('select[name="provinsi"]').on('change', function () {
     let kabKotVal = ($('select[name="kabupaten/kota"]').val());
     let beratVal = document.querySelector('#berat').value;
-    let ekpedisiVal =($('select[name="ekspedisi"]').val());
+    let ekpedisiVal = ($('select[name="ekspedisi"]').val());
     // console.log(kabKotVal, beratVal, ekpedisiVal);
-    if(ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x'){
+    if (ekpedisiVal != 'x' && kabKotVal != 'x' && beratVal != 'x') {
       jQuery.ajax({
-        url:`/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
-        type:"Get",
-        dataType:"json",
-        success:function(data){
+        url: `/asal/255/tujuan/${kabKotVal}/berat/${beratVal}/ekpedisi/${ekpedisiVal}`,
+        type: "Get",
+        dataType: "json",
+        success: function (data) {
           $('select[name="paket"]').empty();
           // console.log(data);
-          $.each(data, function(key, value){
+          $.each(data, function (key, value) {
             // console.log(value.code, value.costs[0].service, value.costs[0].cost[0].value);
-            value.costs.forEach( (e, key) => {
+            value.costs.forEach((e, key) => {
               $('select[name="paket"]').append(`<option class="text-capitalize" value= ${key}>${value.code}-${e.service} Rp.${e.cost[0].value} Estimasi ${e.cost[0].etd} hari </option>`);
             });
-            if(alamat.value != ''){
+            if (alamat.value != '') {
               btnCheckout.classList.remove('disabled');
             }
             // $('select[name="kabupaten/kota"]').append('<option value="'+ key + '">' + value.type + " "+ value.city_name + '</option>');
           });
         },
       });
-    }else{
+    } else {
       $('select[name="paket"]').empty();
       $('select[name="paket"]').append('<option selected value="x">-- Pilih Paket --</option>');
     }
@@ -136,36 +136,36 @@ $(document).ready(function(){
 
 });
 
-paket.addEventListener("change", ()=>{
-  if(alamat.value != '' && paket.value != 'x'){
+paket.addEventListener("change", () => {
+  if (alamat.value != '' && paket.value != 'x') {
     btnCheckout.classList.remove('disabled');
-  } else if( paket.value == 'x' && !btnCheckout.classList.contains('disabled')){
+  } else if (paket.value == 'x' && !btnCheckout.classList.contains('disabled')) {
     btnCheckout.classList.add('disabled');
   }
 });
 
-alamat.addEventListener("keyup", (event)=>{
-  
+alamat.addEventListener("keyup", (event) => {
 
-  if(alamat.value && paket.value != 'x'){
+
+  if (alamat.value && paket.value != 'x') {
     btnCheckout.classList.remove('disabled');
-  } else if( paket.value == 'x' && !btnCheckout.classList.contains('disabled')){
+  } else if (paket.value == 'x' && !btnCheckout.classList.contains('disabled')) {
     btnCheckout.classList.add('disabled');
   }
 
-  if (event.key === "Backspace" || event.key === "Delete" ){
-    if(alamat.value == ''){
+  if (event.key === "Backspace" || event.key === "Delete") {
+    if (alamat.value == '') {
       btnCheckout.classList.add('disabled');
     }
   }
 });
 
-alamat.addEventListener("change", (event)=>{
-  
+alamat.addEventListener("change", (event) => {
 
-  if(alamat.value && paket.value != 'x'){
+
+  if (alamat.value && paket.value != 'x') {
     btnCheckout.classList.remove('disabled');
-  } else if( paket.value == 'x' && !btnCheckout.classList.contains('disabled')){
+  } else if (paket.value == 'x' && !btnCheckout.classList.contains('disabled')) {
     btnCheckout.classList.add('disabled');
   }
 
@@ -176,17 +176,17 @@ btnConfirm.addEventListener("click", () => {
   const subsValue = subsInput.value;
   const subsDate = document.querySelector('.tanggal').value;
   jQuery.ajax({
-    url:`/getDate/${subsValue}/date/${subsDate}`,
-    type:"Get",
-    dataType:"json",
-    success:function(data){
+    url: `/getDate/${subsValue}/date/${subsDate}`,
+    type: "Get",
+    dataType: "json",
+    success: function (data) {
       $('.date-wrapper').empty();
       data.forEach(e => {
-          datecol.classList.remove("d-none");
-          $(".date-wrapper").append(`<p class="mb-1">${e}</p>`);
-          if (btnCheckout.classList.contains("disabled") && alamat.value != '' && paket.value != 'x') {
-              btnCheckout.classList.remove("disabled"); 
-              }
+        datecol.classList.remove("d-none");
+        $(".date-wrapper").append(`<p class="mb-1">${e}</p>`);
+        if (btnCheckout.classList.contains("disabled") && alamat.value != '' && paket.value != 'x') {
+          btnCheckout.classList.remove("disabled");
+        }
       });
     },
   });
@@ -219,7 +219,7 @@ radioBtn.forEach((e) => {
         // console.log(subsInput.value);
         subsInput.value = 0;
         console.log(subsInput.value);
-        if(alamat.value != '' && paket.value != 'x'){
+        if (alamat.value != '' && paket.value != 'x') {
           btnCheckout.classList.remove("disabled")
         }
       }

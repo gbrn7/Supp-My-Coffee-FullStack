@@ -32,7 +32,10 @@ class LoginController extends Controller
                           ->orWhere('role', 'superAdmin');
                 })
                 ->first();    
+        if (!$user) return back()->with('loginError', 'Login gagal!')->withInput();
+
         $pw = Crypt::decryptString($user->password);
+
 
         if ($pw == $credentials['password']){
             Auth::loginUsingId($user->id, $remember = false);

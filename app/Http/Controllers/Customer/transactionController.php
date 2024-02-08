@@ -89,7 +89,7 @@ class transactionController extends Controller
     public function createPengiriman($subs, $subsDate, $request){
         $data = $request->only('subs', 'subsDate');
         $idTransaksi =  DB::table('transaksi')->max('id');
-        $pengiriman;
+        $pengiriman = '';
 
         $first = Carbon::create(date('Y'), date('m'), $data['subsDate']);
         // dd($first);
@@ -140,7 +140,7 @@ class transactionController extends Controller
 
     public function createDetailProduk($dataProduk){
         $idPengiriman =  DB::table('pengiriman')->max('id');
-        $detailPengiriman;
+        $detailPengiriman = '';
 
         for ($i=0; $i < count($dataProduk); $i++) { 
             if($i%2 != 0){
@@ -209,7 +209,7 @@ class transactionController extends Controller
             ),
         );
 
-        $createMidtransTransaction = \Midtrans\snap::createTransaction($params);
+        $createMidtransTransaction = \Midtrans\Snap::createTransaction($params);
         // dd($createMidtransTransaction);
         $midtransRedirectUrl = $createMidtransTransaction->redirect_url;
         // dd($midtransRedirectUrl);

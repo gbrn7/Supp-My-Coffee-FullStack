@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Http\Controllers\Customer\rajaOngkirController;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
-use App\Http\Controllers\customer\subscribeController;
+use App\Http\Controllers\Customer\subscribeController;
 
 class checkoutController extends Controller
 {
@@ -98,7 +98,7 @@ class checkoutController extends Controller
     }
 
     public function getSubs($dataRaw){
-        $subs ;
+        $subs = 0;
         foreach ($dataRaw as $key => $value) {
             $subs = $value;
         }
